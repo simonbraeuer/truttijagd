@@ -68,6 +68,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .hud {
@@ -94,4 +95,25 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   cursor: crosshair;
   background: #87CEEB;
+}
+
+.completion-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 215, 0, 0.95);
+  color: #333;
+  padding: 20px 40px;
+  border-radius: 15px;
+  font-size: 1.8em;
+  font-weight: bold;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
 }

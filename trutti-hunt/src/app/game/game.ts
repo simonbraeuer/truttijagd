@@ -30,6 +30,7 @@ export class GameComponent implements OnInit, OnDestroy {
   money: number = 0;
   gameStarted: boolean = false;
   gameOver: boolean = false;
+  completionMessage: string = '';
   
   private readonly CANVAS_WIDTH = 800;
   private readonly CANVAS_HEIGHT = 600;
@@ -71,7 +72,10 @@ export class GameComponent implements OnInit, OnDestroy {
       
       // Start background music
       if (this.audio) {
-        this.audio.play().catch(err => console.log('Audio play failed:', err));
+        this.audio.play().catch(err => {
+          console.warn('Background music could not be played:', err.message || err);
+          console.info('Add "freed-from-desire.mp3" to public/assets/audio/ for background music');
+        });
       }
       
       // Start spawning objects
@@ -346,7 +350,10 @@ export class GameComponent implements OnInit, OnDestroy {
       // Check if all special turkeys caught
       if (this.caughtSpecialTurkeys.size === 9) {
         this.money += 500; // Bonus for catching all
-        alert('Congratulations! You caught all 9 special turkeys! +500 bonus!');
+        this.completionMessage = '🎉 All 9 special turkeys caught! +$500 bonus! 🎉';
+        setTimeout(() => {
+          this.completionMessage = '';
+        }, 5000);
       }
     } else if (obj.type === 'bikini-girl') {
       if (obj.inDelicateSituation) {

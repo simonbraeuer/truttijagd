@@ -19,6 +19,9 @@
         Special Turkeys Caught: {{ caughtSpecialTurkeys.size }} / 9
       </div>
     </div>
+    <div *ngIf="completionMessage" class="completion-message">
+      {{ completionMessage }}
+    </div>
     <canvas 
       #gameCanvas 
       (click)="onCanvasClick($event)"
