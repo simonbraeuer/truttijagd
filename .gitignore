@@ -1,0 +1,20 @@
+# Dependencies
+trutti-hunt/node_modules/
+
+# Build outputs (keep docs for GitHub Pages)
+trutti-hunt/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+npm-debug.log*

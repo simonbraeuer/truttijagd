@@ -1,0 +1,28 @@
+<div class="game-container">
+  <div *ngIf="!gameStarted" class="start-screen">
+    <h2>Trutti Hunt</h2>
+    <p>Click on turkeys to earn money!</p>
+    <ul class="instructions">
+      <li>🦃 Regular Turkeys: +$10</li>
+      <li>⭐ Special Turkeys (1-9): +$50 each</li>
+      <li>👙 Bikini Girls: -$50 penalty (Don't photograph!)</li>
+      <li>💕 Bikini Girls in delicate situations: +$100 bonus!</li>
+      <li>Catch all 9 special turkeys for a +$500 bonus!</li>
+    </ul>
+    <button class="start-button" (click)="startGame()">Start Game</button>
+  </div>
+
+  <div *ngIf="gameStarted" class="game-area">
+    <div class="hud">
+      <div class="money-display">💰 Money: ${{ money }}</div>
+      <div class="special-turkeys">
+        Special Turkeys Caught: {{ caughtSpecialTurkeys.size }} / 9
+      </div>
+    </div>
+    <canvas 
+      #gameCanvas 
+      (click)="onCanvasClick($event)"
+      class="game-canvas">
+    </canvas>
+  </div>
+</div>

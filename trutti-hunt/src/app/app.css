@@ -1,0 +1,14 @@
+.app-container {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: white;
+}
+
+h1 {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 3em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+}
