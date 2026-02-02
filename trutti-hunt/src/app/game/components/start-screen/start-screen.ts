@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,6 +12,7 @@ export class StartScreenComponent implements OnInit {
   @Output() startGame = new EventEmitter<string>();
   
   audioUrl: string = '';
+  isLargeScreen: boolean = false;
 
   ngOnInit() {
     // Load saved audio URL from localStorage
@@ -19,6 +20,18 @@ export class StartScreenComponent implements OnInit {
     if (savedAudioUrl) {
       this.audioUrl = savedAudioUrl;
     }
+    
+    // Check screen size
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isLargeScreen = window.innerWidth >= 768 && window.innerHeight >= 700;
   }
 
   onStartGame() {
