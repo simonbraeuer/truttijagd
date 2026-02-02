@@ -1,0 +1,86 @@
+.pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pause-screen {
+  background: rgba(255, 255, 255, 0.95);
+  padding: clamp(10px, 3vw, 20px);
+  border-radius: clamp(10px, 2vw, 15px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: min(600px, 100vw - 20px);
+  width: 100%;
+  color: #333;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.pause-screen h2 {
+  font-size: clamp(1.2em, 4vw, 1.8em);
+  margin-bottom: clamp(10px, 2vw, 15px);
+  color: #764ba2;
+}
+
+.pause-screen p {
+  font-size: clamp(0.85em, 2.5vw, 1em);
+  margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.instructions {
+  text-align: left;
+  margin: clamp(10px, 2vw, 15px) 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.instructions li {
+  font-size: clamp(0.8em, 2vw, 0.95em);
+  margin: clamp(5px, 1vw, 8px) 0;
+  padding: clamp(6px, 1.5vw, 8px);
+  background: rgba(118, 75, 162, 0.1);
+  border-radius: clamp(5px, 1vw, 8px);
+}
+
+.resume-hint {
+  margin: clamp(10px, 2vw, 15px) 0 clamp(5px, 1.5vw, 10px);
+  font-size: clamp(0.75em, 2vw, 0.9em);
+  color: #764ba2;
+  font-style: italic;
+}
+
+.resume-hint strong {
+  color: #667eea;
+  font-weight: bold;
+}

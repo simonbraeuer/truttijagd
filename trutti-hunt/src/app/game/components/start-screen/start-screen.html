@@ -1,0 +1,38 @@
+<div class="start-screen">
+  <p>Click on turkeys to earn money!</p>
+  
+  <div class="accordions-container">
+    <details class="accordion">
+      <summary class="accordion-header">📋 Instructions</summary>
+      <ul class="instructions">
+        <li>🦃 Regular Turkeys: +$10</li>
+        <li>⭐ Special Truttis (1-9): +$50 each</li>
+        <li>👙 Bikini Girls: -$50 penalty (Don't photograph!)</li>
+        <li>💕 Bikini Girls in delicate situations: +$100 bonus!</li>
+        <li>Catch all 9 Truttis for a +$500 bonus!</li>
+        <li>⚠️ Game ends when the last Trutti is caught or escapes!</li>
+      </ul>
+    </details>
+    
+    <details class="accordion">
+      <summary class="accordion-header">🎵 Audio Settings</summary>
+      <div class="audio-config">
+        <label for="audioUrl">Background Music URL (optional):</label>
+        <input 
+          id="audioUrl"
+          type="text" 
+          [(ngModel)]="audioUrl" 
+          placeholder="Enter URL to your audio file (e.g., https://example.com/song.mp3)"
+          class="audio-input">
+        <p class="audio-hint">Provide your own music to avoid licensing issues. Leave empty for no music.</p>
+      </div>
+    </details>
+    
+    <details class="accordion">
+      <summary class="accordion-header">💡 Controls</summary>
+      <p class="pause-hint">Press <strong>P</strong> or <strong>Pause</strong> key to pause | Press <strong>Escape</strong> to end game</p>
+    </details>
+  </div>
+  
+  <button class="start-button" (click)="onStartGame()">Start Game</button>
+</div>

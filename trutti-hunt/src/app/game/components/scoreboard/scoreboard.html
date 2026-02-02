@@ -1,0 +1,18 @@
+<div class="scoreboard-overlay">
+  <div class="scoreboard-screen">
+    <h2>🏆 High Scores 🏆</h2>
+    <div class="scoreboard-list">
+      <div *ngFor="let entry of scoreboard; let i = index" 
+           class="score-entry" 
+           [class.current-score]="entry.name === currentPlayerName && entry.score === currentScore">
+        <span class="rank">{{ i + 1 }}.</span>
+        <span class="name">{{ entry.name }}</span>
+        <span class="score">${{ entry.score }}</span>
+      </div>
+      <div *ngIf="scoreboard.length === 0" class="no-scores">
+        No scores yet. Be the first!
+      </div>
+    </div>
+    <button class="back-button" (click)="onBackToMenu()">Back to Menu</button>
+  </div>
+</div>

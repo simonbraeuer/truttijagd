@@ -1,9 +1,9 @@
 .app-container {
   text-align: center;
-  padding: 20px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
+  height: 100dvh;
   color: white;
+  overflow: hidden;
 }
 
 h1 {

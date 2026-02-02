@@ -3,104 +3,52 @@
     <h1>🦃 Trutti Hunt</h1>
   </header>
   
-  <div *ngIf="!gameStarted" class="start-screen">
-    <p>Click on turkeys to earn money!</p>
-    <ul class="instructions">
-      <li>🦃 Regular Turkeys: +$10</li>
-      <li>⭐ Special Truttis (1-9): +$50 each</li>
-      <li>👙 Bikini Girls: -$50 penalty (Don't photograph!)</li>
-      <li>💕 Bikini Girls in delicate situations: +$100 bonus!</li>
-      <li>Catch all 9 Truttis for a +$500 bonus!</li>
-      <li>⚠️ Game ends when the last Trutti is caught or escapes!</li>
-    </ul>
-    
-    <div class="audio-config">
-      <label for="audioUrl">🎵 Background Music URL (optional):</label>
-      <input 
-        id="audioUrl"
-        type="text" 
-        [(ngModel)]="audioUrl" 
-        placeholder="Enter URL to your audio file (e.g., https://example.com/song.mp3)"
-        class="audio-input">
-      <p class="audio-hint">Provide your own music to avoid licensing issues. Leave empty for no music.</p>
-    </div>
-    
-    <p class="pause-hint">💡 Press <strong>P</strong> or <strong>Pause</strong> key to pause | Press <strong>Escape</strong> to end game</p>
-    <button class="start-button" (click)="startGame()">Start Game</button>
-  </div>
+  <app-start-screen *ngIf="!gameStarted" (startGame)="startGame($event)"></app-start-screen>
 
-  <div *ngIf="gameStarted" class="game-area">
+  <div *ngIf="gameStarted" class="game-wrapper">
     <div class="hud">
-      <div class="money-display">💰 Money: ${{ money }}</div>
-      <div class="special-turkeys">
-        Truttis Caught: {{ caughtSpecialTurkeys.size }} / 9
+      <div class="hud-item money-display">
+        <span class="hud-label">💰 Money</span>
+        <span class="hud-value">${{ money }}</span>
+      </div>
+      <div class="hud-item special-turkeys">
+        <span class="hud-label">🦃 Truttis Caught</span>
+        <span class="hud-value">{{ caughtSpecialTurkeys.size }} / 9</span>
       </div>
     </div>
+    
+    <div class="game-area">
     <div *ngIf="completionMessage" class="completion-message">
       {{ completionMessage }}
     </div>
     
     <!-- Game Over Screen -->
-    <div *ngIf="gameOver && !showScoreboard && qualifiesForTop10" class="game-over-overlay">
-      <div class="game-over-screen">
-        <h2>🎮 Game Over! 🎮</h2>
-        <p class="final-score">Your Score: ${{ money }}</p>
-        <p class="truttis-caught">Truttis Caught: {{ caughtSpecialTurkeys.size }} / 9</p>
-        <p class="top10-message">🎉 You made it to the Top 10! 🎉</p>
-        
-        <div class="name-input-section">
-          <label for="playerName">Enter your name for the scoreboard:</label>
-          <input 
-            id="playerName"
-            type="text" 
-            [(ngModel)]="playerName" 
-            placeholder="Your name"
-            (keyup.enter)="saveScore()"
-            class="name-input"
-            maxlength="20">
-          <button class="save-score-button" (click)="saveScore()">Save Score</button>
-        </div>
-      </div>
-    </div>
+    <app-game-over 
+      *ngIf="gameOver && !showScoreboard && qualifiesForTop10"
+      [money]="money"
+      [caughtSpecialTurkeys]="caughtSpecialTurkeys.size"
+      (saveScore)="saveScore($event)">
+    </app-game-over>
 
     <!-- Scoreboard Screen -->
-    <div *ngIf="gameOver && showScoreboard" class="scoreboard-overlay">
-      <div class="scoreboard-screen">
-        <h2>🏆 High Scores 🏆</h2>
-        <div class="scoreboard-list">
-          <div *ngFor="let entry of scoreboard; let i = index" class="score-entry" [class.current-score]="entry.name === playerName.trim() && entry.score === money">
-            <span class="rank">{{ i + 1 }}.</span>
-            <span class="name">{{ entry.name }}</span>
-            <span class="score">${{ entry.score }}</span>
-          </div>
-          <div *ngIf="scoreboard.length === 0" class="no-scores">
-            No scores yet. Be the first!
-          </div>
-        </div>
-        <button class="start-button" (click)="resetGame()">Back to Menu</button>
-      </div>
-    </div>
+    <app-scoreboard 
+      *ngIf="gameOver && showScoreboard"
+      [scoreboard]="scoreboard"
+      [currentPlayerName]="playerName.trim()"
+      [currentScore]="money"
+      (backToMenu)="resetGame()">
+    </app-scoreboard>
     
     <!-- Pause overlay -->
-    <div *ngIf="paused" class="pause-overlay">
-      <div class="start-screen pause-screen">
-        <h2>⏸ Game Paused</h2>
-        <p>Review the rules:</p>
-        <ul class="instructions">
-          <li>🦃 Regular Turkeys: +$10</li>
-          <li>⭐ Special Truttis (1-9): +$50 each</li>
-          <li>👙 Bikini Girls: -$50 penalty (Don't photograph!)</li>
-          <li>💕 Bikini Girls in delicate situations: +$100 bonus!</li>
-          <li>Catch all 9 Truttis for a +$500 bonus!</li>
-        </ul>
-        <p class="resume-hint">Press <strong>P</strong> or <strong>Pause</strong> key to resume | Press <strong>Escape</strong> to end game</p>
-      </div>
-    </div>
+    <app-pause-overlay *ngIf="paused"></app-pause-overlay>
     
     <canvas 
       #gameCanvas 
       (click)="onCanvasClick($event)"
       class="game-canvas">
     </canvas>
+    </div>
   </div>
+  
+  <footer class="game-footer"></footer>
 </div>

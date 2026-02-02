@@ -1,6 +1,12 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { 
+  StartScreenComponent, 
+  GameOverComponent, 
+  PauseOverlayComponent, 
+  ScoreboardComponent 
+} from './components';
 
 interface GameObject {
   x: number;
@@ -16,7 +22,7 @@ interface GameObject {
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, StartScreenComponent, GameOverComponent, PauseOverlayComponent, ScoreboardComponent],
   templateUrl: './game.html',
   styleUrl: './game.css'
 })
@@ -33,12 +39,12 @@ export class GameComponent implements OnInit, OnDestroy {
   gameOver: boolean = false;
   paused: boolean = false;
   completionMessage: string = '';
-  audioUrl: string = '';
   playerName: string = '';
   showScoreboard: boolean = false;
   qualifiesForTop10: boolean = false;
   scoreboard: Array<{name: string, score: number, date: string}> = [];
   private lastSpecialTurkeyId: number | null = null;
+  private audioUrl: string = '';
   
   private CANVAS_WIDTH = 800;
   private CANVAS_HEIGHT = 600;
@@ -50,11 +56,6 @@ export class GameComponent implements OnInit, OnDestroy {
   caughtSpecialTurkeys: Set<number> = new Set();
 
   ngOnInit() {
-    // Load saved audio URL from localStorage
-    const savedAudioUrl = localStorage.getItem('truttihunt-audio-url');
-    if (savedAudioUrl) {
-      this.audioUrl = savedAudioUrl;
-    }
   }
 
   ngOnDestroy() {
@@ -115,7 +116,8 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  startGame() {
+  startGame(audioUrl: string) {
+    this.audioUrl = audioUrl;
     this.gameStarted = true;
     this.gameOver = false;
     this.paused = false;
@@ -127,17 +129,10 @@ export class GameComponent implements OnInit, OnDestroy {
     this.qualifiesForTop10 = false;
     this.lastSpecialTurkeyId = null;
     
-    // Save audio URL to localStorage
-    if (this.audioUrl.trim()) {
-      localStorage.setItem('truttihunt-audio-url', this.audioUrl.trim());
-    } else {
-      localStorage.removeItem('truttihunt-audio-url');
-    }
-    
     // Wait for canvas to be available in the DOM
     setTimeout(() => {
-      // Initialize canvas context
-      if (!this.ctx && this.canvasRef) {
+      // Initialize canvas context - always get fresh context since canvas is recreated
+      if (this.canvasRef) {
         const canvas = this.canvasRef.nativeElement;
         this.ctx = canvas.getContext('2d')!;
         this.updateCanvasSize();
@@ -169,9 +164,11 @@ export class GameComponent implements OnInit, OnDestroy {
   stopGame() {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
+      this.animationId = 0;
     }
     if (this.spawnTimer) {
       clearInterval(this.spawnTimer);
+      this.spawnTimer = null;
     }
     if (this.audio) {
       this.audio.pause();
@@ -228,11 +225,13 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   gameLoop() {
+    if (!this.gameStarted || this.gameOver) return;
+    
     if (!this.paused) {
       this.updateGameObjects();
       this.render();
-      this.animationId = requestAnimationFrame(() => this.gameLoop());
     }
+    this.animationId = requestAnimationFrame(() => this.gameLoop());
   }
 
   updateGameObjects() {
@@ -510,14 +509,9 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveScore() {
-    if (!this.playerName.trim()) {
-      alert('Please enter your name!');
-      return;
-    }
-
+  saveScore(playerName: string) {
     const score = {
-      name: this.playerName.trim(),
+      name: playerName,
       score: this.money,
       date: new Date().toISOString()
     };
@@ -548,10 +542,12 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   resetGame() {
+    this.stopGame();
     this.gameStarted = false;
     this.gameOver = false;
     this.showScoreboard = false;
     this.qualifiesForTop10 = false;
     this.completionMessage = '';
+    this.gameObjects = [];
   }
 }

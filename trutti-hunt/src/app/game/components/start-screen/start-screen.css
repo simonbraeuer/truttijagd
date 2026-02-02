@@ -1,0 +1,210 @@
+.start-screen {
+  background: rgba(255, 255, 255, 0.95);
+  padding: clamp(10px, 3vw, 20px);
+  border-radius: clamp(10px, 2vw, 15px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: min(600px, 100vw - 20px);
+  width: 100%;
+  color: #333;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 10px;
+  max-height: calc(100vh - 80px);
+  box-sizing: border-box;
+}
+
+.start-screen h2 {
+  font-size: clamp(1.2em, 4vw, 1.8em);
+  margin-bottom: clamp(10px, 2vw, 15px);
+  color: #764ba2;
+}
+
+.start-screen p {
+  font-size: clamp(0.85em, 2.5vw, 1em);
+  margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.instructions {
+  text-align: left;
+  margin: clamp(10px, 2vw, 15px) 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.instructions li {
+  font-size: clamp(0.8em, 2vw, 0.95em);
+  margin: clamp(5px, 1vw, 8px) 0;
+  padding: clamp(6px, 1.5vw, 8px);
+  background: rgba(118, 75, 162, 0.1);
+  border-radius: clamp(5px, 1vw, 8px);
+}
+
+.audio-config {
+  margin: clamp(10px, 2vw, 15px) 0;
+  text-align: left;
+  width: 100%;
+}
+
+.audio-config label {
+  display: block;
+  font-size: clamp(0.85em, 2.5vw, 1em);
+  font-weight: bold;
+  margin-bottom: clamp(5px, 1vw, 8px);
+  color: #764ba2;
+}
+
+.audio-input {
+  width: 100%;
+  padding: clamp(8px, 2vw, 12px);
+  font-size: clamp(0.85em, 2.5vw, 1em);
+  border: 2px solid #764ba2;
+  border-radius: clamp(5px, 1vw, 8px);
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.audio-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+.audio-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.audio-hint {
+  font-size: clamp(0.75em, 2vw, 0.9em);
+  color: #666;
+  margin-top: clamp(5px, 1vw, 8px);
+  font-style: italic;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: clamp(10px, 2vw, 12px) clamp(20px, 5vw, 30px);
+  font-size: clamp(1em, 3vw, 1.2em);
+  border-radius: clamp(25px, 8vw, 50px);
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin: clamp(5px, 1.5vw, 10px) auto 0;
+  display: block;
+  width: 100%;
+  max-width: min(300px, 90vw);
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.start-button:active {
+  transform: translateY(0);
+}
+
+.accordions-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(8px, 1.5vw, 12px);
+}
+
+@media (min-width: 800px) {
+  .accordions-container {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(12px, 2vw, 16px);
+  }
+  
+  .accordion:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.accordion {
+  width: 100%;
+  margin: clamp(8px, 1.5vw, 12px) 0;
+  border: 1px solid rgba(118, 75, 162, 0.2);
+  border-radius: clamp(5px, 1vw, 8px);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.accordion-header {
+  cursor: pointer;
+  padding: clamp(8px, 2vw, 12px);
+  font-weight: bold;
+  font-size: clamp(0.9em, 2.5vw, 1.05em);
+  color: #764ba2;
+  background: rgba(118, 75, 162, 0.05);
+  border-radius: clamp(5px, 1vw, 8px);
+  user-select: none;
+  list-style: none;
+}
+
+.accordion-header::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-header::before {
+  content: '▶';
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.2s;
+}
+
+.accordion[open] .accordion-header::before {
+  transform: rotate(90deg);
+}
+
+.accordion[open] .accordion-header {
+  border-bottom: 1px solid rgba(118, 75, 162, 0.1);
+}
+
+.accordion .instructions,
+.accordion .audio-config,
+.accordion .pause-hint {
+  margin-top: clamp(8px, 1.5vw, 12px);
+  padding: 0 clamp(8px, 2vw, 12px) clamp(8px, 2vw, 12px);
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .accordion {
+    margin: clamp(5px, 1vw, 8px) 0;
+  }
+  
+  .accordion[open] summary ~ * {
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.pause-hint,
+.resume-hint {
+  margin: clamp(10px, 2vw, 15px) 0 clamp(5px, 1.5vw, 10px);
+  font-size: clamp(0.75em, 2vw, 0.9em);
+  color: #764ba2;
+  font-style: italic;
+}
+
+.pause-hint strong,
+.resume-hint strong {
+  color: #667eea;
+  font-weight: bold;
+}

@@ -1,0 +1,21 @@
+<div class="game-over-overlay">
+  <div class="game-over-screen">
+    <h2>🎮 Game Over! 🎮</h2>
+    <p class="final-score">Your Score: ${{ money }}</p>
+    <p class="truttis-caught">Truttis Caught: {{ caughtSpecialTurkeys }} / 9</p>
+    <p class="top10-message">🎉 You made it to the Top 10! 🎉</p>
+    
+    <div class="name-input-section">
+      <label for="playerName">Enter your name for the scoreboard:</label>
+      <input 
+        id="playerName"
+        type="text" 
+        [(ngModel)]="playerName" 
+        placeholder="Your name"
+        (keyup.enter)="onSaveScore()"
+        class="name-input"
+        maxlength="20">
+      <button class="save-score-button" (click)="onSaveScore()">Save Score</button>
+    </div>
+  </div>
+</div>
