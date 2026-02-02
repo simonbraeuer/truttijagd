@@ -40,8 +40,8 @@ export class GameComponent implements OnInit, OnDestroy {
   scoreboard: Array<{name: string, score: number, date: string}> = [];
   private lastSpecialTurkeyId: number | null = null;
   
-  private readonly CANVAS_WIDTH = 800;
-  private readonly CANVAS_HEIGHT = 600;
+  private CANVAS_WIDTH = 800;
+  private CANVAS_HEIGHT = 600;
   private readonly SPAWN_INTERVAL = 2000;
   private spawnTimer: any;
   
@@ -73,6 +73,37 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.gameStarted && !this.gameOver && event.key === 'Escape') {
       event.preventDefault();
       this.endGame();
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (this.gameStarted && this.canvasRef) {
+      this.updateCanvasSize();
+    }
+  }
+
+  private updateCanvasSize() {
+    const maxWidth = Math.min(800, window.innerWidth - 40);
+    const maxHeight = Math.min(600, window.innerHeight - 200);
+    
+    // Maintain aspect ratio
+    const aspectRatio = 4 / 3; // 800/600
+    let width = maxWidth;
+    let height = width / aspectRatio;
+    
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * aspectRatio;
+    }
+    
+    this.CANVAS_WIDTH = Math.floor(width);
+    this.CANVAS_HEIGHT = Math.floor(height);
+    
+    if (this.canvasRef) {
+      const canvas = this.canvasRef.nativeElement;
+      canvas.width = this.CANVAS_WIDTH;
+      canvas.height = this.CANVAS_HEIGHT;
     }
   }
 
@@ -109,8 +140,7 @@ export class GameComponent implements OnInit, OnDestroy {
       if (!this.ctx && this.canvasRef) {
         const canvas = this.canvasRef.nativeElement;
         this.ctx = canvas.getContext('2d')!;
-        canvas.width = this.CANVAS_WIDTH;
-        canvas.height = this.CANVAS_HEIGHT;
+        this.updateCanvasSize();
       }
       
       // Initialize and start background music with user-provided URL
