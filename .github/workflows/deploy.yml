@@ -38,5 +38,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./trutti-hunt/docs
+          publish_dir: ./trutti-hunt/dist/trutti-hunt/browser
           enable_jekyll: false

@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:gh-pages": "ng build --output-path docs --base-href /truttijagd/ && cpy docs/browser/** docs --flat && node -e \"require('fs').writeFileSync('docs/.nojekyll', '')\"",
+    "build:gh-pages": "ng build --configuration production --base-href /truttijagd/",
+    "deploy": "npm run build:gh-pages && gh-pages -d dist/trutti-hunt/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -37,7 +38,7 @@
     "@angular/build": "^21.1.2",
     "@angular/cli": "^21.1.2",
     "@angular/compiler-cli": "^21.1.0",
-    "cpy-cli": "^6.0.0",
+    "gh-pages": "^6.2.0",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
