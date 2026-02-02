@@ -8,12 +8,8 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  overflow-x: hidden;
+  overflow: hidden;
   min-height: 100vh;
+  height: 100vh;
 }
 
-@media (min-width: 769px) {
-  body {
-    overflow: hidden;
-  }
-}
