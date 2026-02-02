@@ -97,7 +97,12 @@ export class StartScreenComponent implements OnInit {
     const savedScoreboard = localStorage.getItem('truttihunt-scoreboard');
     if (savedScoreboard) {
       try {
-        this.scoreboard = JSON.parse(savedScoreboard);
+        const loaded = JSON.parse(savedScoreboard);
+        // Migrate old entries without difficulty field
+        this.scoreboard = loaded.map((entry: any) => ({
+          ...entry,
+          difficulty: entry.difficulty || 'Andi'
+        }));
       } catch (e) {
         this.scoreboard = [];
       }
