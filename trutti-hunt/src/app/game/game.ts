@@ -53,7 +53,7 @@ export class GameComponent implements OnInit, OnDestroy {
   private CANVAS_HEIGHT = 600;
   private SPAWN_INTERVAL = 2000;
   private spawnTimer: any;
-  private gameTimer: any;
+  private lastTimerUpdate: number = 0;
   timeRemaining: number = 90;
   
   // Special turkeys IDs (1-9)
@@ -185,6 +185,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.qualifiesForTop10 = false;
     this.lastSpecialTurkeyId = null;
     this.timeRemaining = 90;
+    this.lastTimerUpdate = Date.now();
     
     // Wait for canvas to be available in the DOM
     setTimeout(() => {
@@ -213,18 +214,7 @@ export class GameComponent implements OnInit, OnDestroy {
       // Start spawning objects
       this.spawnTimer = setInterval(() => this.spawnObject(), this.SPAWN_INTERVAL);
       
-      // Start game timer (countdown from 90 seconds)
-      this.gameTimer = setInterval(() => {
-        if (!this.paused) {
-          this.timeRemaining--;
-          this.cdr.detectChanges();
-          if (this.timeRemaining <= 0) {
-            this.endGame();
-          }
-        }
-      }, 1000);
-      
-      // Start game loop
+      // Start game loop (timer logic is now in game loop)
       this.gameLoop();
     }, 0);
   }
@@ -237,10 +227,6 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.spawnTimer) {
       clearInterval(this.spawnTimer);
       this.spawnTimer = null;
-    }
-    if (this.gameTimer) {
-      clearInterval(this.gameTimer);
-      this.gameTimer = null;
     }
     if (this.audio) {
       this.audio.pause();
@@ -352,6 +338,18 @@ export class GameComponent implements OnInit, OnDestroy {
     if (!this.gameStarted || this.gameOver) return;
     
     if (!this.paused) {
+      // Update timer (check every frame, decrement every second)
+      const now = Date.now();
+      if (now - this.lastTimerUpdate >= 1000) {
+        this.timeRemaining--;
+        this.lastTimerUpdate = now;
+        this.cdr.detectChanges(); // Trigger change detection for HUD update
+        if (this.timeRemaining <= 0) {
+          this.endGame();
+          return;
+        }
+      }
+      
       this.updateGameObjects();
       this.render();
     }
