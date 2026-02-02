@@ -8,6 +8,7 @@ import {
   ScoreboardComponent 
 } from './components';
 import type { GameSettings, DifficultyLevel } from './components/start-screen/start-screen';
+import type { ScoreEntry } from './components/scoreboard/scoreboard';
 
 interface GameObject {
   x: number;
@@ -43,7 +44,7 @@ export class GameComponent implements OnInit, OnDestroy {
   playerName: string = '';
   showScoreboard: boolean = false;
   qualifiesForTop10: boolean = false;
-  scoreboard: Array<{name: string, score: number, date: string}> = [];
+  scoreboard: ScoreEntry[] = [];
   private lastSpecialTurkeyId: number | null = null;
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';
