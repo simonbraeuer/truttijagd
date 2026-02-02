@@ -29,6 +29,11 @@ jobs:
           cd trutti-hunt
           npm ci
       
+      - name: Run tests
+        run: |
+          cd trutti-hunt
+          npm test -- --run
+      
       - name: Build
         run: |
           cd trutti-hunt
