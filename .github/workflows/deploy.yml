@@ -32,7 +32,7 @@ jobs:
       - name: Run tests
         run: |
           cd trutti-hunt
-          npm test -- --run
+          npm test -- --watch=false
       
       - name: Build
         run: |
