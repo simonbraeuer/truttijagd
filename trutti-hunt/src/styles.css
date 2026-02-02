@@ -11,5 +11,8 @@ body {
   overflow: hidden;
   min-height: 100vh;
   height: 100vh;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
