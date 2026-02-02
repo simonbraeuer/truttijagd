@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 10px;
+  margin: 10px auto;
   max-height: calc(100vh - 80px);
   box-sizing: border-box;
 }
@@ -33,6 +33,99 @@
 .start-screen p {
   font-size: clamp(0.85em, 2.5vw, 1em);
   margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.difficulty-selector {
+  width: 100%;
+  margin: clamp(15px, 3vw, 20px) 0;
+  padding: clamp(12px, 2.5vw, 16px);
+  background: rgba(118, 75, 162, 0.08);
+  border-radius: clamp(8px, 1.5vw, 12px);
+  border: 2px solid rgba(118, 75, 162, 0.2);
+}
+
+.difficulty-label {
+  display: block;
+  font-size: clamp(0.95em, 2.5vw, 1.1em);
+  font-weight: bold;
+  margin-bottom: clamp(10px, 2vw, 12px);
+  color: #764ba2;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 15px);
+  margin-bottom: clamp(8px, 1.5vw, 10px);
+}
+
+.difficulty-marker {
+  font-size: clamp(0.8em, 2vw, 0.95em);
+  font-weight: 600;
+  color: #667eea;
+  min-width: clamp(40px, 10vw, 50px);
+  text-align: center;
+}
+
+.difficulty-slider {
+  flex: 1;
+  height: 6px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #4ade80 0%, #fbbf24 50%, #ef4444 100%);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.difficulty-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: clamp(18px, 4.5vw, 24px);
+  height: clamp(18px, 4.5vw, 24px);
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #764ba2;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.difficulty-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.difficulty-slider::-moz-range-thumb {
+  width: clamp(18px, 4.5vw, 24px);
+  height: clamp(18px, 4.5vw, 24px);
+  border-radius: 50%;
+  background: white;
+  border: 3px solid #764ba2;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.difficulty-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+.difficulty-display {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1vw, 6px);
+  margin-top: clamp(8px, 1.5vw, 10px);
+}
+
+.current-difficulty {
+  font-size: clamp(1.1em, 3vw, 1.3em);
+  font-weight: bold;
+  color: #667eea;
+}
+
+.difficulty-description {
+  font-size: clamp(0.8em, 2vw, 0.9em);
+  color: #666;
+  font-style: italic;
 }
 
 .instructions {
@@ -226,4 +319,46 @@
 .resume-hint strong {
   color: #667eea;
   font-weight: bold;
+}
+
+.scoreboard-preview {
+  margin: clamp(10px, 2vw, 15px) 0;
+  padding: 0 clamp(8px, 2vw, 12px) clamp(8px, 2vw, 12px);
+}
+
+.score-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(6px, 1.5vw, 10px);
+  margin: clamp(4px, 1vw, 6px) 0;
+  background: rgba(118, 75, 162, 0.05);
+  border-radius: clamp(4px, 1vw, 6px);
+  font-size: clamp(0.85em, 2vw, 0.95em);
+}
+
+.score-entry .rank {
+  font-weight: bold;
+  color: #667eea;
+  min-width: clamp(25px, 6vw, 35px);
+}
+
+.score-entry .name {
+  flex: 1;
+  color: #333;
+  font-weight: 500;
+  margin: 0 clamp(8px, 2vw, 12px);
+}
+
+.score-entry .score {
+  font-weight: bold;
+  color: #764ba2;
+}
+
+.no-scores {
+  text-align: center;
+  padding: clamp(15px, 3vw, 20px);
+  color: #999;
+  font-style: italic;
+  font-size: clamp(0.85em, 2vw, 0.95em);
 }

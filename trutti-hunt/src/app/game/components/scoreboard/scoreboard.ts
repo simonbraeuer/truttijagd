@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DifficultyLevel } from '../index';
 
 export interface ScoreEntry {
   name: string;
   score: number;
   date: string;
+  difficulty: DifficultyLevel;
 }
 
 @Component({
@@ -21,5 +23,18 @@ export class ScoreboardComponent {
 
   onBackToMenu() {
     this.backToMenu.emit();
+  }
+
+  getDifficultyIcon(difficulty: DifficultyLevel): string {
+    switch (difficulty) {
+      case 'Andi':
+        return '🐔';
+      case 'Schuh':
+        return '🦃';
+      case 'Mexxx':
+        return '🔥';
+      default:
+        return '🐔';
+    }
   }
 }

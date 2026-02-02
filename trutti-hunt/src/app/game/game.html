@@ -1,9 +1,9 @@
 <div class="game-container">
   <header class="game-header">
-    <h1>🦃 Trutti Hunt</h1>
+    <h1>{{ getTurkeyIcon() }} Trutti Hunt</h1>
   </header>
   
-  <app-start-screen *ngIf="!gameStarted" (startGame)="startGame($event)"></app-start-screen>
+  <app-start-screen *ngIf="!gameStarted" (startGame)="startGame($event)" (difficultyChange)="onDifficultyChange($event)"></app-start-screen>
 
   <div *ngIf="gameStarted" class="game-wrapper">
     <div class="hud">
@@ -14,6 +14,10 @@
       <div class="hud-item special-turkeys">
         <span class="hud-label">🦃 Truttis Caught</span>
         <span class="hud-value">{{ caughtSpecialTurkeys.size }} / 9</span>
+      </div>
+      <div class="hud-item timer-display">
+        <span class="hud-label">⏱️ Time</span>
+        <span class="hud-value" [class.warning]="timeRemaining <= 10">{{ timeRemaining }}s</span>
       </div>
     </div>
     

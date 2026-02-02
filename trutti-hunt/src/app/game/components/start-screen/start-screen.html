@@ -1,9 +1,31 @@
 <div class="start-screen">
   <div class="start-screen-content">
-    <p>Click on turkeys to earn money!</p>
+    <div class="difficulty-selector">
+      <label class="difficulty-label">🎯 Difficulty Level</label>
+      <div class="slider-container">
+        <span class="difficulty-marker">Andi</span>
+        <input 
+          type="range" 
+          min="0" 
+          max="2" 
+          step="1" 
+          [(ngModel)]="difficultyValue"
+          (input)="onDifficultyChange()"
+          class="difficulty-slider">
+        <span class="difficulty-marker">Mexxx</span>
+      </div>
+      <div class="difficulty-display">
+        <span class="current-difficulty">{{ difficulty }}</span>
+        <span class="difficulty-description">
+          <span *ngIf="difficulty === 'Andi'">Easy - Bigger turkeys, normal speed</span>
+          <span *ngIf="difficulty === 'Schuh'">Medium - Thinner turkeys, faster & more frequent</span>
+          <span *ngIf="difficulty === 'Mexxx'">Hard - Many, fast and crazy Truttis</span>
+        </span>
+      </div>
+    </div>
     
     <div class="accordions-container">
-      <details class="accordion" [attr.open]="isLargeScreen ? '' : null">
+      <details class="accordion">
         <summary class="accordion-header">📋 Instructions</summary>
         <ul class="instructions">
           <li>🦃 Regular Turkeys: +$10</li>
@@ -15,7 +37,7 @@
         </ul>
       </details>
       
-      <details class="accordion" [attr.open]="isLargeScreen ? '' : null">
+      <details class="accordion">
         <summary class="accordion-header">🎵 Audio Settings</summary>
         <div class="audio-config">
           <label for="audioUrl">Background Music URL (optional):</label>
@@ -29,9 +51,24 @@
         </div>
       </details>
       
-      <details class="accordion" [attr.open]="isLargeScreen ? '' : null">
+      <details class="accordion">
         <summary class="accordion-header">💡 Controls</summary>
         <p class="pause-hint">Press <strong>P</strong> or <strong>Pause</strong> key to pause | Press <strong>Escape</strong> to end game</p>
+      </details>
+      
+      <details class="accordion">
+        <summary class="accordion-header">🏆 High Scores</summary>
+        <div class="scoreboard-preview">
+          <div *ngFor="let entry of scoreboard; let i = index" class="score-entry">
+            <span class="rank">{{ i + 1 }}.</span>
+            <span class="name">{{ entry.name }}</span>
+            <span class="difficulty">{{ getDifficultyIcon(entry.difficulty) }}</span>
+            <span class="score">${{ entry.score }}</span>
+          </div>
+          <div *ngIf="scoreboard.length === 0" class="no-scores">
+            No scores yet. Be the first!
+          </div>
+        </div>
       </details>
     </div>
   </div>

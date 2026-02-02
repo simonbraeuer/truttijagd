@@ -7,6 +7,7 @@ import {
   PauseOverlayComponent, 
   ScoreboardComponent 
 } from './components';
+import type { GameSettings, DifficultyLevel } from './components/start-screen/start-screen';
 
 interface GameObject {
   x: number;
@@ -45,21 +46,47 @@ export class GameComponent implements OnInit, OnDestroy {
   scoreboard: Array<{name: string, score: number, date: string}> = [];
   private lastSpecialTurkeyId: number | null = null;
   private audioUrl: string = '';
+  difficulty: DifficultyLevel = 'Andi';
   
   private CANVAS_WIDTH = 800;
   private CANVAS_HEIGHT = 600;
-  private readonly SPAWN_INTERVAL = 2000;
+  private SPAWN_INTERVAL = 2000;
   private spawnTimer: any;
+  private gameTimer: any;
+  timeRemaining: number = 90;
   
   // Special turkeys IDs (1-9)
   private readonly SPECIAL_TURKEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   caughtSpecialTurkeys: Set<number> = new Set();
+  private spawnedSpecialTurkeys: Set<number> = new Set();
 
   ngOnInit() {
+    // Load saved difficulty from localStorage for display
+    const savedDifficulty = localStorage.getItem('truttihunt-difficulty') as DifficultyLevel;
+    if (savedDifficulty) {
+      this.difficulty = savedDifficulty;
+    }
   }
 
   ngOnDestroy() {
     this.stopGame();
+  }
+
+  getTurkeyIcon(): string {
+    switch (this.difficulty) {
+      case 'Andi':
+        return '🐔'; // Chicken (easy difficulty)
+      case 'Schuh':
+        return '🦃'; // Turkey (medium difficulty)
+      case 'Mexxx':
+        return '🔥'; // Fire (hard difficulty)
+      default:
+        return '🐔';
+    }
+  }
+
+  onDifficultyChange(difficulty: DifficultyLevel) {
+    this.difficulty = difficulty;
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -122,18 +149,35 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  startGame(audioUrl: string) {
-    this.audioUrl = audioUrl;
+  startGame(settings: GameSettings) {
+    this.audioUrl = settings.audioUrl;
+    this.difficulty = settings.difficulty;
+    
+    // Set spawn interval based on difficulty
+    switch (this.difficulty) {
+      case 'Andi':
+        this.SPAWN_INTERVAL = 2000;
+        break;
+      case 'Schuh':
+        this.SPAWN_INTERVAL = 1200; // Faster spawning
+        break;
+      case 'Mexxx':
+        this.SPAWN_INTERVAL = 2000;
+        break;
+    }
+    
     this.gameStarted = true;
     this.gameOver = false;
     this.paused = false;
     this.money = 0;
     this.gameObjects = [];
     this.caughtSpecialTurkeys.clear();
+    this.spawnedSpecialTurkeys.clear();
     this.playerName = '';
     this.showScoreboard = false;
     this.qualifiesForTop10 = false;
     this.lastSpecialTurkeyId = null;
+    this.timeRemaining = 90;
     
     // Wait for canvas to be available in the DOM
     setTimeout(() => {
@@ -162,6 +206,16 @@ export class GameComponent implements OnInit, OnDestroy {
       // Start spawning objects
       this.spawnTimer = setInterval(() => this.spawnObject(), this.SPAWN_INTERVAL);
       
+      // Start game timer (countdown from 90 seconds)
+      this.gameTimer = setInterval(() => {
+        if (!this.paused) {
+          this.timeRemaining--;
+          if (this.timeRemaining <= 0) {
+            this.endGame();
+          }
+        }
+      }, 1000);
+      
       // Start game loop
       this.gameLoop();
     }, 0);
@@ -176,6 +230,10 @@ export class GameComponent implements OnInit, OnDestroy {
       clearInterval(this.spawnTimer);
       this.spawnTimer = null;
     }
+    if (this.gameTimer) {
+      clearInterval(this.gameTimer);
+      this.gameTimer = null;
+    }
     if (this.audio) {
       this.audio.pause();
       this.audio.currentTime = 0;
@@ -188,7 +246,16 @@ export class GameComponent implements OnInit, OnDestroy {
     let specialId: number | undefined;
     let inDelicateSituation = false;
     
-    if (rand < 0.6) {
+    // Check if we need to ensure all special turkeys appear
+    const unspawnedSpecials = this.SPECIAL_TURKEYS.filter(id => !this.spawnedSpecialTurkeys.has(id));
+    const timePercentRemaining = this.timeRemaining / 90;
+    
+    // Force spawn unspawned special turkeys if time is running out
+    if (unspawnedSpecials.length > 0 && timePercentRemaining < 0.3) {
+      type = 'special-turkey';
+      specialId = unspawnedSpecials[Math.floor(Math.random() * unspawnedSpecials.length)];
+      this.spawnedSpecialTurkeys.add(specialId);
+    } else if (rand < 0.6) {
       // 60% regular turkey
       type = 'turkey';
     } else if (rand < 0.75) {
@@ -206,6 +273,9 @@ export class GameComponent implements OnInit, OnDestroy {
         // All caught, pick any
         specialId = this.SPECIAL_TURKEYS[Math.floor(Math.random() * this.SPECIAL_TURKEYS.length)];
       }
+      if (specialId) {
+        this.spawnedSpecialTurkeys.add(specialId);
+      }
     } else {
       // 25% bikini girl
       type = 'bikini-girl';
@@ -215,13 +285,42 @@ export class GameComponent implements OnInit, OnDestroy {
       }
     }
     
+    // Calculate size and speed based on difficulty with screen-relative sizing
+    let widthRatio: number, heightRatio: number, speedMultiplier: number;
+    const MIN_WIDTH = 40;
+    const MIN_HEIGHT = 40;
+    
+    switch (this.difficulty) {
+      case 'Andi':
+        // Bigger size, normal speed (9% of canvas width/height)
+        widthRatio = 0.09;
+        heightRatio = 0.09;
+        speedMultiplier = 1;
+        break;
+      case 'Schuh':
+        // Thinner, faster (6% width, 8% height)
+        widthRatio = 0.06;
+        heightRatio = 0.08;
+        speedMultiplier = 1.5;
+        break;
+      case 'Mexxx':
+        // Smaller size, faster speed (5.5% of canvas)
+        widthRatio = 0.055;
+        heightRatio = 0.055;
+        speedMultiplier = 2;
+        break;
+    }
+    
+    const width = Math.max(MIN_WIDTH, Math.floor(this.CANVAS_WIDTH * widthRatio));
+    const height = Math.max(MIN_HEIGHT, Math.floor(this.CANVAS_HEIGHT * heightRatio));
+    
     const obj: GameObject = {
       x: Math.random() < 0.5 ? -50 : this.CANVAS_WIDTH + 50,
       y: Math.random() * (this.CANVAS_HEIGHT - 100),
-      vx: (Math.random() < 0.5 ? 1 : -1) * (2 + Math.random() * 2),
-      vy: (Math.random() - 0.5) * 2,
-      width: 60,
-      height: 60,
+      vx: (Math.random() < 0.5 ? 1 : -1) * (2 + Math.random() * 2) * speedMultiplier,
+      vy: (Math.random() - 0.5) * 2 * speedMultiplier,
+      width,
+      height,
       type,
       specialId,
       inDelicateSituation
@@ -249,6 +348,16 @@ export class GameComponent implements OnInit, OnDestroy {
       // Bounce off top/bottom
       if (obj.y < 0 || obj.y > this.CANVAS_HEIGHT - obj.height) {
         obj.vy *= -1;
+      }
+      
+      // On Mexxx difficulty, add random bouncing for turkeys
+      if (this.difficulty === 'Mexxx' && (obj.type === 'turkey' || obj.type === 'special-turkey')) {
+        // Random chance to bounce (5% per frame)
+        if (Math.random() < 0.05) {
+          obj.vy *= -1;
+          // Add some randomness to the bounce angle
+          obj.vy += (Math.random() - 0.5) * 2;
+        }
       }
     });
     
@@ -499,12 +608,12 @@ export class GameComponent implements OnInit, OnDestroy {
     this.stopGame();
     this.loadScoreboard();
     
-    // Check if score qualifies for top 10
-    if (this.scoreboard.length < 10) {
-      // Less than 10 scores, always qualifies
+    // Check if score qualifies for top 5
+    if (this.scoreboard.length < 5) {
+      // Less than 5 scores, always qualifies
       this.qualifiesForTop10 = true;
     } else {
-      // Check if current score beats the lowest score in top 10
+      // Check if current score beats the lowest score in top 5
       const lowestScore = this.scoreboard[this.scoreboard.length - 1].score;
       this.qualifiesForTop10 = this.money > lowestScore;
     }
@@ -519,15 +628,16 @@ export class GameComponent implements OnInit, OnDestroy {
     const score = {
       name: playerName,
       score: this.money,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
+      difficulty: this.difficulty
     };
 
     this.scoreboard.push(score);
     this.scoreboard.sort((a, b) => b.score - a.score);
     
-    // Keep only top 10 scores
-    if (this.scoreboard.length > 10) {
-      this.scoreboard = this.scoreboard.slice(0, 10);
+    // Keep only top 5 scores
+    if (this.scoreboard.length > 5) {
+      this.scoreboard = this.scoreboard.slice(0, 5);
     }
 
     localStorage.setItem('truttihunt-scoreboard', JSON.stringify(this.scoreboard));
@@ -538,7 +648,12 @@ export class GameComponent implements OnInit, OnDestroy {
     const savedScoreboard = localStorage.getItem('truttihunt-scoreboard');
     if (savedScoreboard) {
       try {
-        this.scoreboard = JSON.parse(savedScoreboard);
+        const loaded = JSON.parse(savedScoreboard);
+        // Migrate old entries without difficulty field
+        this.scoreboard = loaded.map((entry: any) => ({
+          ...entry,
+          difficulty: entry.difficulty || 'Andi'
+        }));
       } catch (e) {
         this.scoreboard = [];
       }
