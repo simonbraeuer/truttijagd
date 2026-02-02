@@ -48,7 +48,8 @@
     
     <canvas 
       #gameCanvas 
-      (click)="onCanvasClick($event)"
+      (mousedown)="onCanvasClick($event)"
+      (touchstart)="onCanvasClick($event)"
       class="game-canvas">
     </canvas>
     </div>

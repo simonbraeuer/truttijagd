@@ -127,8 +127,12 @@ export class GameComponent implements OnInit, OnDestroy {
     const availableWidth = containerRect.width - 40; // Account for padding/margin
     const availableHeight = containerRect.height - 40;
     
-    // Maintain aspect ratio 4:3
-    const aspectRatio = 4 / 3;
+    // Check if smartphone in landscape mode
+    const isSmartphone = window.innerWidth <= 900 && 'ontouchstart' in window;
+    const isLandscape = window.innerWidth > window.innerHeight;
+    
+    // Use 16:9 for smartphones in landscape, 4:3 otherwise
+    const aspectRatio = (isSmartphone && isLandscape) ? 16 / 9 : 4 / 3;
     let width = availableWidth;
     let height = width / aspectRatio;
     
@@ -259,30 +263,33 @@ export class GameComponent implements OnInit, OnDestroy {
       type = 'special-turkey';
       specialId = unspawnedSpecials[Math.floor(Math.random() * unspawnedSpecials.length)];
       this.spawnedSpecialTurkeys.add(specialId);
-    } else if (rand < 0.6) {
-      // 60% regular turkey
+    } else if (rand < 0.5) {
+      // 50% regular turkey
       type = 'turkey';
-    } else if (rand < 0.75) {
-      // 15% special turkey
+    } else if (rand < 0.8) {
+      // 30% special turkey (doubled from 15%)
       type = 'special-turkey';
-      // Pick a random special turkey that hasn't been spawned yet (or was caught)
+      // Pick a random special turkey that hasn't been spawned yet AND hasn't been caught
       const availableSpecials = this.SPECIAL_TURKEYS.filter(id => 
-        !this.spawnedSpecialTurkeys.has(id) || this.caughtSpecialTurkeys.has(id)
+        !this.spawnedSpecialTurkeys.has(id) && !this.caughtSpecialTurkeys.has(id)
       );
       if (availableSpecials.length > 0) {
         specialId = availableSpecials[Math.floor(Math.random() * availableSpecials.length)];
-        // Track if this is the last special turkey
-        if (this.SPECIAL_TURKEYS.filter(id => !this.caughtSpecialTurkeys.has(id)).length === 1) {
+        // Track if this is the last uncaught special turkey after spawning this one
+        const remainingUncaught = this.SPECIAL_TURKEYS.filter(id => 
+          !this.caughtSpecialTurkeys.has(id) && id !== specialId
+        ).length;
+        if (remainingUncaught === 0) {
           this.lastSpecialTurkeyId = specialId;
         }
       } else {
-        // All have been spawned and not caught yet, pick from uncaught
+        // All have been spawned, pick from uncaught that are currently on screen
         const uncaught = this.SPECIAL_TURKEYS.filter(id => !this.caughtSpecialTurkeys.has(id));
         if (uncaught.length > 0) {
           specialId = uncaught[Math.floor(Math.random() * uncaught.length)];
         } else {
-          // All caught, pick any
-          specialId = this.SPECIAL_TURKEYS[Math.floor(Math.random() * this.SPECIAL_TURKEYS.length)];
+          // All caught, spawn a regular turkey instead
+          type = 'turkey';
         }
       }
       if (specialId) {
@@ -535,13 +542,25 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  onCanvasClick(event: MouseEvent) {
+  onCanvasClick(event: MouseEvent | TouchEvent) {
     if (!this.gameStarted || this.gameOver || this.paused) return;
+    
+    event.preventDefault(); // Prevent default behavior
     
     const canvas = this.canvasRef.nativeElement;
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    
+    // Get coordinates from mouse or touch event
+    let x: number, y: number;
+    if (event instanceof MouseEvent) {
+      x = event.clientX - rect.left;
+      y = event.clientY - rect.top;
+    } else {
+      // TouchEvent
+      const touch = event.touches[0] || event.changedTouches[0];
+      x = touch.clientX - rect.left;
+      y = touch.clientY - rect.top;
+    }
     
     // Check if we clicked on any object
     for (let i = this.gameObjects.length - 1; i >= 0; i--) {
@@ -567,6 +586,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.money += 50;
       if (obj.specialId) {
         this.caughtSpecialTurkeys.add(obj.specialId);
+        this.cdr.detectChanges(); // Trigger change detection for Set update
       }
       this.gameObjects.splice(index, 1);
       
@@ -577,11 +597,10 @@ export class GameComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.endGame();
         }, 2000);
-      } else if (obj.specialId === this.lastSpecialTurkeyId) {
-        // Last special turkey was caught
-        setTimeout(() => {
-          this.endGame();
-        }, 1000);
+      }
+      // If this was the last special turkey, clear the flag since it was caught
+      if (obj.specialId === this.lastSpecialTurkeyId) {
+        this.lastSpecialTurkeyId = null;
       }
     } else if (obj.type === 'bikini-girl') {
       if (obj.inDelicateSituation) {
