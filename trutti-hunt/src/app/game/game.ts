@@ -76,7 +76,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('window:resize')
+  @HostListener('window:resize', ['$event'])
   onResize() {
     if (this.gameStarted && this.canvasRef) {
       this.updateCanvasSize();
@@ -84,31 +84,27 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   private updateCanvasSize() {
-    if (!this.canvasRef) return;
+    const maxWidth = Math.min(800, window.innerWidth - 40);
+    const maxHeight = Math.min(600, window.innerHeight - 200);
     
-    const canvas = this.canvasRef.nativeElement;
-    const container = canvas.parentElement;
-    if (!container) return;
-    
-    // Get container dimensions
-    const containerWidth = container.clientWidth;
-    const containerHeight = container.clientHeight;
-    
-    // Maintain 4:3 aspect ratio
-    const aspectRatio = 4 / 3;
-    let width = containerWidth;
+    // Maintain aspect ratio
+    const aspectRatio = 4 / 3; // 800/600
+    let width = maxWidth;
     let height = width / aspectRatio;
     
-    if (height > containerHeight) {
-      height = containerHeight;
+    if (height > maxHeight) {
+      height = maxHeight;
       width = height * aspectRatio;
     }
     
-    // Set canvas dimensions
     this.CANVAS_WIDTH = Math.floor(width);
     this.CANVAS_HEIGHT = Math.floor(height);
-    canvas.width = this.CANVAS_WIDTH;
-    canvas.height = this.CANVAS_HEIGHT;
+    
+    if (this.canvasRef) {
+      const canvas = this.canvasRef.nativeElement;
+      canvas.width = this.CANVAS_WIDTH;
+      canvas.height = this.CANVAS_HEIGHT;
+    }
   }
 
   togglePause() {
