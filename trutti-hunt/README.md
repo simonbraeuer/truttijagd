@@ -35,9 +35,4 @@ Run `npm run build:gh-pages` to build for GitHub Pages deployment.
 
 The game is configured to be deployed to GitHub Pages. The build output goes to the `docs/` folder which can be used as the source for GitHub Pages.
 
-## Audio Note
-
-Due to copyright restrictions, you'll need to add your own "Freed from Desire" music file at:
-`public/assets/audio/freed-from-desire.mp3`
-
 The game will work without it, but won't have background music.
