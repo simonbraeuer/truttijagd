@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface GameObject {
@@ -30,6 +30,7 @@ export class GameComponent implements OnInit, OnDestroy {
   money: number = 0;
   gameStarted: boolean = false;
   gameOver: boolean = false;
+  paused: boolean = false;
   completionMessage: string = '';
   
   private readonly CANVAS_WIDTH = 800;
@@ -53,9 +54,27 @@ export class GameComponent implements OnInit, OnDestroy {
     this.stopGame();
   }
 
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    // Pause key is typically 'Pause' or 'P' key
+    if (this.gameStarted && !this.gameOver && (event.key === 'Pause' || event.key === 'p' || event.key === 'P')) {
+      event.preventDefault();
+      this.togglePause();
+    }
+  }
+
+  togglePause() {
+    this.paused = !this.paused;
+    if (!this.paused) {
+      // Resume the game loop
+      this.gameLoop();
+    }
+  }
+
   startGame() {
     this.gameStarted = true;
     this.gameOver = false;
+    this.paused = false;
     this.money = 0;
     this.gameObjects = [];
     this.caughtSpecialTurkeys.clear();
@@ -144,9 +163,11 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   gameLoop() {
-    this.updateGameObjects();
-    this.render();
-    this.animationId = requestAnimationFrame(() => this.gameLoop());
+    if (!this.paused) {
+      this.updateGameObjects();
+      this.render();
+      this.animationId = requestAnimationFrame(() => this.gameLoop());
+    }
   }
 
   updateGameObjects() {
@@ -313,7 +334,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   onCanvasClick(event: MouseEvent) {
-    if (!this.gameStarted || this.gameOver) return;
+    if (!this.gameStarted || this.gameOver || this.paused) return;
     
     const canvas = this.canvasRef.nativeElement;
     const rect = canvas.getBoundingClientRect();
