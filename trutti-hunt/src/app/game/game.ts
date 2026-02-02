@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, HostListener, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
@@ -60,6 +60,8 @@ export class GameComponent implements OnInit, OnDestroy {
   private readonly SPECIAL_TURKEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   caughtSpecialTurkeys: Set<number> = new Set();
   private spawnedSpecialTurkeys: Set<number> = new Set();
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     // Load saved difficulty from localStorage for display
@@ -211,6 +213,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.gameTimer = setInterval(() => {
         if (!this.paused) {
           this.timeRemaining--;
+          this.cdr.detectChanges();
           if (this.timeRemaining <= 0) {
             this.endGame();
           }
@@ -262,17 +265,25 @@ export class GameComponent implements OnInit, OnDestroy {
     } else if (rand < 0.75) {
       // 15% special turkey
       type = 'special-turkey';
-      // Pick a random special turkey that hasn't been caught yet
-      const availableSpecials = this.SPECIAL_TURKEYS.filter(id => !this.caughtSpecialTurkeys.has(id));
+      // Pick a random special turkey that hasn't been spawned yet (or was caught)
+      const availableSpecials = this.SPECIAL_TURKEYS.filter(id => 
+        !this.spawnedSpecialTurkeys.has(id) || this.caughtSpecialTurkeys.has(id)
+      );
       if (availableSpecials.length > 0) {
         specialId = availableSpecials[Math.floor(Math.random() * availableSpecials.length)];
         // Track if this is the last special turkey
-        if (availableSpecials.length === 1) {
+        if (this.SPECIAL_TURKEYS.filter(id => !this.caughtSpecialTurkeys.has(id)).length === 1) {
           this.lastSpecialTurkeyId = specialId;
         }
       } else {
-        // All caught, pick any
-        specialId = this.SPECIAL_TURKEYS[Math.floor(Math.random() * this.SPECIAL_TURKEYS.length)];
+        // All have been spawned and not caught yet, pick from uncaught
+        const uncaught = this.SPECIAL_TURKEYS.filter(id => !this.caughtSpecialTurkeys.has(id));
+        if (uncaught.length > 0) {
+          specialId = uncaught[Math.floor(Math.random() * uncaught.length)];
+        } else {
+          // All caught, pick any
+          specialId = this.SPECIAL_TURKEYS[Math.floor(Math.random() * this.SPECIAL_TURKEYS.length)];
+        }
       }
       if (specialId) {
         this.spawnedSpecialTurkeys.add(specialId);
