@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface GameObject {
   x: number;
@@ -15,7 +16,7 @@ interface GameObject {
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './game.html',
   styleUrl: './game.css'
 })
@@ -32,6 +33,12 @@ export class GameComponent implements OnInit, OnDestroy {
   gameOver: boolean = false;
   paused: boolean = false;
   completionMessage: string = '';
+  audioUrl: string = '';
+  playerName: string = '';
+  showScoreboard: boolean = false;
+  qualifiesForTop10: boolean = false;
+  scoreboard: Array<{name: string, score: number, date: string}> = [];
+  private lastSpecialTurkeyId: number | null = null;
   
   private readonly CANVAS_WIDTH = 800;
   private readonly CANVAS_HEIGHT = 600;
@@ -43,11 +50,11 @@ export class GameComponent implements OnInit, OnDestroy {
   caughtSpecialTurkeys: Set<number> = new Set();
 
   ngOnInit() {
-    // Initialize audio
-    this.audio = new Audio();
-    this.audio.src = 'assets/audio/freed-from-desire.mp3';
-    this.audio.loop = true;
-    this.audio.volume = 0.5;
+    // Load saved audio URL from localStorage
+    const savedAudioUrl = localStorage.getItem('truttihunt-audio-url');
+    if (savedAudioUrl) {
+      this.audioUrl = savedAudioUrl;
+    }
   }
 
   ngOnDestroy() {
@@ -60,6 +67,12 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.gameStarted && !this.gameOver && (event.key === 'Pause' || event.key === 'p' || event.key === 'P')) {
       event.preventDefault();
       this.togglePause();
+    }
+    
+    // Escape key to end game early
+    if (this.gameStarted && !this.gameOver && event.key === 'Escape') {
+      event.preventDefault();
+      this.endGame();
     }
   }
 
@@ -78,6 +91,17 @@ export class GameComponent implements OnInit, OnDestroy {
     this.money = 0;
     this.gameObjects = [];
     this.caughtSpecialTurkeys.clear();
+    this.playerName = '';
+    this.showScoreboard = false;
+    this.qualifiesForTop10 = false;
+    this.lastSpecialTurkeyId = null;
+    
+    // Save audio URL to localStorage
+    if (this.audioUrl.trim()) {
+      localStorage.setItem('truttihunt-audio-url', this.audioUrl.trim());
+    } else {
+      localStorage.removeItem('truttihunt-audio-url');
+    }
     
     // Wait for canvas to be available in the DOM
     setTimeout(() => {
@@ -89,11 +113,18 @@ export class GameComponent implements OnInit, OnDestroy {
         canvas.height = this.CANVAS_HEIGHT;
       }
       
-      // Start background music
-      if (this.audio) {
+      // Initialize and start background music with user-provided URL
+      if (this.audioUrl.trim()) {
+        if (!this.audio) {
+          this.audio = new Audio();
+          this.audio.loop = true;
+          this.audio.volume = 0.5;
+        }
+        this.audio.src = this.audioUrl.trim();
+        this.audio.load();
         this.audio.play().catch(err => {
           console.warn('Background music could not be played:', err.message || err);
-          console.info('Add "freed-from-desire.mp3" to public/assets/audio/ for background music');
+          console.info('Please provide a valid audio URL');
         });
       }
       
@@ -134,6 +165,10 @@ export class GameComponent implements OnInit, OnDestroy {
       const availableSpecials = this.SPECIAL_TURKEYS.filter(id => !this.caughtSpecialTurkeys.has(id));
       if (availableSpecials.length > 0) {
         specialId = availableSpecials[Math.floor(Math.random() * availableSpecials.length)];
+        // Track if this is the last special turkey
+        if (availableSpecials.length === 1) {
+          this.lastSpecialTurkeyId = specialId;
+        }
       } else {
         // All caught, pick any
         specialId = this.SPECIAL_TURKEYS[Math.floor(Math.random() * this.SPECIAL_TURKEYS.length)];
@@ -179,6 +214,17 @@ export class GameComponent implements OnInit, OnDestroy {
       // Bounce off top/bottom
       if (obj.y < 0 || obj.y > this.CANVAS_HEIGHT - obj.height) {
         obj.vy *= -1;
+      }
+    });
+    
+    // Check if last special turkey is leaving screen
+    const offScreenObjects = this.gameObjects.filter(obj => 
+      obj.x <= -100 || obj.x >= this.CANVAS_WIDTH + 100
+    );
+    
+    offScreenObjects.forEach(obj => {
+      if (obj.type === 'special-turkey' && obj.specialId === this.lastSpecialTurkeyId) {
+        this.endGame();
       }
     });
     
@@ -371,10 +417,15 @@ export class GameComponent implements OnInit, OnDestroy {
       // Check if all special turkeys caught
       if (this.caughtSpecialTurkeys.size === 9) {
         this.money += 500; // Bonus for catching all
-        this.completionMessage = '🎉 All 9 special turkeys caught! +$500 bonus! 🎉';
+        this.completionMessage = '🎉 All 9 Truttis caught! +$500 bonus! 🎉';
         setTimeout(() => {
-          this.completionMessage = '';
-        }, 5000);
+          this.endGame();
+        }, 2000);
+      } else if (obj.specialId === this.lastSpecialTurkeyId) {
+        // Last special turkey was caught
+        setTimeout(() => {
+          this.endGame();
+        }, 1000);
       }
     } else if (obj.type === 'bikini-girl') {
       if (obj.inDelicateSituation) {
@@ -406,5 +457,71 @@ export class GameComponent implements OnInit, OnDestroy {
     
     oscillator.start(audioContext.currentTime);
     oscillator.stop(audioContext.currentTime + 0.1);
+  }
+
+  endGame() {
+    this.gameOver = true;
+    this.stopGame();
+    this.loadScoreboard();
+    
+    // Check if score qualifies for top 10
+    if (this.scoreboard.length < 10) {
+      // Less than 10 scores, always qualifies
+      this.qualifiesForTop10 = true;
+    } else {
+      // Check if current score beats the lowest score in top 10
+      const lowestScore = this.scoreboard[this.scoreboard.length - 1].score;
+      this.qualifiesForTop10 = this.money > lowestScore;
+    }
+    
+    // If doesn't qualify, show scoreboard directly
+    if (!this.qualifiesForTop10) {
+      this.showScoreboard = true;
+    }
+  }
+
+  saveScore() {
+    if (!this.playerName.trim()) {
+      alert('Please enter your name!');
+      return;
+    }
+
+    const score = {
+      name: this.playerName.trim(),
+      score: this.money,
+      date: new Date().toISOString()
+    };
+
+    this.scoreboard.push(score);
+    this.scoreboard.sort((a, b) => b.score - a.score);
+    
+    // Keep only top 10 scores
+    if (this.scoreboard.length > 10) {
+      this.scoreboard = this.scoreboard.slice(0, 10);
+    }
+
+    localStorage.setItem('truttihunt-scoreboard', JSON.stringify(this.scoreboard));
+    this.showScoreboard = true;
+  }
+
+  loadScoreboard() {
+    const savedScoreboard = localStorage.getItem('truttihunt-scoreboard');
+    if (savedScoreboard) {
+      try {
+        this.scoreboard = JSON.parse(savedScoreboard);
+      } catch (e) {
+        this.scoreboard = [];
+      }
+    } else {
+      this.scoreboard = [];
+    }
+  }
+
+  resetGame() {
+    this.gameStarted = false;
+    this.gameOver = false;
+    this.showScoreboard = false;
+    this.qualifiesForTop10 = false;
+    this.completionMessage = '';
   }
 }
