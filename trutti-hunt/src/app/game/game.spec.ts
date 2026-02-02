@@ -307,4 +307,119 @@ describe('GameComponent Core Logic', () => {
       expect(component.completionMessage).toBe('');
     });
   });
+
+  describe('object spawning direction', () => {
+    beforeEach(() => {
+      component['CANVAS_WIDTH'] = 800;
+      component['CANVAS_HEIGHT'] = 600;
+      component.difficulty = 'Andi';
+      component.caughtSpecialTurkeys = new Set();
+      component['spawnedSpecialTurkeys'] = new Set();
+      component.timeRemaining = 90;
+    });
+
+    it('should spawn objects on left side moving right (positive vx)', () => {
+      const randomSpy = vi.spyOn(Math, 'random');
+      
+      // Mock sequence:
+      // 1st: rand for type selection (< 0.5 = turkey)
+      randomSpy.mockReturnValueOnce(0.3);
+      // 2nd: x position (< 0.5 = left side)
+      randomSpy.mockReturnValueOnce(0.2);
+      // 3rd: y position
+      randomSpy.mockReturnValueOnce(0.5);
+      // 4th: vx magnitude
+      randomSpy.mockReturnValueOnce(0.5);
+      // 5th: vy
+      randomSpy.mockReturnValueOnce(0.5);
+      
+      component['spawnObject']();
+      
+      const spawnedObject = component['gameObjects'][0];
+      expect(spawnedObject.x).toBeLessThan(0); // Spawned on left (-50)
+      expect(spawnedObject.vx).toBeGreaterThan(0); // Moving right (positive)
+      
+      randomSpy.mockRestore();
+    });
+
+    it('should spawn objects on right side moving left (negative vx)', () => {
+      const randomSpy = vi.spyOn(Math, 'random');
+      
+      // Mock sequence:
+      // 1st: rand for type selection (< 0.5 = turkey)
+      randomSpy.mockReturnValueOnce(0.3);
+      // 2nd: x position (>= 0.5 = right side)
+      randomSpy.mockReturnValueOnce(0.8);
+      // 3rd: y position
+      randomSpy.mockReturnValueOnce(0.5);
+      // 4th: vx magnitude
+      randomSpy.mockReturnValueOnce(0.5);
+      // 5th: vy
+      randomSpy.mockReturnValueOnce(0.5);
+      
+      component['spawnObject']();
+      
+      const spawnedObject = component['gameObjects'][0];
+      expect(spawnedObject.x).toBeGreaterThan(component['CANVAS_WIDTH']); // Spawned on right (850)
+      expect(spawnedObject.vx).toBeLessThan(0); // Moving left (negative)
+      
+      randomSpy.mockRestore();
+    });
+
+    it('should consistently spawn left objects moving right over multiple spawns', () => {
+      const randomSpy = vi.spyOn(Math, 'random');
+      
+      // Test 5 left-side spawns
+      for (let i = 0; i < 5; i++) {
+        component['gameObjects'] = []; // Clear previous objects
+        
+        // Type selection
+        randomSpy.mockReturnValueOnce(0.3);
+        // x position (left)
+        randomSpy.mockReturnValueOnce(0.1);
+        // y position
+        randomSpy.mockReturnValueOnce(0.5);
+        // vx magnitude
+        randomSpy.mockReturnValueOnce(0.5);
+        // vy
+        randomSpy.mockReturnValueOnce(0.5);
+        
+        component['spawnObject']();
+        
+        const obj = component['gameObjects'][0];
+        expect(obj.x).toBeLessThan(0);
+        expect(obj.vx).toBeGreaterThan(0);
+      }
+      
+      randomSpy.mockRestore();
+    });
+
+    it('should consistently spawn right objects moving left over multiple spawns', () => {
+      const randomSpy = vi.spyOn(Math, 'random');
+      
+      // Test 5 right-side spawns
+      for (let i = 0; i < 5; i++) {
+        component['gameObjects'] = []; // Clear previous objects
+        
+        // Type selection
+        randomSpy.mockReturnValueOnce(0.3);
+        // x position (right)
+        randomSpy.mockReturnValueOnce(0.9);
+        // y position
+        randomSpy.mockReturnValueOnce(0.5);
+        // vx magnitude
+        randomSpy.mockReturnValueOnce(0.5);
+        // vy
+        randomSpy.mockReturnValueOnce(0.5);
+        
+        component['spawnObject']();
+        
+        const obj = component['gameObjects'][0];
+        expect(obj.x).toBeGreaterThan(component['CANVAS_WIDTH']);
+        expect(obj.vx).toBeLessThan(0);
+      }
+      
+      randomSpy.mockRestore();
+    });
+  });
 });

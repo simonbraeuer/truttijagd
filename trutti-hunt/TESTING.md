@@ -2,7 +2,7 @@
 
 ## Test Coverage
 
-Added comprehensive unit tests for the Trutti Hunt game with **87 passing tests** across 7 test suites.
+Added comprehensive unit tests for the Trutti Hunt game with **91 passing tests** across 7 test suites.
 
 ### Test Files Created
 
@@ -40,7 +40,7 @@ Tests for BikiniGirl class:
 - Movement and edge bouncing
 - Type identification
 
-#### 4. **game.spec.ts** (25 tests)
+#### 4. **game.spec.ts** (29 tests)
 Tests for GameComponent core logic:
 - Component initialization and default values
 - Difficulty icon mapping (🐔/🦃/🔥)
@@ -56,6 +56,10 @@ Tests for GameComponent core logic:
   - Legacy entry migration
 - Game qualification logic
 - Game state reset
+- Object spawning direction:
+  - Left-side objects move right (positive vx)
+  - Right-side objects move left (negative vx)
+  - Consistent directional spawning behavior
 
 #### 5. **scoreboard.spec.ts** (4 tests)
 Tests for scoreboard functionality:

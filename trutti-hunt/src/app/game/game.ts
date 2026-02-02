@@ -284,7 +284,9 @@ export class GameComponent implements OnInit, OnDestroy {
     
     const x = Math.random() < 0.5 ? -50 : this.CANVAS_WIDTH + 50;
     const y = Math.random() * (this.CANVAS_HEIGHT - 100);
-    const vx = (Math.random() < 0.5 ? 1 : -1) * (2 + Math.random() * 2) * speedMultiplier;
+    // Objects on left side move right (positive vx), objects on right side move left (negative vx)
+    const vxDirection = x < 0 ? 1 : -1;
+    const vx = vxDirection * (2 + Math.random() * 2) * speedMultiplier;
     const vy = (Math.random() - 0.5) * 2 * speedMultiplier;
     
     // Create appropriate game object
