@@ -76,7 +76,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize() {
     if (this.gameStarted && this.canvasRef) {
       this.updateCanvasSize();
