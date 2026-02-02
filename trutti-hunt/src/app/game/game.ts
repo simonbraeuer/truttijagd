@@ -9,18 +9,7 @@ import {
 } from './components';
 import type { GameSettings, DifficultyLevel } from './components/start-screen/start-screen';
 import type { ScoreEntry } from './components/scoreboard/scoreboard';
-
-interface GameObject {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  width: number;
-  height: number;
-  type: 'turkey' | 'special-turkey' | 'bikini-girl';
-  specialId?: number;
-  inDelicateSituation?: boolean;
-}
+import { GameObject, Turkey, SpecialTurkey, BikiniGirl } from './game-objects';
 
 @Component({
   selector: 'app-game',
@@ -282,56 +271,64 @@ export class GameComponent implements OnInit, OnDestroy {
         this.spawnedSpecialTurkeys.add(specialId);
       }
     } else {
-      // 25% bikini girl
+      // 20% bikini girl
       type = 'bikini-girl';
-      // 20% chance of delicate situation with a special turkey
+      // 20% chance of delicate situation
       if (Math.random() < 0.2) {
         inDelicateSituation = true;
       }
     }
     
-    // Calculate size and speed based on difficulty with screen-relative sizing
-    let widthRatio: number, heightRatio: number, speedMultiplier: number;
+    // Calculate size and speed based on difficulty
+    const { width, height, speedMultiplier } = this.getObjectSize();
+    
+    const x = Math.random() < 0.5 ? -50 : this.CANVAS_WIDTH + 50;
+    const y = Math.random() * (this.CANVAS_HEIGHT - 100);
+    const vx = (Math.random() < 0.5 ? 1 : -1) * (2 + Math.random() * 2) * speedMultiplier;
+    const vy = (Math.random() - 0.5) * 2 * speedMultiplier;
+    
+    // Create appropriate game object
+    let obj: GameObject;
+    if (type === 'special-turkey' && specialId) {
+      const isLastSpecial = specialId === this.lastSpecialTurkeyId;
+      obj = new SpecialTurkey(x, y, vx, vy, width, height, specialId, isLastSpecial);
+    } else if (type === 'bikini-girl') {
+      obj = new BikiniGirl(x, y, vx, vy, width, height, inDelicateSituation);
+    } else {
+      obj = new Turkey(x, y, vx, vy, width, height);
+    }
+    
+    this.gameObjects.push(obj);
+  }
+
+  private getObjectSize(): { width: number; height: number; speedMultiplier: number } {
     const MIN_WIDTH = 40;
     const MIN_HEIGHT = 40;
+    let widthRatio: number, heightRatio: number, speedMultiplier: number;
     
     switch (this.difficulty) {
       case 'Andi':
-        // Bigger size, normal speed (9% of canvas width/height)
         widthRatio = 0.09;
         heightRatio = 0.09;
         speedMultiplier = 1;
         break;
       case 'Schuh':
-        // Thinner, faster (6% width, 8% height)
         widthRatio = 0.06;
         heightRatio = 0.08;
         speedMultiplier = 1.5;
         break;
       case 'Mexxx':
-        // Smaller size, faster speed (5.5% of canvas)
         widthRatio = 0.055;
         heightRatio = 0.055;
         speedMultiplier = 2;
         break;
     }
     
-    const width = Math.max(MIN_WIDTH, Math.floor(this.CANVAS_WIDTH * widthRatio));
-    const height = Math.max(MIN_HEIGHT, Math.floor(this.CANVAS_HEIGHT * heightRatio));
-    
-    const obj: GameObject = {
-      x: Math.random() < 0.5 ? -50 : this.CANVAS_WIDTH + 50,
-      y: Math.random() * (this.CANVAS_HEIGHT - 100),
-      vx: (Math.random() < 0.5 ? 1 : -1) * (2 + Math.random() * 2) * speedMultiplier,
-      vy: (Math.random() - 0.5) * 2 * speedMultiplier,
-      width,
-      height,
-      type,
-      specialId,
-      inDelicateSituation
+    return {
+      width: Math.max(MIN_WIDTH, Math.floor(this.CANVAS_WIDTH * widthRatio)),
+      height: Math.max(MIN_HEIGHT, Math.floor(this.CANVAS_HEIGHT * heightRatio)),
+      speedMultiplier
     };
-    
-    this.gameObjects.push(obj);
   }
 
   gameLoop() {
@@ -357,25 +354,9 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   updateGameObjects() {
-    // Update positions
+    // Update positions using object's own update method
     this.gameObjects.forEach(obj => {
-      obj.x += obj.vx;
-      obj.y += obj.vy;
-      
-      // Bounce off top/bottom
-      if (obj.y < 0 || obj.y > this.CANVAS_HEIGHT - obj.height) {
-        obj.vy *= -1;
-      }
-      
-      // On Mexxx difficulty, add random bouncing for turkeys
-      if (this.difficulty === 'Mexxx' && (obj.type === 'turkey' || obj.type === 'special-turkey')) {
-        // Random chance to bounce (5% per frame)
-        if (Math.random() < 0.05) {
-          obj.vy *= -1;
-          // Add some randomness to the bounce angle
-          obj.vy += (Math.random() - 0.5) * 2;
-        }
-      }
+      obj.update(this.CANVAS_WIDTH, this.CANVAS_HEIGHT, this.difficulty);
     });
     
     // Check if last special turkey is leaving screen
@@ -384,7 +365,7 @@ export class GameComponent implements OnInit, OnDestroy {
     );
     
     offScreenObjects.forEach(obj => {
-      if (obj.type === 'special-turkey' && obj.specialId === this.lastSpecialTurkeyId) {
+      if (obj instanceof SpecialTurkey && obj.specialId === this.lastSpecialTurkeyId) {
         this.endGame();
       }
     });
@@ -403,9 +384,9 @@ export class GameComponent implements OnInit, OnDestroy {
     // Draw clouds
     this.drawClouds();
     
-    // Draw game objects
+    // Draw game objects using their own draw methods
     this.gameObjects.forEach(obj => {
-      this.drawObject(obj);
+      obj.draw(this.ctx);
     });
   }
 
@@ -426,124 +407,10 @@ export class GameComponent implements OnInit, OnDestroy {
     this.ctx.fill();
   }
 
-  drawObject(obj: GameObject) {
-    this.ctx.save();
-    this.ctx.translate(obj.x + obj.width / 2, obj.y + obj.height / 2);
-    
-    if (obj.type === 'turkey' || obj.type === 'special-turkey') {
-      this.drawTurkey(obj);
-    } else if (obj.type === 'bikini-girl') {
-      this.drawBikiniGirl(obj);
-    }
-    
-    this.ctx.restore();
-  }
-
-  drawTurkey(obj: GameObject) {
-    // Turkey body
-    this.ctx.fillStyle = obj.type === 'special-turkey' ? '#FFD700' : '#8B4513';
-    this.ctx.beginPath();
-    this.ctx.ellipse(0, 0, 25, 20, 0, 0, Math.PI * 2);
-    this.ctx.fill();
-    
-    // Turkey head
-    this.ctx.fillStyle = obj.type === 'special-turkey' ? '#FFA500' : '#A0522D';
-    this.ctx.beginPath();
-    this.ctx.arc(-15, -10, 12, 0, Math.PI * 2);
-    this.ctx.fill();
-    
-    // Eye
-    this.ctx.fillStyle = 'black';
-    this.ctx.beginPath();
-    this.ctx.arc(-18, -12, 3, 0, Math.PI * 2);
-    this.ctx.fill();
-    
-    // Beak
-    this.ctx.fillStyle = '#FFA500';
-    this.ctx.beginPath();
-    this.ctx.moveTo(-20, -8);
-    this.ctx.lineTo(-28, -8);
-    this.ctx.lineTo(-24, -5);
-    this.ctx.fill();
-    
-    // Tail feathers
-    const colors = obj.type === 'special-turkey' ? 
-      ['#FFD700', '#FF6347', '#FF1493', '#00CED1', '#32CD32'] :
-      ['#8B4513', '#A0522D', '#CD853F', '#DEB887', '#F4A460'];
-    
-    for (let i = 0; i < 5; i++) {
-      this.ctx.fillStyle = colors[i];
-      this.ctx.beginPath();
-      const angle = (i - 2) * 0.3;
-      this.ctx.moveTo(20, 0);
-      this.ctx.lineTo(30 + Math.cos(angle) * 15, Math.sin(angle) * 15);
-      this.ctx.lineTo(25 + Math.cos(angle) * 10, Math.sin(angle) * 10);
-      this.ctx.fill();
-    }
-    
-    // Special turkey badge
-    if (obj.type === 'special-turkey' && obj.specialId) {
-      this.ctx.fillStyle = 'red';
-      this.ctx.font = 'bold 16px Arial';
-      this.ctx.textAlign = 'center';
-      this.ctx.fillText(obj.specialId.toString(), 0, 5);
-    }
-  }
-
-  drawBikiniGirl(obj: GameObject) {
-    // Body
-    this.ctx.fillStyle = '#FFE4C4';
-    this.ctx.fillRect(-10, -15, 20, 30);
-    
-    // Head
-    this.ctx.beginPath();
-    this.ctx.arc(0, -25, 10, 0, Math.PI * 2);
-    this.ctx.fill();
-    
-    // Hair
-    this.ctx.fillStyle = '#8B4513';
-    this.ctx.beginPath();
-    this.ctx.arc(0, -30, 12, 0, Math.PI);
-    this.ctx.fill();
-    
-    // Bikini top
-    this.ctx.fillStyle = '#FF69B4';
-    this.ctx.fillRect(-10, -10, 20, 8);
-    
-    // Bikini bottom
-    this.ctx.fillRect(-10, 8, 20, 7);
-    
-    // Arms
-    this.ctx.strokeStyle = '#FFE4C4';
-    this.ctx.lineWidth = 4;
-    this.ctx.beginPath();
-    this.ctx.moveTo(-10, -5);
-    this.ctx.lineTo(-20, 0);
-    this.ctx.moveTo(10, -5);
-    this.ctx.lineTo(20, 0);
-    this.ctx.stroke();
-    
-    // Legs
-    this.ctx.beginPath();
-    this.ctx.moveTo(-5, 15);
-    this.ctx.lineTo(-7, 25);
-    this.ctx.moveTo(5, 15);
-    this.ctx.lineTo(7, 25);
-    this.ctx.stroke();
-    
-    // Delicate situation indicator
-    if (obj.inDelicateSituation) {
-      this.ctx.fillStyle = 'red';
-      this.ctx.font = 'bold 20px Arial';
-      this.ctx.textAlign = 'center';
-      this.ctx.fillText('💕', 15, -20);
-    }
-  }
-
   onCanvasClick(event: MouseEvent | TouchEvent) {
     if (!this.gameStarted || this.gameOver || this.paused) return;
     
-    event.preventDefault(); // Prevent default behavior
+    event.preventDefault();
     
     const canvas = this.canvasRef.nativeElement;
     const rect = canvas.getBoundingClientRect();
@@ -554,7 +421,6 @@ export class GameComponent implements OnInit, OnDestroy {
       x = event.clientX - rect.left;
       y = event.clientY - rect.top;
     } else {
-      // TouchEvent
       const touch = event.touches[0] || event.changedTouches[0];
       x = touch.clientX - rect.left;
       y = touch.clientY - rect.top;
@@ -575,41 +441,33 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   handleObjectClick(obj: GameObject, index: number) {
-    if (obj.type === 'turkey') {
-      // Regular turkey: +10 money
-      this.money += 10;
+    // Use polymorphism - each object knows how to handle its own click
+    const result = obj.onClick(this.caughtSpecialTurkeys);
+    
+    this.money += result.moneyChange;
+    
+    if (result.shouldRemove) {
       this.gameObjects.splice(index, 1);
-    } else if (obj.type === 'special-turkey') {
-      // Special turkey: +50 money
-      this.money += 50;
-      if (obj.specialId) {
-        this.caughtSpecialTurkeys.add(obj.specialId);
-        this.cdr.detectChanges(); // Trigger change detection for Set update
-      }
-      this.gameObjects.splice(index, 1);
+    }
+    
+    if (result.caughtSpecialId) {
+      this.caughtSpecialTurkeys.add(result.caughtSpecialId);
+      this.cdr.detectChanges(); // Trigger change detection for Set update
       
-      // Check if all special turkeys caught
-      if (this.caughtSpecialTurkeys.size === 9) {
-        this.money += 500; // Bonus for catching all
-        this.completionMessage = '🎉 All 9 Truttis caught! +$500 bonus! 🎉';
-        setTimeout(() => {
-          this.endGame();
-        }, 2000);
-      }
       // If this was the last special turkey, clear the flag since it was caught
-      if (obj.specialId === this.lastSpecialTurkeyId) {
+      if (result.caughtSpecialId === this.lastSpecialTurkeyId) {
         this.lastSpecialTurkeyId = null;
       }
-    } else if (obj.type === 'bikini-girl') {
-      if (obj.inDelicateSituation) {
-        // Bonus situation: +100 money
-        this.money += 100;
-        this.gameObjects.splice(index, 1);
-      } else {
-        // Penalty: -50 money
-        this.money -= 50;
-        this.gameObjects.splice(index, 1);
-      }
+    }
+    
+    if (result.completionMessage) {
+      this.completionMessage = result.completionMessage;
+    }
+    
+    if (result.shouldEndGame) {
+      setTimeout(() => {
+        this.endGame();
+      }, result.endGameDelay || 0);
     }
   }
 
