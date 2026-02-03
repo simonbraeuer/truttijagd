@@ -29,7 +29,7 @@
 .hud {
   display: flex;
   gap: clamp(0.5rem, 2vw, 1rem);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 240, 255, 0.95) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 240, 240, 0.95) 100%);
   padding: clamp(0.5rem, 2vw, 1rem);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);

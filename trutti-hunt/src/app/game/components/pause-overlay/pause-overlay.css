@@ -49,7 +49,7 @@
 .pause-screen h2 {
   font-size: clamp(1.2em, 4vw, 1.8em);
   margin-bottom: clamp(10px, 2vw, 15px);
-  color: #764ba2;
+  color: #000000;
 }
 
 .pause-screen p {
@@ -69,18 +69,18 @@
   font-size: clamp(0.8em, 2vw, 0.95em);
   margin: clamp(5px, 1vw, 8px) 0;
   padding: clamp(6px, 1.5vw, 8px);
-  background: rgba(118, 75, 162, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: clamp(5px, 1vw, 8px);
 }
 
 .resume-hint {
   margin: clamp(10px, 2vw, 15px) 0 clamp(5px, 1.5vw, 10px);
   font-size: clamp(0.75em, 2vw, 0.9em);
-  color: #764ba2;
+  color: #000000;
   font-style: italic;
 }
 
 .resume-hint strong {
-  color: #667eea;
+  color: #000000;
   font-weight: bold;
 }
