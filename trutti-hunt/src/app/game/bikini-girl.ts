@@ -64,6 +64,7 @@ export class BikiniGirl extends GameObject {
 
   override onClick(caughtSpecialTurkeys: Set<number>): GameObjectClickResult {
     if (this.inDelicateSituation) {
+      this.playKissSound();
       return {
         moneyChange: 100,
         shouldRemove: true
@@ -74,6 +75,49 @@ export class BikiniGirl extends GameObject {
       moneyChange: -50,
       shouldRemove: true
     };
+  }
+
+  private playKissSound() {
+    // Kiss sound effect using Web Audio API - simulates a "mwah" sound
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    
+    // Create two oscillators for a more realistic kiss sound
+    const osc1 = audioContext.createOscillator();
+    const osc2 = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+    
+    osc1.connect(filter);
+    osc2.connect(filter);
+    filter.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    // Configure filter for softer, more realistic sound
+    filter.type = 'lowpass';
+    filter.frequency.value = 2000;
+    
+    // First oscillator: creates the "m" sound
+    osc1.frequency.setValueAtTime(300, audioContext.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.5);
+    osc1.frequency.exponentialRampToValueAtTime(150, audioContext.currentTime + 1.5);
+    osc1.type = 'triangle';
+    
+    // Second oscillator: creates harmonics for the "wah" sound
+    osc2.frequency.setValueAtTime(600, audioContext.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.5);
+    osc2.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + 1.5);
+    osc2.type = 'sine';
+    
+    // Envelope: longer duration for 2 second kiss sound
+    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.05);
+    gainNode.gain.linearRampToValueAtTime(0.12, audioContext.currentTime + 1.0);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2.0);
+    
+    osc1.start(audioContext.currentTime);
+    osc2.start(audioContext.currentTime);
+    osc1.stop(audioContext.currentTime + 2.0);
+    osc2.stop(audioContext.currentTime + 2.0);
   }
 
   override getType(): string {
