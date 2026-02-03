@@ -1,5 +1,5 @@
-import type { DifficultyLevel } from './components/start-screen/start-screen';
-import { GameObject, GameObjectClickResult } from './game-object';
+import type { DifficultyLevel } from '../../components/start-screen/start-screen';
+import { GameObject, GameObjectClickResult } from '../game-object';
 
 export class Turkey extends GameObject {
   protected static readonly TAIL_COLORS = ['#8B4513', '#A0522D', '#D2691E'];

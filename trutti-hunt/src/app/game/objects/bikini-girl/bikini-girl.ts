@@ -1,4 +1,4 @@
-import { GameObject, GameObjectClickResult } from './game-object';
+import { GameObject, GameObjectClickResult } from '../game-object';
 
 export class BikiniGirl extends GameObject {
   inDelicateSituation: boolean;
