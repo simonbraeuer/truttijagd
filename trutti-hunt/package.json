@@ -8,7 +8,17 @@
     "build:gh-pages": "ng build --configuration production --base-href /truttijagd/",
     "deploy": "npm run build:gh-pages && gh-pages -d dist/trutti-hunt/browser",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:chromium": "playwright test --project=chromium",
+    "test:e2e:firefox": "playwright test --project=firefox",
+    "test:e2e:webkit": "playwright test --project=webkit",
+    "test:e2e:mobile": "playwright test --project=mobile-chrome --project=mobile-safari",
+    "test:e2e:report": "playwright show-report",
+    "test:all": "npm test && npm run test:e2e"
   },
   "prettier": {
     "printWidth": 100,
@@ -38,8 +48,11 @@
     "@angular/build": "^21.1.2",
     "@angular/cli": "^21.1.2",
     "@angular/compiler-cli": "^21.1.0",
+    "@playwright/test": "^1.58.1",
+    "@types/node": "^25.2.0",
     "gh-pages": "^6.2.0",
     "jsdom": "^27.1.0",
+    "playwright": "^1.58.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   }
