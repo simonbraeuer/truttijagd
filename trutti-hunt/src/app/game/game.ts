@@ -419,9 +419,10 @@ export class GameComponent implements OnInit, OnDestroy {
   drawClouds() {
     if (!this.ctx) return;
     this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-    for (let i = 0; i < 5; i++) {
+    const numClouds = 8;
+    for (let i = 0; i < numClouds; i++) {
       const x = (Date.now() / 50 + i * 200) % (this.CANVAS_WIDTH + 100) - 50;
-      const y = 50 + i * 80;
+      const y = (i * this.CANVAS_HEIGHT / (numClouds - 1));
       this.drawCloud(x, y);
     }
   }
