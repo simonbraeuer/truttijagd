@@ -96,6 +96,16 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('document:visibilitychange')
+  onVisibilityChange() {
+    // Auto-pause when tab is hidden, prevent spawning while inactive
+    if (this.gameStarted && !this.gameOver) {
+      if (document.hidden && !this.paused) {
+        this.togglePause();
+      }
+    }
+  }
+
   @HostListener('window:resize')
   onResize() {
     if (this.gameStarted && this.canvasRef) {
@@ -140,8 +150,19 @@ export class GameComponent implements OnInit, OnDestroy {
   togglePause() {
     this.paused = !this.paused;
     if (!this.paused) {
-      // Resume the game loop
+      // Reset timer reference and resume the game loop
+      this.lastTimerUpdate = Date.now();
       this.gameLoop();
+      // Restart spawning when unpausing
+      if (!this.spawnTimer) {
+        this.spawnTimer = setInterval(() => this.spawnObject(), this.SPAWN_INTERVAL);
+      }
+    } else {
+      // Stop spawning when paused
+      if (this.spawnTimer) {
+        clearInterval(this.spawnTimer);
+        this.spawnTimer = null;
+      }
     }
   }
 
@@ -379,6 +400,9 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   render() {
+    // Guard: if context is not initialized, skip rendering
+    if (!this.ctx) return;
+    
     // Clear canvas
     this.ctx.fillStyle = '#87CEEB';
     this.ctx.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
@@ -393,6 +417,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   drawClouds() {
+    if (!this.ctx) return;
     this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
     for (let i = 0; i < 5; i++) {
       const x = (Date.now() / 50 + i * 200) % (this.CANVAS_WIDTH + 100) - 50;
@@ -402,6 +427,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   drawCloud(x: number, y: number) {
+    if (!this.ctx) return;
     this.ctx.beginPath();
     this.ctx.arc(x, y, 20, 0, Math.PI * 2);
     this.ctx.arc(x + 20, y, 25, 0, Math.PI * 2);

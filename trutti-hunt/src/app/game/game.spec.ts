@@ -87,6 +87,50 @@ describe('GameComponent Core Logic', () => {
       component.togglePause();
       expect(component.paused).toBe(false);
     });
+
+    it('should stop spawn timer when paused', async () => {
+      // Start game to initialize spawn timer
+      component.startGame({ audioUrl: '', difficulty: 'Andi' });
+      
+      // Wait for setTimeout in startGame to complete
+      await new Promise(resolve => setTimeout(resolve, 10));
+      
+      // Spawn timer should be active
+      expect(component['spawnTimer']).toBeDefined();
+      expect(component['spawnTimer']).not.toBeNull();
+      
+      // Pause the game
+      component.togglePause();
+      
+      // Spawn timer should be cleared
+      expect(component['spawnTimer']).toBeNull();
+      expect(component.paused).toBe(true);
+      
+      // Clean up
+      component.stopGame();
+    });
+
+    it('should restart spawn timer when unpaused', async () => {
+      // Start game
+      component.startGame({ audioUrl: '', difficulty: 'Andi' });
+      
+      // Wait for setTimeout in startGame to complete
+      await new Promise(resolve => setTimeout(resolve, 10));
+      
+      // Pause the game
+      component.togglePause();
+      expect(component['spawnTimer']).toBeNull();
+      
+      // Unpause the game
+      component.togglePause();
+      
+      // Spawn timer should be restarted
+      expect(component['spawnTimer']).not.toBeNull();
+      expect(component.paused).toBe(false);
+      
+      // Clean up
+      component.stopGame();
+    });
   });
 
   describe('object size calculation', () => {
