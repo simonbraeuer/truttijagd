@@ -6,6 +6,37 @@ describe('BikiniGirl', () => {
   let mockCtx: CanvasRenderingContext2D;
 
   beforeEach(() => {
+    // Mock AudioContext for tests
+    const mockAudioContext = {
+      createOscillator: vi.fn(() => ({
+        connect: vi.fn(),
+        frequency: { 
+          setValueAtTime: vi.fn(), 
+          exponentialRampToValueAtTime: vi.fn() 
+        },
+        type: '',
+        start: vi.fn(),
+        stop: vi.fn()
+      })),
+      createGain: vi.fn(() => ({
+        connect: vi.fn(),
+        gain: { 
+          setValueAtTime: vi.fn(), 
+          exponentialRampToValueAtTime: vi.fn(),
+          linearRampToValueAtTime: vi.fn()
+        }
+      })),
+      createBiquadFilter: vi.fn(() => ({
+        connect: vi.fn(),
+        frequency: { value: 0 },
+        type: ''
+      })),
+      currentTime: 0,
+      destination: {}
+    };
+    
+    (window as any).AudioContext = function() { return mockAudioContext; };
+    
     mockCtx = {
       save: vi.fn(),
       restore: vi.fn(),
