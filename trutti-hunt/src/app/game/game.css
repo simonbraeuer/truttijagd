@@ -7,6 +7,18 @@
   overflow: hidden;
 }
 
+.game-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.trutti-logo {
+  height: 3em;
+  width: auto;
+  vertical-align: middle;
+}
+
 .game-wrapper {
   display: flex;
   flex-direction: column;
