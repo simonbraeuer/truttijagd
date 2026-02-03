@@ -1,8 +1,111 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { BikiniGirl } from './bikini-girl';
+import { BikiniGirl, DelicateBikiniGirl } from './bikini-girl';
 
 describe('BikiniGirl', () => {
   let bikiniGirl: BikiniGirl;
+  let mockCtx: CanvasRenderingContext2D;
+
+  beforeEach(() => {
+    mockCtx = {
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      fillStyle: '',
+      font: '',
+      textAlign: '',
+      beginPath: vi.fn(),
+      fill: vi.fn(),
+      fillText: vi.fn(),
+      fillRect: vi.fn(),
+      ellipse: vi.fn(),
+      arc: vi.fn()
+    } as unknown as CanvasRenderingContext2D;
+  });
+
+  describe('constructor', () => {
+    it('should create bikini girl in normal situation', () => {
+      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60);
+      
+      expect(bikiniGirl.x).toBe(100);
+      expect(bikiniGirl.y).toBe(200);
+    });
+  });
+
+  describe('draw', () => {
+    it('should call canvas context methods', () => {
+      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60);
+      bikiniGirl.draw(mockCtx);
+      
+      expect(mockCtx.save).toHaveBeenCalled();
+      expect(mockCtx.restore).toHaveBeenCalled();
+      expect(mockCtx.translate).toHaveBeenCalled();
+      expect(mockCtx.beginPath).toHaveBeenCalled();
+      expect(mockCtx.fill).toHaveBeenCalled();
+    });
+
+    it('should not draw hearts emoji in normal situation', () => {
+      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60);
+      bikiniGirl.draw(mockCtx);
+      
+      expect(mockCtx.fillText).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('onClick', () => {
+    beforeEach(() => {
+      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60);
+    });
+
+    it('should return -50 money penalty', () => {
+      const result = bikiniGirl.onClick(new Set());
+      expect(result.moneyChange).toBe(-50);
+    });
+
+    it('should remove bikini girl', () => {
+      const result = bikiniGirl.onClick(new Set());
+      expect(result.shouldRemove).toBe(true);
+    });
+
+    it('should not have special turkey properties', () => {
+      const result = bikiniGirl.onClick(new Set());
+      
+      expect(result.caughtSpecialId).toBeUndefined();
+      expect(result.completionMessage).toBeUndefined();
+      expect(result.shouldEndGame).toBeUndefined();
+    });
+  });
+
+  describe('getType', () => {
+    it('should return bikini-girl type', () => {
+      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60);
+      expect(bikiniGirl.getType()).toBe('bikini-girl');
+    });
+  });
+
+  describe('update', () => {
+    it('should update position based on velocity', () => {
+      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60);
+      const initialX = bikiniGirl.x;
+      const initialY = bikiniGirl.y;
+      
+      bikiniGirl.update(800, 600, 'Andi');
+      
+      expect(bikiniGirl.x).toBe(initialX + bikiniGirl.vx);
+      expect(bikiniGirl.y).toBe(initialY + bikiniGirl.vy);
+    });
+
+    it('should bounce off edges', () => {
+      bikiniGirl = new BikiniGirl(100, -5, 5, -3, 50, 60);
+      
+      bikiniGirl.update(800, 600, 'Andi');
+      
+      expect(bikiniGirl.vy).toBe(3); // Velocity reversed
+    });
+  });
+});
+
+describe('DelicateBikiniGirl', () => {
+  let delicateBikiniGirl: DelicateBikiniGirl;
   let mockCtx: CanvasRenderingContext2D;
 
   beforeEach(() => {
@@ -54,25 +157,18 @@ describe('BikiniGirl', () => {
   });
 
   describe('constructor', () => {
-    it('should create bikini girl in normal situation', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, false);
-      
-      expect(bikiniGirl.x).toBe(100);
-      expect(bikiniGirl.y).toBe(200);
-      expect(bikiniGirl.inDelicateSituation).toBe(false);
-    });
-
     it('should create bikini girl in delicate situation', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, true);
+      delicateBikiniGirl = new DelicateBikiniGirl(100, 200, 5, -3, 50, 60);
       
-      expect(bikiniGirl.inDelicateSituation).toBe(true);
+      expect(delicateBikiniGirl.x).toBe(100);
+      expect(delicateBikiniGirl.y).toBe(200);
     });
   });
 
   describe('draw', () => {
     it('should call canvas context methods', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, false);
-      bikiniGirl.draw(mockCtx);
+      delicateBikiniGirl = new DelicateBikiniGirl(100, 200, 5, -3, 50, 60);
+      delicateBikiniGirl.draw(mockCtx);
       
       expect(mockCtx.save).toHaveBeenCalled();
       expect(mockCtx.restore).toHaveBeenCalled();
@@ -81,97 +177,55 @@ describe('BikiniGirl', () => {
       expect(mockCtx.fill).toHaveBeenCalled();
     });
 
-    it('should use different pink for delicate situation', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, true);
-      bikiniGirl.draw(mockCtx);
-      
-      // Just verify drawing methods are called for delicate situation
-      expect(mockCtx.fillRect).toHaveBeenCalled();
-    });
-
     it('should draw hearts emoji when in delicate situation', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, true);
-      bikiniGirl.draw(mockCtx);
+      delicateBikiniGirl = new DelicateBikiniGirl(100, 200, 5, -3, 50, 60);
+      delicateBikiniGirl.draw(mockCtx);
       
       expect(mockCtx.fillText).toHaveBeenCalledWith('💕', 0, expect.any(Number));
-    });
-
-    it('should not draw hearts emoji in normal situation', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, false);
-      bikiniGirl.draw(mockCtx);
-      
-      expect(mockCtx.fillText).not.toHaveBeenCalled();
     });
   });
 
   describe('onClick', () => {
-    describe('in delicate situation', () => {
-      beforeEach(() => {
-        bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, true);
-      });
-
-      it('should return +100 money', () => {
-        const result = bikiniGirl.onClick(new Set());
-        expect(result.moneyChange).toBe(100);
-      });
-
-      it('should remove bikini girl', () => {
-        const result = bikiniGirl.onClick(new Set());
-        expect(result.shouldRemove).toBe(true);
-      });
+    beforeEach(() => {
+      delicateBikiniGirl = new DelicateBikiniGirl(100, 200, 5, -3, 50, 60);
     });
 
-    describe('in normal situation', () => {
-      beforeEach(() => {
-        bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, false);
-      });
-
-      it('should return -50 money penalty', () => {
-        const result = bikiniGirl.onClick(new Set());
-        expect(result.moneyChange).toBe(-50);
-      });
-
-      it('should remove bikini girl', () => {
-        const result = bikiniGirl.onClick(new Set());
-        expect(result.shouldRemove).toBe(true);
-      });
+    it('should return +100 money', () => {
+      const result = delicateBikiniGirl.onClick(new Set());
+      expect(result.moneyChange).toBe(100);
     });
 
-    it('should not have special turkey properties', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, false);
-      const result = bikiniGirl.onClick(new Set());
-      
-      expect(result.caughtSpecialId).toBeUndefined();
-      expect(result.completionMessage).toBeUndefined();
-      expect(result.shouldEndGame).toBeUndefined();
+    it('should remove bikini girl', () => {
+      const result = delicateBikiniGirl.onClick(new Set());
+      expect(result.shouldRemove).toBe(true);
     });
   });
 
   describe('getType', () => {
-    it('should return bikini-girl type', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, false);
-      expect(bikiniGirl.getType()).toBe('bikini-girl');
+    it('should return delicate-bikini-girl type', () => {
+      delicateBikiniGirl = new DelicateBikiniGirl(100, 200, 5, -3, 50, 60);
+      expect(delicateBikiniGirl.getType()).toBe('delicate-bikini-girl');
     });
   });
 
   describe('update', () => {
     it('should update position based on velocity', () => {
-      bikiniGirl = new BikiniGirl(100, 200, 5, -3, 50, 60, false);
-      const initialX = bikiniGirl.x;
-      const initialY = bikiniGirl.y;
+      delicateBikiniGirl = new DelicateBikiniGirl(100, 200, 5, -3, 50, 60);
+      const initialX = delicateBikiniGirl.x;
+      const initialY = delicateBikiniGirl.y;
       
-      bikiniGirl.update(800, 600, 'Andi');
+      delicateBikiniGirl.update(800, 600, 'Andi');
       
-      expect(bikiniGirl.x).toBe(initialX + bikiniGirl.vx);
-      expect(bikiniGirl.y).toBe(initialY + bikiniGirl.vy);
+      expect(delicateBikiniGirl.x).toBe(initialX + delicateBikiniGirl.vx);
+      expect(delicateBikiniGirl.y).toBe(initialY + delicateBikiniGirl.vy);
     });
 
     it('should bounce off edges', () => {
-      bikiniGirl = new BikiniGirl(100, -5, 5, -3, 50, 60, false);
+      delicateBikiniGirl = new DelicateBikiniGirl(100, -5, 5, -3, 50, 60);
       
-      bikiniGirl.update(800, 600, 'Andi');
+      delicateBikiniGirl.update(800, 600, 'Andi');
       
-      expect(bikiniGirl.vy).toBe(3); // Velocity reversed
+      expect(delicateBikiniGirl.vy).toBe(3); // Velocity reversed
     });
   });
 });

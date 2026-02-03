@@ -88,7 +88,7 @@ export class Turkey extends GameObject {
 }
 
 export class SpecialTurkey extends Turkey {
-  private static readonly GOLDEN_COLORS = ['#FFD700', '#FFA500', '#FF8C00'] as const;
+  private static readonly WHITE_TAIL_COLORS = ['#FFFFFF', '#F0F0F0', '#E8E8E8'] as const;
   
   specialId: number;
   isLastSpecial: boolean;
@@ -115,13 +115,16 @@ export class SpecialTurkey extends Turkey {
     const w = this.width;
     const h = this.height;
 
-    // Reuse parent drawing methods with golden colors
-    this.drawBody(ctx, w, h, '#FFD700', '#FFA500');
-    this.drawBeak(ctx, w, h, '#FF8C00');
+    // Draw with dark grey body and white tail
+    this.drawBody(ctx, w, h, '#4A4A4A', '#5A5A5A');
+    this.drawBeak(ctx, w, h, '#FFA500');
     this.drawEye(ctx, w, h);
-    this.drawTailFeathers(ctx, w, h, SpecialTurkey.GOLDEN_COLORS);
+    this.drawTailFeathers(ctx, w, h, SpecialTurkey.WHITE_TAIL_COLORS);
+    
+    // Draw turkey's red snood and wattles
+    this.drawSnoodAndWattles(ctx, w, h);
 
-    // Draw special number
+    // Draw special number in white for contrast
     ctx.fillStyle = '#FFFFFF';
     ctx.font = `bold ${h * 0.4}px Arial`;
     ctx.textAlign = 'center';
@@ -129,6 +132,22 @@ export class SpecialTurkey extends Turkey {
     ctx.fillText(this.specialId.toString(), 0, 0);
 
     ctx.restore();
+  }
+
+  private drawSnoodAndWattles(ctx: CanvasRenderingContext2D, w: number, h: number): void {
+    ctx.fillStyle = '#DC143C'; // Crimson red
+    
+    // Snood (hanging thing from top of beak)
+    ctx.beginPath();
+    ctx.moveTo(-w * 0.35, -h * 0.25);
+    ctx.quadraticCurveTo(-w * 0.38, -h * 0.2, -w * 0.36, -h * 0.15);
+    ctx.quadraticCurveTo(-w * 0.34, -h * 0.2, -w * 0.35, -h * 0.25);
+    ctx.fill();
+    
+    // Wattles (fleshy parts under chin)
+    ctx.beginPath();
+    ctx.ellipse(-w * 0.25, -h * 0.15, w * 0.08, h * 0.12, 0, 0, Math.PI * 2);
+    ctx.fill();
   }
 
   override onClick(caughtSpecialTurkeys: Set<number>): GameObjectClickResult {

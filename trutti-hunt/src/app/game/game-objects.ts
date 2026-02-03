@@ -2,4 +2,4 @@
 export { GameObject } from './objects/game-object';
 export type { GameObjectClickResult } from './objects/game-object';
 export { Turkey, SpecialTurkey } from './objects/turkey/turkey';
-export { BikiniGirl } from './objects/bikini-girl/bikini-girl';
+export { BikiniGirl, DelicateBikiniGirl } from './objects/bikini-girl/bikini-girl';

@@ -265,17 +265,6 @@ export class GameComponent implements OnInit, OnDestroy {
       obj.update(this.CANVAS_WIDTH, this.CANVAS_HEIGHT, this.difficulty);
     });
     
-    // Check if last special turkey is leaving screen
-    const offScreenObjects = this.gameObjects.filter(obj => 
-      obj.x <= -100 || obj.x >= this.CANVAS_WIDTH + 100
-    );
-    
-    offScreenObjects.forEach(obj => {
-      if (obj instanceof SpecialTurkey && obj.isLastSpecial) {
-        this.endGame();
-      }
-    });
-    
     // Remove off-screen objects
     this.gameObjects = this.gameObjects.filter(obj => 
       obj.x > -100 && obj.x < this.CANVAS_WIDTH + 100
@@ -362,6 +351,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.gameObjects.splice(index, 1);
     }
     
+    // Add caught special turkey ID BEFORE ending game so display is correct
     if (result.caughtSpecialId) {
       this.caughtSpecialTurkeys.add(result.caughtSpecialId);
       this.cdr.detectChanges(); // Trigger change detection for Set update
