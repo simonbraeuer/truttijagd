@@ -362,10 +362,39 @@ export class GameComponent implements OnInit, OnDestroy {
     }
     
     if (result.shouldEndGame) {
+      // Calculate time bonus for finishing early
+      const timeBonus = this.calculateTimeBonus();
+      if (timeBonus > 0) {
+        this.money += timeBonus;
+        const bonusMessage = `\n⏱️ Time Bonus: $${timeBonus} (${this.timeRemaining}s remaining)`;
+        this.completionMessage = (this.completionMessage || '') + bonusMessage;
+      }
+      
       setTimeout(() => {
         this.endGame();
       }, result.endGameDelay || 0);
     }
+  }
+
+  private calculateTimeBonus(): number {
+    if (this.timeRemaining <= 0) {
+      return 0;
+    }
+    
+    let pointsPerSecond: number;
+    switch (this.difficulty) {
+      case 'Andi':
+        pointsPerSecond = 5;
+        break;
+      case 'Schuh':
+        pointsPerSecond = 10;
+        break;
+      case 'Mexxx':
+        pointsPerSecond = 15;
+        break;
+    }
+    
+    return this.timeRemaining * pointsPerSecond;
   }
 
   playShutterSound() {
