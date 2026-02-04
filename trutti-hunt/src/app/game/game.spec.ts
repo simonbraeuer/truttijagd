@@ -293,7 +293,7 @@ describe('GameComponent Core Logic', () => {
       
       component.endGame();
       
-      expect(component.qualifiesForTop10).toBe(true);
+      expect(component.qualifiesForHighscore).toBe(true);
     });
 
     it('should qualify with score higher than lowest in top 5', () => {
@@ -307,7 +307,7 @@ describe('GameComponent Core Logic', () => {
       
       component.endGame();
       
-      expect(component.qualifiesForTop10).toBe(true);
+      expect(component.qualifiesForHighscore).toBe(true);
     });
 
     it('should not qualify with score lower than lowest in top 5', () => {
@@ -333,7 +333,7 @@ describe('GameComponent Core Logic', () => {
       component.gameOver = true;
       component.money = 500;
       component.showScoreboard = true;
-      component.qualifiesForTop10 = true;
+      component.qualifiesForHighscore = true;
       component.completionMessage = 'Test message';
       
       component.resetGame();
@@ -341,7 +341,7 @@ describe('GameComponent Core Logic', () => {
       expect(component.gameStarted).toBe(false);
       expect(component.gameOver).toBe(false);
       expect(component.showScoreboard).toBe(false);
-      expect(component.qualifiesForTop10).toBe(false);
+      expect(component.qualifiesForHighscore).toBe(false);
       expect(component.completionMessage).toBe('');
     });
   });

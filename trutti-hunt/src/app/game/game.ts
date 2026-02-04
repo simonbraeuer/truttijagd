@@ -36,7 +36,7 @@ export class GameComponent implements OnInit, OnDestroy {
   completionMessage: string = '';
   playerName: string = '';
   showScoreboard: boolean = false;
-  qualifiesForTop10: boolean = false;
+  qualifiesForHighscore: boolean = false;
   scoreboard: ScoreEntry[] = [];
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';
@@ -170,7 +170,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.spawnedSpecialTurkeys.clear();
     this.playerName = '';
     this.showScoreboard = false;
-    this.qualifiesForTop10 = false;
+    this.qualifiesForHighscore = false;
     this.timeRemaining = 90;
     this.lastTimerUpdate = Date.now();
     this.gameStartTime = Date.now();
@@ -421,18 +421,18 @@ export class GameComponent implements OnInit, OnDestroy {
     this.stopGame();
     this.loadScoreboard();
     
-    // Check if score qualifies for top 5
+    // Check if score qualifies for highscore list
     if (this.scoreboard.length < 5) {
       // Less than 5 scores, always qualifies
-      this.qualifiesForTop10 = true;
+      this.qualifiesForHighscore = true;
     } else {
-      // Check if current score beats the lowest score in top 5
+      // Check if current score beats the lowest score in list
       const lowestScore = this.scoreboard[this.scoreboard.length - 1].score;
-      this.qualifiesForTop10 = this.money > lowestScore;
+      this.qualifiesForHighscore = this.money > lowestScore;
     }
     
     // If doesn't qualify, show scoreboard directly
-    if (!this.qualifiesForTop10) {
+    if (!this.qualifiesForHighscore) {
       this.showScoreboard = true;
     }
   }
@@ -480,7 +480,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameStarted = false;
     this.gameOver = false;
     this.showScoreboard = false;
-    this.qualifiesForTop10 = false;
+    this.qualifiesForHighscore = false;
     this.completionMessage = '';
     this.gameObjects = [];
   }

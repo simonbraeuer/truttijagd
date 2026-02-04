@@ -71,10 +71,6 @@
   .truttis-caught {
     font-size: 1.1em !important;
   }
-  
-  .top10-message {
-    font-size: 1.2em !important;
-  }
 }
 
 .final-score {
@@ -90,7 +86,7 @@
   margin-bottom: 30px;
 }
 
-.top10-message {
+.highscore-message {
   font-size: 1.4em;
   font-weight: bold;
   color: #FFD700;
