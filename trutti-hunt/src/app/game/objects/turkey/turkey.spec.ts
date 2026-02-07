@@ -20,7 +20,8 @@ describe('Turkey', () => {
       arc: vi.fn(),
       moveTo: vi.fn(),
       lineTo: vi.fn(),
-      closePath: vi.fn()
+      closePath: vi.fn(),
+      quadraticCurveTo: vi.fn()
     } as unknown as CanvasRenderingContext2D;
   });
 
@@ -125,7 +126,8 @@ describe('SpecialTurkey', () => {
       arc: vi.fn(),
       moveTo: vi.fn(),
       lineTo: vi.fn(),
-      closePath: vi.fn()
+      closePath: vi.fn(),
+      quadraticCurveTo: vi.fn()
     } as unknown as CanvasRenderingContext2D;
   });
 

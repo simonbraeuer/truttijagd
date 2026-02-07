@@ -9,7 +9,9 @@ import {
 } from './components';
 import type { GameSettings, DifficultyLevel } from './components/start-screen/start-screen';
 import type { ScoreEntry } from './components/scoreboard/scoreboard';
-import { GameObject, Turkey, SpecialTurkey, BikiniGirl } from './game-objects';
+import { GameObject, SpecialTurkey } from './game-objects';
+import { SpawnManager } from './spawn-manager';
+import { TurkeySpawner, SpecialTurkeySpawner, BikiniGirlSpawner, SpawnContext } from './objects/spawners';
 
 @Component({
   selector: 'app-game',
@@ -24,6 +26,8 @@ export class GameComponent implements OnInit, OnDestroy {
   private gameObjects: GameObject[] = [];
   private animationId: number = 0;
   private audio: HTMLAudioElement | null = null;
+  private spawnManager!: SpawnManager;
+  private gameStartTime: number = 0;
   
   money: number = 0;
   gameStarted: boolean = false;
@@ -32,16 +36,13 @@ export class GameComponent implements OnInit, OnDestroy {
   completionMessage: string = '';
   playerName: string = '';
   showScoreboard: boolean = false;
-  qualifiesForTop10: boolean = false;
+  qualifiesForHighscore: boolean = false;
   scoreboard: ScoreEntry[] = [];
-  private lastSpecialTurkeyId: number | null = null;
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';
   
   private CANVAS_WIDTH = 800;
   private CANVAS_HEIGHT = 600;
-  private SPAWN_INTERVAL = 2000;
-  private spawnTimer: any;
   private lastTimerUpdate: number = 0;
   timeRemaining: number = 90;
   
@@ -96,6 +97,16 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('document:visibilitychange')
+  onVisibilityChange() {
+    // Auto-pause when tab is hidden, prevent spawning while inactive
+    if (this.gameStarted && !this.gameOver) {
+      if (document.hidden && !this.paused) {
+        this.togglePause();
+      }
+    }
+  }
+
   @HostListener('window:resize')
   onResize() {
     if (this.gameStarted && this.canvasRef) {
@@ -140,7 +151,8 @@ export class GameComponent implements OnInit, OnDestroy {
   togglePause() {
     this.paused = !this.paused;
     if (!this.paused) {
-      // Resume the game loop
+      // Reset timer reference and resume the game loop
+      this.lastTimerUpdate = Date.now();
       this.gameLoop();
     }
   }
@@ -148,19 +160,6 @@ export class GameComponent implements OnInit, OnDestroy {
   startGame(settings: GameSettings) {
     this.audioUrl = settings.audioUrl;
     this.difficulty = settings.difficulty;
-    
-    // Set spawn interval based on difficulty
-    switch (this.difficulty) {
-      case 'Andi':
-        this.SPAWN_INTERVAL = 2000;
-        break;
-      case 'Schuh':
-        this.SPAWN_INTERVAL = 1200; // Faster spawning
-        break;
-      case 'Mexxx':
-        this.SPAWN_INTERVAL = 2000;
-        break;
-    }
     
     this.gameStarted = true;
     this.gameOver = false;
@@ -171,10 +170,21 @@ export class GameComponent implements OnInit, OnDestroy {
     this.spawnedSpecialTurkeys.clear();
     this.playerName = '';
     this.showScoreboard = false;
-    this.qualifiesForTop10 = false;
-    this.lastSpecialTurkeyId = null;
+    this.qualifiesForHighscore = false;
     this.timeRemaining = 90;
     this.lastTimerUpdate = Date.now();
+    this.gameStartTime = Date.now();
+    
+    // Initialize SpawnManager with spawners (IoC pattern)
+    this.spawnManager = new SpawnManager();
+    this.spawnManager.registerSpawner(new TurkeySpawner());
+    this.spawnManager.registerSpawner(new SpecialTurkeySpawner({
+      caughtSpecialTurkeys: this.caughtSpecialTurkeys,
+      spawnedSpecialTurkeys: this.spawnedSpecialTurkeys,
+      lastSpecialTurkeyId: null,
+      allSpecialIds: this.SPECIAL_TURKEYS
+    }));
+    this.spawnManager.registerSpawner(new BikiniGirlSpawner());
     
     // Wait for canvas to be available in the DOM
     setTimeout(() => {
@@ -200,10 +210,7 @@ export class GameComponent implements OnInit, OnDestroy {
         });
       }
       
-      // Start spawning objects
-      this.spawnTimer = setInterval(() => this.spawnObject(), this.SPAWN_INTERVAL);
-      
-      // Start game loop (timer logic is now in game loop)
+      // Start game loop (spawning handled by SpawnManager in game loop)
       this.gameLoop();
     }, 0);
   }
@@ -213,124 +220,10 @@ export class GameComponent implements OnInit, OnDestroy {
       cancelAnimationFrame(this.animationId);
       this.animationId = 0;
     }
-    if (this.spawnTimer) {
-      clearInterval(this.spawnTimer);
-      this.spawnTimer = null;
-    }
     if (this.audio) {
       this.audio.pause();
       this.audio.currentTime = 0;
     }
-  }
-
-  spawnObject() {
-    const rand = Math.random();
-    let type: 'turkey' | 'special-turkey' | 'bikini-girl';
-    let specialId: number | undefined;
-    let inDelicateSituation = false;
-    
-    // Check if we need to ensure all special turkeys appear
-    const unspawnedSpecials = this.SPECIAL_TURKEYS.filter(id => !this.spawnedSpecialTurkeys.has(id));
-    const timePercentRemaining = this.timeRemaining / 90;
-    
-    // Force spawn unspawned special turkeys if time is running out
-    if (unspawnedSpecials.length > 0 && timePercentRemaining < 0.3) {
-      type = 'special-turkey';
-      specialId = unspawnedSpecials[Math.floor(Math.random() * unspawnedSpecials.length)];
-      this.spawnedSpecialTurkeys.add(specialId);
-    } else if (rand < 0.5) {
-      // 50% regular turkey
-      type = 'turkey';
-    } else if (rand < 0.8) {
-      // 30% special turkey (doubled from 15%)
-      type = 'special-turkey';
-      // Pick a random special turkey that hasn't been spawned yet AND hasn't been caught
-      const availableSpecials = this.SPECIAL_TURKEYS.filter(id => 
-        !this.spawnedSpecialTurkeys.has(id) && !this.caughtSpecialTurkeys.has(id)
-      );
-      if (availableSpecials.length > 0) {
-        specialId = availableSpecials[Math.floor(Math.random() * availableSpecials.length)];
-        // Track if this is the last uncaught special turkey after spawning this one
-        const remainingUncaught = this.SPECIAL_TURKEYS.filter(id => 
-          !this.caughtSpecialTurkeys.has(id) && id !== specialId
-        ).length;
-        if (remainingUncaught === 0) {
-          this.lastSpecialTurkeyId = specialId;
-        }
-      } else {
-        // All have been spawned, pick from uncaught that are currently on screen
-        const uncaught = this.SPECIAL_TURKEYS.filter(id => !this.caughtSpecialTurkeys.has(id));
-        if (uncaught.length > 0) {
-          specialId = uncaught[Math.floor(Math.random() * uncaught.length)];
-        } else {
-          // All caught, spawn a regular turkey instead
-          type = 'turkey';
-        }
-      }
-      if (specialId) {
-        this.spawnedSpecialTurkeys.add(specialId);
-      }
-    } else {
-      // 20% bikini girl
-      type = 'bikini-girl';
-      // 20% chance of delicate situation
-      if (Math.random() < 0.2) {
-        inDelicateSituation = true;
-      }
-    }
-    
-    // Calculate size and speed based on difficulty
-    const { width, height, speedMultiplier } = this.getObjectSize();
-    
-    const x = Math.random() < 0.5 ? -50 : this.CANVAS_WIDTH + 50;
-    const y = Math.random() * (this.CANVAS_HEIGHT - 100);
-    // Objects on left side move right (positive vx), objects on right side move left (negative vx)
-    const vxDirection = x < 0 ? 1 : -1;
-    const vx = vxDirection * (2 + Math.random() * 2) * speedMultiplier;
-    const vy = (Math.random() - 0.5) * 2 * speedMultiplier;
-    
-    // Create appropriate game object
-    let obj: GameObject;
-    if (type === 'special-turkey' && specialId) {
-      const isLastSpecial = specialId === this.lastSpecialTurkeyId;
-      obj = new SpecialTurkey(x, y, vx, vy, width, height, specialId, isLastSpecial);
-    } else if (type === 'bikini-girl') {
-      obj = new BikiniGirl(x, y, vx, vy, width, height, inDelicateSituation);
-    } else {
-      obj = new Turkey(x, y, vx, vy, width, height);
-    }
-    
-    this.gameObjects.push(obj);
-  }
-
-  private getObjectSize(): { width: number; height: number; speedMultiplier: number } {
-    const MIN_WIDTH = 40;
-    const MIN_HEIGHT = 40;
-    let widthRatio: number, heightRatio: number, speedMultiplier: number;
-    
-    switch (this.difficulty) {
-      case 'Andi':
-        widthRatio = 0.09;
-        heightRatio = 0.09;
-        speedMultiplier = 1;
-        break;
-      case 'Schuh':
-        widthRatio = 0.06;
-        heightRatio = 0.08;
-        speedMultiplier = 1.5;
-        break;
-      case 'Mexxx':
-        widthRatio = 0.055;
-        heightRatio = 0.055;
-        speedMultiplier = 2;
-        break;
-    }
-    
-    return {
-      width: Math.max(MIN_WIDTH, Math.floor(this.CANVAS_WIDTH * widthRatio)),
-      height: Math.max(MIN_HEIGHT, Math.floor(this.CANVAS_HEIGHT * heightRatio)),
-      speedMultiplier
-    };
   }
 
   gameLoop() {
@@ -349,6 +242,17 @@ export class GameComponent implements OnInit, OnDestroy {
         }
       }
       
+      // Spawn new objects using SpawnManager (IoC pattern)
+      const spawnContext: SpawnContext = {
+        canvasWidth: this.CANVAS_WIDTH,
+        canvasHeight: this.CANVAS_HEIGHT,
+        difficulty: this.difficulty,
+        gameTime: Date.now() - this.gameStartTime,
+        timeRemaining: this.timeRemaining
+      };
+      const newObjects = this.spawnManager.update(spawnContext);
+      this.gameObjects.push(...newObjects);
+      
       this.updateGameObjects();
       this.render();
     }
@@ -361,17 +265,6 @@ export class GameComponent implements OnInit, OnDestroy {
       obj.update(this.CANVAS_WIDTH, this.CANVAS_HEIGHT, this.difficulty);
     });
     
-    // Check if last special turkey is leaving screen
-    const offScreenObjects = this.gameObjects.filter(obj => 
-      obj.x <= -100 || obj.x >= this.CANVAS_WIDTH + 100
-    );
-    
-    offScreenObjects.forEach(obj => {
-      if (obj instanceof SpecialTurkey && obj.specialId === this.lastSpecialTurkeyId) {
-        this.endGame();
-      }
-    });
-    
     // Remove off-screen objects
     this.gameObjects = this.gameObjects.filter(obj => 
       obj.x > -100 && obj.x < this.CANVAS_WIDTH + 100
@@ -379,6 +272,9 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   render() {
+    // Guard: if context is not initialized, skip rendering
+    if (!this.ctx) return;
+    
     // Clear canvas
     this.ctx.fillStyle = '#87CEEB';
     this.ctx.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
@@ -393,15 +289,18 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   drawClouds() {
+    if (!this.ctx) return;
     this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-    for (let i = 0; i < 5; i++) {
+    const numClouds = 8;
+    for (let i = 0; i < numClouds; i++) {
       const x = (Date.now() / 50 + i * 200) % (this.CANVAS_WIDTH + 100) - 50;
-      const y = 50 + i * 80;
+      const y = (i * this.CANVAS_HEIGHT / (numClouds - 1));
       this.drawCloud(x, y);
     }
   }
 
   drawCloud(x: number, y: number) {
+    if (!this.ctx) return;
     this.ctx.beginPath();
     this.ctx.arc(x, y, 20, 0, Math.PI * 2);
     this.ctx.arc(x + 20, y, 25, 0, Math.PI * 2);
@@ -452,14 +351,10 @@ export class GameComponent implements OnInit, OnDestroy {
       this.gameObjects.splice(index, 1);
     }
     
+    // Add caught special turkey ID BEFORE ending game so display is correct
     if (result.caughtSpecialId) {
       this.caughtSpecialTurkeys.add(result.caughtSpecialId);
       this.cdr.detectChanges(); // Trigger change detection for Set update
-      
-      // If this was the last special turkey, clear the flag since it was caught
-      if (result.caughtSpecialId === this.lastSpecialTurkeyId) {
-        this.lastSpecialTurkeyId = null;
-      }
     }
     
     if (result.completionMessage) {
@@ -467,10 +362,39 @@ export class GameComponent implements OnInit, OnDestroy {
     }
     
     if (result.shouldEndGame) {
+      // Calculate time bonus for finishing early
+      const timeBonus = this.calculateTimeBonus();
+      if (timeBonus > 0) {
+        this.money += timeBonus;
+        const bonusMessage = `\n⏱️ Time Bonus: $${timeBonus} (${this.timeRemaining}s remaining)`;
+        this.completionMessage = (this.completionMessage || '') + bonusMessage;
+      }
+      
       setTimeout(() => {
         this.endGame();
       }, result.endGameDelay || 0);
     }
+  }
+
+  private calculateTimeBonus(): number {
+    if (this.timeRemaining <= 0) {
+      return 0;
+    }
+    
+    let pointsPerSecond: number;
+    switch (this.difficulty) {
+      case 'Andi':
+        pointsPerSecond = 5;
+        break;
+      case 'Schuh':
+        pointsPerSecond = 10;
+        break;
+      case 'Mexxx':
+        pointsPerSecond = 15;
+        break;
+    }
+    
+    return this.timeRemaining * pointsPerSecond;
   }
 
   playShutterSound() {
@@ -497,18 +421,18 @@ export class GameComponent implements OnInit, OnDestroy {
     this.stopGame();
     this.loadScoreboard();
     
-    // Check if score qualifies for top 5
+    // Check if score qualifies for highscore list
     if (this.scoreboard.length < 5) {
       // Less than 5 scores, always qualifies
-      this.qualifiesForTop10 = true;
+      this.qualifiesForHighscore = true;
     } else {
-      // Check if current score beats the lowest score in top 5
+      // Check if current score beats the lowest score in list
       const lowestScore = this.scoreboard[this.scoreboard.length - 1].score;
-      this.qualifiesForTop10 = this.money > lowestScore;
+      this.qualifiesForHighscore = this.money > lowestScore;
     }
     
     // If doesn't qualify, show scoreboard directly
-    if (!this.qualifiesForTop10) {
+    if (!this.qualifiesForHighscore) {
       this.showScoreboard = true;
     }
   }
@@ -556,7 +480,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameStarted = false;
     this.gameOver = false;
     this.showScoreboard = false;
-    this.qualifiesForTop10 = false;
+    this.qualifiesForHighscore = false;
     this.completionMessage = '';
     this.gameObjects = [];
   }
