@@ -1,0 +1,51 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e5]:
+  - banner [ref=e6]:
+    - heading "🐔" [level=1] [ref=e7]
+    - img "Trutti Hunt" [ref=e8]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]: 🎯 Difficulty Level
+        - generic [ref=e14]:
+          - generic [ref=e15]: Andi
+          - slider [ref=e16]: "0"
+          - generic [ref=e17]: Mexxx
+        - generic [ref=e18]:
+          - generic [ref=e19]: Andi
+          - generic [ref=e20]: Easy - Bigger turkeys, normal speed
+      - generic [ref=e21]:
+        - group [ref=e22]:
+          - generic "📋 Instructions" [ref=e23]
+          - list [ref=e24]:
+            - listitem [ref=e25]: "🦃 Regular Turkeys: +$10"
+            - listitem [ref=e26]: "⭐ Special Truttis (1-9): +$50 each"
+            - listitem [ref=e27]: "👙 Bikini Girls: -$50 penalty (Don't photograph!)"
+            - listitem [ref=e28]: "💕 Bikini Girls in delicate situations: +$100 bonus!"
+            - listitem [ref=e29]: 🏆 Catch all 9 Special Truttis for a +$500 bonus!
+            - listitem [ref=e30]: ⚠️ Game ends when all 9 Special Truttis are caught or time runs out!
+        - group [ref=e31]:
+          - generic "🏆 High Scores" [ref=e32]
+          - generic [ref=e34]: No scores yet. Be the first!
+        - group [ref=e35]:
+          - generic "🎵 Audio Settings" [ref=e36]
+          - generic [ref=e37]:
+            - generic [ref=e38]: "Background Music URL (optional):"
+            - textbox "Background Music URL (optional):" [ref=e39]:
+              - /placeholder: Enter URL to your audio file (e.g., https://example.com/song.mp3)
+            - paragraph [ref=e40]: Provide your own music to avoid licensing issues. Leave empty for no music.
+        - group [ref=e41]:
+          - generic "💡 Controls" [ref=e42]
+          - paragraph [ref=e43]:
+            - text: Press
+            - strong [ref=e44]: P
+            - text: or
+            - strong [ref=e45]: Pause
+            - text: key to pause | Press
+            - strong [ref=e46]: Escape
+            - text: to end game
+    - button "Start Game" [ref=e47] [cursor=pointer]
+  - contentinfo
+```
