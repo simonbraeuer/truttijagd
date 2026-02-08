@@ -42,7 +42,7 @@ Following Angular best practices:
 ### GameOverComponent
 - Score display
 - Player name input
-- Top 10 qualification check
+- Highscore list qualification check
 - Score submission
 
 ### PauseOverlayComponent

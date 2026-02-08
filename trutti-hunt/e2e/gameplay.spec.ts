@@ -57,7 +57,7 @@ test.describe('Gameplay Mechanics', () => {
   });
 
   test('should spawn objects continuously during gameplay', async ({ gamePage }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     // Wait for initial spawn
     await gamePage.page.waitForTimeout(2000);
@@ -72,7 +72,7 @@ test.describe('Gameplay Mechanics', () => {
   });
 
   test('should handle rapid clicking without crashing', async ({ gamePage }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     await gamePage.page.waitForTimeout(1000);
     
@@ -104,8 +104,8 @@ test.describe('Difficulty-Specific Mechanics', () => {
     expect(await gamePage.isGameRunning()).toBe(true);
   });
 
-  test('Kevin difficulty should have faster gameplay', async ({ gamePage }) => {
-    await gamePage.startGame('Kevin');
+  test('Schuh difficulty should have faster gameplay', async ({ gamePage }) => {
+    await gamePage.startGame('Schuh');
     
     const initialTime = await gamePage.getTimeRemaining();
     await gamePage.page.waitForTimeout(2000);

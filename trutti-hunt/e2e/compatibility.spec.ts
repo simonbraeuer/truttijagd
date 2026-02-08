@@ -45,7 +45,9 @@ test.describe('LocalStorage Compatibility', () => {
   });
 
   test('should persist difficulty selection', async ({ page, context }) => {
-    await page.locator('button:has-text("Kevin")').click();
+    // Set difficulty using slider
+    const slider = page.locator('input.difficulty-slider');
+    await slider.fill('1'); // Schuh is value 1
     await page.waitForTimeout(200);
     
     // Check localStorage

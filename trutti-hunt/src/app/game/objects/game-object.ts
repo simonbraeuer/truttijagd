@@ -1,4 +1,4 @@
-import type { DifficultyLevel } from './components/start-screen/start-screen';
+import type { DifficultyLevel } from '../components/start-screen/start-screen';
 
 export interface GameObjectClickResult {
   moneyChange: number;
