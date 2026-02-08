@@ -139,6 +139,7 @@ describe('DelicateBikiniGirl', () => {
     };
     
     (window as any).AudioContext = function() { return mockAudioContext; };
+    (window as any).webkitAudioContext = function() { return mockAudioContext; };
     
     mockCtx = {
       save: vi.fn(),
