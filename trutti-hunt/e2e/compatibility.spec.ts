@@ -34,8 +34,10 @@ test.describe('Cross-Browser Compatibility', () => {
   });
 
   test('should handle audio file selection', async ({ page }) => {
-    const fileInput = page.locator('input[type="file"]');
-    await expect(fileInput).toBeVisible();
+    // Audio input is now a text field for URLs, not a file upload
+    const audioInput = page.locator('input#audioUrl, input.audio-input');
+    await expect(audioInput).toBeVisible();
+    await expect(audioInput).toHaveAttribute('type', 'text');
   });
 });
 

@@ -54,13 +54,15 @@ export const gameTest = test.extend<{ gamePage: GamePage }>({
       },
       
       async getScore() {
-        const scoreText = await page.locator('text=/Score:.*\\$\\d+/').textContent();
+        // Look for money display in HUD (shows as $XXX without "Score:" label)
+        const scoreText = await page.locator('.money-display .hud-value, text=/\\$\\d+/').first().textContent();
         const match = scoreText?.match(/\$(\d+)/);
         return match ? parseInt(match[1], 10) : 0;
       },
       
       async getTimeRemaining() {
-        const timeText = await page.locator('text=/Time:.*\\d+s/').textContent();
+        // Look for time display in HUD (shows as XXs without "Time:" label)
+        const timeText = await page.locator('.hud-value:has-text("s"), text=/\\d+s/').first().textContent();
         const match = timeText?.match(/(\d+)s/);
         return match ? parseInt(match[1], 10) : 0;
       },

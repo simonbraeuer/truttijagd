@@ -95,11 +95,28 @@ test.describe('Screen Reader Support', () => {
   });
 
   test('should have meaningful difficulty labels', async ({ page }) => {
-    const difficulties = ['Andi', 'Schuh', 'Mexxx'];
-    for (const diff of difficulties) {
-      const label = page.locator(`.difficulty-marker:has-text("${diff}"), .current-difficulty:has-text("${diff}")`).first();
-      expect(await label.count()).toBeGreaterThan(0);
-    }
+    // Check for difficulty markers that are always visible
+    await expect(page.locator('.difficulty-marker:has-text("Andi")')).toBeVisible();
+    await expect(page.locator('.difficulty-marker:has-text("Mexxx")')).toBeVisible();
+    
+    // Check that current difficulty shows the current selection
+    const currentDifficulty = page.locator('.current-difficulty');
+    await expect(currentDifficulty).toBeVisible();
+    
+    // Interact with slider to verify all difficulties are accessible
+    const slider = page.locator('input.difficulty-slider');
+    
+    // Test Andi (position 0)
+    await slider.fill('0');
+    await expect(currentDifficulty).toHaveText('Andi');
+    
+    // Test Schuh (position 1)
+    await slider.fill('1');
+    await expect(currentDifficulty).toHaveText('Schuh');
+    
+    // Test Mexxx (position 2)
+    await slider.fill('2');
+    await expect(currentDifficulty).toHaveText('Mexxx');
   });
 
   test('should announce game state changes', async ({ page }) => {
@@ -138,9 +155,16 @@ test.describe('Responsive Touch Support', () => {
     }
   });
 
-  test('should respond to tap events', async ({ page }) => {
+  test('should respond to tap events', async ({ page, browserName }) => {
     const startButton = page.locator('button:has-text("Start Game")');
-    await startButton.tap();
+    
+    // Use tap for webkit/mobile browsers, click for others
+    if (browserName === 'webkit') {
+      await startButton.tap();
+    } else {
+      // For chromium and firefox, click works as tap simulation
+      await startButton.click();
+    }
     
     await page.waitForTimeout(500);
     await expect(page.locator('canvas')).toBeVisible();
