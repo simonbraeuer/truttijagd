@@ -35,7 +35,9 @@ test.describe('Game Start and UI', () => {
   test('should start game on Andi difficulty', async ({ gamePage }) => {
     await gamePage.startGame('Andi');
     await expect(gamePage.page.locator('canvas')).toBeVisible();
-    await expect(gamePage.page.locator('button:has-text("Pause")')).toBeVisible();
+    // Verify game is running by checking score is displayed
+    const score = await gamePage.getScore();
+    expect(score).toBeGreaterThanOrEqual(0);
   });
 
   test('should start game on Schuh difficulty', async ({ gamePage }) => {

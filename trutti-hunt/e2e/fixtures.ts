@@ -46,23 +46,47 @@ export const gameTest = test.extend<{ gamePage: GamePage }>({
       },
       
       async pauseGame() {
-        await page.locator('button:has-text("Pause")').click();
+        // Game pauses with 'P' key, not a button
+        await page.keyboard.press('p');
+        // Wait for pause overlay to appear
+        await page.waitForTimeout(200);
       },
       
       async resumeGame() {
-        await page.locator('button:has-text("Resume")').click();
+        // Game resumes with 'P' key, not a button
+        await page.keyboard.press('p');
+        // Wait for pause overlay to disappear
+        await page.waitForTimeout(200);
       },
       
       async getScore() {
         // Look for money display in HUD (shows as $XXX without "Score:" label)
-        const scoreText = await page.locator('.money-display .hud-value, text=/\\$\\d+/').first().textContent();
+        // Try specific class first, then fallback to text pattern
+        const scoreLocator = page.locator('.money-display .hud-value').first();
+        if (await scoreLocator.isVisible({ timeout: 1000 }).catch(() => false)) {
+          const scoreText = await scoreLocator.textContent();
+          const match = scoreText?.match(/\$(\d+)/);
+          return match ? parseInt(match[1], 10) : 0;
+        }
+        // Fallback: find any element containing $XX pattern
+        const fallbackLocator = page.locator('text=/\\$\\d+/').first();
+        const scoreText = await fallbackLocator.textContent();
         const match = scoreText?.match(/\$(\d+)/);
         return match ? parseInt(match[1], 10) : 0;
       },
       
       async getTimeRemaining() {
         // Look for time display in HUD (shows as XXs without "Time:" label)
-        const timeText = await page.locator('.hud-value:has-text("s"), text=/\\d+s/').first().textContent();
+        // Look for elements ending with 's' that contain numbers
+        const timeLocator = page.locator('.hud-value').filter({ hasText: /\d+s/ }).first();
+        if (await timeLocator.isVisible({ timeout: 1000 }).catch(() => false)) {
+          const timeText = await timeLocator.textContent();
+          const match = timeText?.match(/(\d+)s/);
+          return match ? parseInt(match[1], 10) : 0;
+        }
+        // Fallback: find any element containing XXs pattern
+        const fallbackLocator = page.locator('text=/\\d+s/').first();
+        const timeText = await fallbackLocator.textContent();
         const match = timeText?.match(/(\d+)s/);
         return match ? parseInt(match[1], 10) : 0;
       },

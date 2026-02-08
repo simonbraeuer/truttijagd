@@ -1,86 +1,202 @@
-<testsuites id="" name="" tests="12" failures="3" skipped="0" errors="0" time="110.039412">
-<testsuite name="game-initialization.spec.ts" timestamp="2026-02-08T11:39:20.907Z" hostname="chromium" tests="12" failures="3" skipped="0" time="92.979" errors="0">
-<testcase name="Game Initialization › should load the application" classname="game-initialization.spec.ts" time="0.528">
+<testsuites id="" name="" tests="27" failures="2" skipped="0" errors="0" time="74.352947">
+<testsuite name="compatibility.spec.ts" timestamp="2026-02-08T11:48:00.327Z" hostname="chromium" tests="15" failures="2" skipped="0" time="51.344" errors="0">
+<testcase name="Cross-Browser Compatibility › should render correctly in all browsers" classname="compatibility.spec.ts" time="0.531">
+<system-out>
+<![CDATA[Testing on: chromium
+]]>
+</system-out>
 </testcase>
-<testcase name="Game Initialization › should display start screen with difficulty slider" classname="game-initialization.spec.ts" time="0.481">
+<testcase name="Cross-Browser Compatibility › should handle canvas rendering across browsers" classname="compatibility.spec.ts" time="1.52">
 </testcase>
-<testcase name="Game Initialization › should display audio URL input" classname="game-initialization.spec.ts" time="0.509">
+<testcase name="Cross-Browser Compatibility › should maintain consistent layout" classname="compatibility.spec.ts" time="0.551">
 </testcase>
-<testcase name="Game Initialization › should have Start Game button" classname="game-initialization.spec.ts" time="0.518">
+<testcase name="Cross-Browser Compatibility › should handle audio file selection" classname="compatibility.spec.ts" time="0.491">
 </testcase>
-<testcase name="Game Start and UI › should start game on Andi difficulty" classname="game-initialization.spec.ts" time="18.701">
-<failure message="game-initialization.spec.ts:35:7 should start game on Andi difficulty" type="FAILURE">
-<![CDATA[  [chromium] › game-initialization.spec.ts:35:7 › Game Start and UI › should start game on Andi difficulty 
+<testcase name="LocalStorage Compatibility › should persist difficulty selection" classname="compatibility.spec.ts" time="2.676">
+<failure message="compatibility.spec.ts:52:7 should persist difficulty selection" type="FAILURE">
+<![CDATA[  [chromium] › compatibility.spec.ts:52:7 › LocalStorage Compatibility › should persist difficulty selection 
 
-    Error: expect(locator).toBeVisible() failed
+    Error: expect(received).toBeTruthy()
 
-    Locator: locator('button:has-text("Pause")')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    Received: null
 
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('button:has-text("Pause")')
-
-
-      36 |     await gamePage.startGame('Andi');
-      37 |     await expect(gamePage.page.locator('canvas')).toBeVisible();
-    > 38 |     await expect(gamePage.page.locator('button:has-text("Pause")')).toBeVisible();
-         |                                                                     ^
-      39 |   });
-      40 |
-      41 |   test('should start game on Schuh difficulty', async ({ gamePage }) => {
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69
+      58 |     // Check localStorage (key is 'truttihunt-difficulty')
+      59 |     const storage = await page.evaluate(() => localStorage.getItem('truttihunt-difficulty'));
+    > 60 |     expect(storage).toBeTruthy();
+         |                     ^
+      61 |     expect(storage).toBe('Schuh');
+      62 |   });
+      63 |
+        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/test-failed-1.png
+    ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/video.webm
+    ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/error-context.md
+    Error Context: ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: null
+
+      58 |     // Check localStorage (key is 'truttihunt-difficulty')
+      59 |     const storage = await page.evaluate(() => localStorage.getItem('truttihunt-difficulty'));
+    > 60 |     expect(storage).toBeTruthy();
+         |                     ^
+      61 |     expect(storage).toBe('Schuh');
+      62 |   });
+      63 |
+        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(received).toBeTruthy()
+
+    Received: null
+
+      58 |     // Check localStorage (key is 'truttihunt-difficulty')
+      59 |     const storage = await page.evaluate(() => localStorage.getItem('truttihunt-difficulty'));
+    > 60 |     expect(storage).toBeTruthy();
+         |                     ^
+      61 |     expect(storage).toBe('Schuh');
+      62 |   });
+      63 |
+        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/video.webm]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/error-context.md]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/video.webm]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/error-context.md]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/trace.zip]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/test-failed-1.png]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/video.webm]]
+
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="LocalStorage Compatibility › should persist scoreboard data" classname="compatibility.spec.ts" time="1.519">
+</testcase>
+<testcase name="LocalStorage Compatibility › should handle missing localStorage gracefully" classname="compatibility.spec.ts" time="33.661">
+<failure message="compatibility.spec.ts:77:7 should handle missing localStorage gracefully" type="FAILURE">
+<![CDATA[  [chromium] › compatibility.spec.ts:77:7 › LocalStorage Compatibility › should handle missing localStorage gracefully 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('button:has-text("Start Game")')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('button:has-text("Start Game")')
+
+
+      85 |     
+      86 |     // App should still load even without localStorage
+    > 87 |     await expect(page.locator('button:has-text("Start Game")')).toBeVisible({ timeout: 10000 });
+         |                                                                 ^
+      88 |   });
+      89 | });
+      90 |
+        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/error-context.md
 
     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
 
     Error: expect(locator).toBeVisible() failed
 
-    Locator: locator('button:has-text("Pause")')
+    Locator: locator('button:has-text("Start Game")')
     Expected: visible
-    Timeout: 5000ms
+    Timeout: 10000ms
     Error: element(s) not found
 
     Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('button:has-text("Pause")')
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('button:has-text("Start Game")')
 
 
-      36 |     await gamePage.startGame('Andi');
-      37 |     await expect(gamePage.page.locator('canvas')).toBeVisible();
-    > 38 |     await expect(gamePage.page.locator('button:has-text("Pause")')).toBeVisible();
-         |                                                                     ^
-      39 |   });
-      40 |
-      41 |   test('should start game on Schuh difficulty', async ({ gamePage }) => {
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69
+      85 |     
+      86 |     // App should still load even without localStorage
+    > 87 |     await expect(page.locator('button:has-text("Start Game")')).toBeVisible({ timeout: 10000 });
+         |                                                                 ^
+      88 |   });
+      89 | });
+      90 |
+        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/test-failed-1.png
+    ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/video.webm
+    ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/error-context.md
+    Error Context: ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/error-context.md
 
     attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/trace.zip
+    ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/trace.zip
     Usage:
 
-        npx playwright show-trace ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/trace.zip
+        npx playwright show-trace ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/trace.zip
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -88,313 +204,101 @@
 
     Error: expect(locator).toBeVisible() failed
 
-    Locator: locator('button:has-text("Pause")')
+    Locator: locator('button:has-text("Start Game")')
     Expected: visible
-    Timeout: 5000ms
+    Timeout: 10000ms
     Error: element(s) not found
 
     Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('button:has-text("Pause")')
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('button:has-text("Start Game")')
 
 
-      36 |     await gamePage.startGame('Andi');
-      37 |     await expect(gamePage.page.locator('canvas')).toBeVisible();
-    > 38 |     await expect(gamePage.page.locator('button:has-text("Pause")')).toBeVisible();
-         |                                                                     ^
-      39 |   });
-      40 |
-      41 |   test('should start game on Schuh difficulty', async ({ gamePage }) => {
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69
+      85 |     
+      86 |     // App should still load even without localStorage
+    > 87 |     await expect(page.locator('button:has-text("Start Game")')).toBeVisible({ timeout: 10000 });
+         |                                                                 ^
+      88 |   });
+      89 | });
+      90 |
+        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/test-failed-1.png
+    ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/video.webm
+    ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/error-context.md
+    Error Context: ../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/error-context.md
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/test-failed-1.png]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/test-failed-1.png]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/video.webm]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/video.webm]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/error-context.md]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/error-context.md]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/test-failed-1.png]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/test-failed-1.png]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/video.webm]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/video.webm]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/error-context.md]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/error-context.md]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/trace.zip]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/trace.zip]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/test-failed-1.png]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/test-failed-1.png]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/video.webm]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/video.webm]]
 
-[[ATTACHMENT|../test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/error-context.md]]
+[[ATTACHMENT|../test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/error-context.md]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Game Start and UI › should start game on Schuh difficulty" classname="game-initialization.spec.ts" time="1.175">
+<testcase name="Responsive Design › should render correctly at Desktop HD (1920x1080)" classname="compatibility.spec.ts" time="1.6">
 </testcase>
-<testcase name="Game Start and UI › should start game on Mexxx difficulty" classname="game-initialization.spec.ts" time="1.089">
+<testcase name="Responsive Design › should render correctly at Laptop (1366x768)" classname="compatibility.spec.ts" time="1.548">
 </testcase>
-<testcase name="Game Start and UI › should display initial score of $0" classname="game-initialization.spec.ts" time="33.692">
-<failure message="game-initialization.spec.ts:51:7 should display initial score of $0" type="FAILURE">
-<![CDATA[  [chromium] › game-initialization.spec.ts:51:7 › Game Start and UI › should display initial score of $0 
-
-    TimeoutError: locator.textContent: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('text=/Score:.*\\$\\d+/')
-
-
-       at fixtures.ts:57
-
-      55 |       
-      56 |       async getScore() {
-    > 57 |         const scoreText = await page.locator('text=/Score:.*\\$\\d+/').textContent();
-         |                                                                        ^
-      58 |         const match = scoreText?.match(/\$(\d+)/);
-      59 |         return match ? parseInt(match[1], 10) : 0;
-      60 |       },
-        at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    TimeoutError: locator.textContent: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('text=/Score:.*\\$\\d+/')
-
-
-       at fixtures.ts:57
-
-      55 |       
-      56 |       async getScore() {
-    > 57 |         const scoreText = await page.locator('text=/Score:.*\\$\\d+/').textContent();
-         |                                                                        ^
-      58 |         const match = scoreText?.match(/\$(\d+)/);
-      59 |         return match ? parseInt(match[1], 10) : 0;
-      60 |       },
-        at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    TimeoutError: locator.textContent: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('text=/Score:.*\\$\\d+/')
-
-
-       at fixtures.ts:57
-
-      55 |       
-      56 |       async getScore() {
-    > 57 |         const scoreText = await page.locator('text=/Score:.*\\$\\d+/').textContent();
-         |                                                                        ^
-      58 |         const match = scoreText?.match(/\$(\d+)/);
-      59 |         return match ? parseInt(match[1], 10) : 0;
-      60 |       },
-        at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/video.webm]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/error-context.md]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/test-failed-1.png]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/video.webm]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/error-context.md]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/trace.zip]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/test-failed-1.png]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/video.webm]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/error-context.md]]
-]]>
-</system-out>
+<testcase name="Responsive Design › should render correctly at Tablet Portrait (768x1024)" classname="compatibility.spec.ts" time="1.46">
 </testcase>
-<testcase name="Game Start and UI › should display timer at 90 seconds" classname="game-initialization.spec.ts" time="33.807">
-<failure message="game-initialization.spec.ts:57:7 should display timer at 90 seconds" type="FAILURE">
-<![CDATA[  [chromium] › game-initialization.spec.ts:57:7 › Game Start and UI › should display timer at 90 seconds 
-
-    TimeoutError: locator.textContent: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('text=/Time:.*\\d+s/')
-
-
-       at fixtures.ts:63
-
-      61 |       
-      62 |       async getTimeRemaining() {
-    > 63 |         const timeText = await page.locator('text=/Time:.*\\d+s/').textContent();
-         |                                                                    ^
-      64 |         const match = timeText?.match(/(\d+)s/);
-      65 |         return match ? parseInt(match[1], 10) : 0;
-      66 |       },
-        at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    TimeoutError: locator.textContent: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('text=/Time:.*\\d+s/')
-
-
-       at fixtures.ts:63
-
-      61 |       
-      62 |       async getTimeRemaining() {
-    > 63 |         const timeText = await page.locator('text=/Time:.*\\d+s/').textContent();
-         |                                                                    ^
-      64 |         const match = timeText?.match(/(\d+)s/);
-      65 |         return match ? parseInt(match[1], 10) : 0;
-      66 |       },
-        at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    TimeoutError: locator.textContent: Timeout 10000ms exceeded.
-    Call log:
-      - waiting for locator('text=/Time:.*\\d+s/')
-
-
-       at fixtures.ts:63
-
-      61 |       
-      62 |       async getTimeRemaining() {
-    > 63 |         const timeText = await page.locator('text=/Time:.*\\d+s/').textContent();
-         |                                                                    ^
-      64 |         const match = timeText?.match(/(\d+)s/);
-      65 |         return match ? parseInt(match[1], 10) : 0;
-      66 |       },
-        at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)
-        at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/test-failed-1.png]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/video.webm]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/error-context.md]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/test-failed-1.png]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/video.webm]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/error-context.md]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/trace.zip]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/test-failed-1.png]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/video.webm]]
-
-[[ATTACHMENT|../test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/error-context.md]]
-]]>
-</system-out>
+<testcase name="Responsive Design › should render correctly at Tablet Landscape (1024x768)" classname="compatibility.spec.ts" time="1.507">
 </testcase>
-<testcase name="Game Start and UI › should render canvas with appropriate dimensions" classname="game-initialization.spec.ts" time="1.142">
+<testcase name="Responsive Design › should render correctly at Mobile Portrait (375x667)" classname="compatibility.spec.ts" time="1.459">
 </testcase>
-<testcase name="Difficulty Persistence › should remember selected difficulty after reload" classname="game-initialization.spec.ts" time="0.662">
+<testcase name="Responsive Design › should render correctly at Mobile Landscape (667x375)" classname="compatibility.spec.ts" time="1.485">
 </testcase>
-<testcase name="Difficulty Persistence › should persist audio URL selection" classname="game-initialization.spec.ts" time="0.675">
+<testcase name="Network Conditions › should load with slow network" classname="compatibility.spec.ts" time="0.858">
+</testcase>
+<testcase name="Network Conditions › should handle offline mode gracefully" classname="compatibility.spec.ts" time="0.478">
+</testcase>
+</testsuite>
+<testsuite name="game-initialization.spec.ts" timestamp="2026-02-08T11:48:00.327Z" hostname="chromium" tests="12" failures="0" skipped="0" time="9.433" errors="0">
+<testcase name="Game Initialization › should load the application" classname="game-initialization.spec.ts" time="0.505">
+</testcase>
+<testcase name="Game Initialization › should display start screen with difficulty slider" classname="game-initialization.spec.ts" time="0.494">
+</testcase>
+<testcase name="Game Initialization › should display audio URL input" classname="game-initialization.spec.ts" time="0.505">
+</testcase>
+<testcase name="Game Initialization › should have Start Game button" classname="game-initialization.spec.ts" time="0.477">
+</testcase>
+<testcase name="Game Start and UI › should start game on Andi difficulty" classname="game-initialization.spec.ts" time="1.058">
+</testcase>
+<testcase name="Game Start and UI › should start game on Schuh difficulty" classname="game-initialization.spec.ts" time="0.996">
+</testcase>
+<testcase name="Game Start and UI › should start game on Mexxx difficulty" classname="game-initialization.spec.ts" time="1.011">
+</testcase>
+<testcase name="Game Start and UI › should display initial score of $0" classname="game-initialization.spec.ts" time="0.999">
+</testcase>
+<testcase name="Game Start and UI › should display timer at 90 seconds" classname="game-initialization.spec.ts" time="1.039">
+</testcase>
+<testcase name="Game Start and UI › should render canvas with appropriate dimensions" classname="game-initialization.spec.ts" time="1.022">
+</testcase>
+<testcase name="Difficulty Persistence › should remember selected difficulty after reload" classname="game-initialization.spec.ts" time="0.665">
+</testcase>
+<testcase name="Difficulty Persistence › should persist audio URL selection" classname="game-initialization.spec.ts" time="0.662">
 </testcase>
 </testsuite>
 </testsuites>

@@ -17,19 +17,19 @@
         "buildHref": "https://github.com/simonbraeuer/truttijagd/actions/runs/21797465021"
       },
       "gitCommit": {
-        "shortHash": "c4de69a",
-        "hash": "c4de69a406644c05db25812b400311507c652829",
-        "subject": "Fix unit tests: title and AudioContext mock",
-        "body": "Fix unit tests: title and AudioContext mock\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
+        "shortHash": "8e2e5dc",
+        "hash": "8e2e5dcebb1b90d63339a00ca34bcc7b2ae3bada",
+        "subject": "Fix e2e test selectors to match actual UI",
+        "body": "Fix e2e test selectors to match actual UI\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
         "author": {
           "name": "copilot-swe-agent[bot]",
           "email": "198982749+Copilot@users.noreply.github.com",
-          "time": 1770550661000
+          "time": 1770550950000
         },
         "committer": {
           "name": "copilot-swe-agent[bot]",
           "email": "198982749+Copilot@users.noreply.github.com",
-          "time": 1770550661000
+          "time": 1770550950000
         },
         "branch": "copilot/vscode-mldnzc21-keu4"
       },
@@ -48,19 +48,19 @@
             "buildHref": "https://github.com/simonbraeuer/truttijagd/actions/runs/21797465021"
           },
           "gitCommit": {
-            "shortHash": "c4de69a",
-            "hash": "c4de69a406644c05db25812b400311507c652829",
-            "subject": "Fix unit tests: title and AudioContext mock",
-            "body": "Fix unit tests: title and AudioContext mock\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
+            "shortHash": "8e2e5dc",
+            "hash": "8e2e5dcebb1b90d63339a00ca34bcc7b2ae3bada",
+            "subject": "Fix e2e test selectors to match actual UI",
+            "body": "Fix e2e test selectors to match actual UI\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
             "author": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "committer": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "branch": "copilot/vscode-mldnzc21-keu4"
           },
@@ -86,19 +86,19 @@
             "buildHref": "https://github.com/simonbraeuer/truttijagd/actions/runs/21797465021"
           },
           "gitCommit": {
-            "shortHash": "c4de69a",
-            "hash": "c4de69a406644c05db25812b400311507c652829",
-            "subject": "Fix unit tests: title and AudioContext mock",
-            "body": "Fix unit tests: title and AudioContext mock\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
+            "shortHash": "8e2e5dc",
+            "hash": "8e2e5dcebb1b90d63339a00ca34bcc7b2ae3bada",
+            "subject": "Fix e2e test selectors to match actual UI",
+            "body": "Fix e2e test selectors to match actual UI\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
             "author": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "committer": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "branch": "copilot/vscode-mldnzc21-keu4"
           },
@@ -124,19 +124,19 @@
             "buildHref": "https://github.com/simonbraeuer/truttijagd/actions/runs/21797465021"
           },
           "gitCommit": {
-            "shortHash": "c4de69a",
-            "hash": "c4de69a406644c05db25812b400311507c652829",
-            "subject": "Fix unit tests: title and AudioContext mock",
-            "body": "Fix unit tests: title and AudioContext mock\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
+            "shortHash": "8e2e5dc",
+            "hash": "8e2e5dcebb1b90d63339a00ca34bcc7b2ae3bada",
+            "subject": "Fix e2e test selectors to match actual UI",
+            "body": "Fix e2e test selectors to match actual UI\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
             "author": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "committer": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "branch": "copilot/vscode-mldnzc21-keu4"
           },
@@ -162,19 +162,19 @@
             "buildHref": "https://github.com/simonbraeuer/truttijagd/actions/runs/21797465021"
           },
           "gitCommit": {
-            "shortHash": "c4de69a",
-            "hash": "c4de69a406644c05db25812b400311507c652829",
-            "subject": "Fix unit tests: title and AudioContext mock",
-            "body": "Fix unit tests: title and AudioContext mock\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
+            "shortHash": "8e2e5dc",
+            "hash": "8e2e5dcebb1b90d63339a00ca34bcc7b2ae3bada",
+            "subject": "Fix e2e test selectors to match actual UI",
+            "body": "Fix e2e test selectors to match actual UI\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
             "author": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "committer": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "branch": "copilot/vscode-mldnzc21-keu4"
           },
@@ -200,19 +200,19 @@
             "buildHref": "https://github.com/simonbraeuer/truttijagd/actions/runs/21797465021"
           },
           "gitCommit": {
-            "shortHash": "c4de69a",
-            "hash": "c4de69a406644c05db25812b400311507c652829",
-            "subject": "Fix unit tests: title and AudioContext mock",
-            "body": "Fix unit tests: title and AudioContext mock\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
+            "shortHash": "8e2e5dc",
+            "hash": "8e2e5dcebb1b90d63339a00ca34bcc7b2ae3bada",
+            "subject": "Fix e2e test selectors to match actual UI",
+            "body": "Fix e2e test selectors to match actual UI\n\nCo-authored-by: simonbraeuer <10595330+simonbraeuer@users.noreply.github.com>\n",
             "author": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "committer": {
               "name": "copilot-swe-agent[bot]",
               "email": "198982749+Copilot@users.noreply.github.com",
-              "time": 1770550661000
+              "time": 1770550950000
             },
             "branch": "copilot/vscode-mldnzc21-keu4"
           },
@@ -273,6 +273,863 @@
   },
   "suites": [
     {
+      "title": "compatibility.spec.ts",
+      "file": "compatibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cross-Browser Compatibility",
+          "file": "compatibility.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should render correctly in all browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 531,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Testing on: chromium\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:01.403Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-df893590fcd69a2d0ff7",
+              "file": "compatibility.spec.ts",
+              "line": 8,
+              "column": 7
+            },
+            {
+              "title": "should handle canvas rendering across browsers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1520,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:02.034Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-6bfa4078864e4902eded",
+              "file": "compatibility.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "should maintain consistent layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 551,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:03.568Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-59b89558321c41d841a5",
+              "file": "compatibility.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "should handle audio file selection",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 491,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:04.131Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-da15f9c73e6b8c8358b9",
+              "file": "compatibility.spec.ts",
+              "line": 36,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "LocalStorage Compatibility",
+          "file": "compatibility.spec.ts",
+          "line": 44,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should persist difficulty selection",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 717,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21",
+                        "location": {
+                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                          "column": 21,
+                          "line": 60
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 58 |\u001b[39m     \u001b[90m// Check localStorage (key is 'truttihunt-difficulty')\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mconst\u001b[39m storage \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m localStorage\u001b[33m.\u001b[39mgetItem(\u001b[32m'truttihunt-difficulty'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 |\u001b[39m     expect(storage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 |\u001b[39m     expect(storage)\u001b[33m.\u001b[39mtoBe(\u001b[32m'Schuh'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                            "column": 21,
+                            "line": 60
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n\n  58 |     // Check localStorage (key is 'truttihunt-difficulty')\n  59 |     const storage = await page.evaluate(() => localStorage.getItem('truttihunt-difficulty'));\n> 60 |     expect(storage).toBeTruthy();\n     |                     ^\n  61 |     expect(storage).toBe('Schuh');\n  62 |   });\n  63 |\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:04.633Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                        "column": 21,
+                        "line": 60
+                      }
+                    },
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1204,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21",
+                        "location": {
+                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                          "column": 21,
+                          "line": 60
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 58 |\u001b[39m     \u001b[90m// Check localStorage (key is 'truttihunt-difficulty')\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mconst\u001b[39m storage \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m localStorage\u001b[33m.\u001b[39mgetItem(\u001b[32m'truttihunt-difficulty'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 |\u001b[39m     expect(storage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 |\u001b[39m     expect(storage)\u001b[33m.\u001b[39mtoBe(\u001b[32m'Schuh'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                            "column": 21,
+                            "line": 60
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n\n  58 |     // Check localStorage (key is 'truttihunt-difficulty')\n  59 |     const storage = await page.evaluate(() => localStorage.getItem('truttihunt-difficulty'));\n> 60 |     expect(storage).toBeTruthy();\n     |                     ^\n  61 |     expect(storage).toBe('Schuh');\n  62 |   });\n  63 |\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-02-08T11:48:06.426Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                        "column": 21,
+                        "line": 60
+                      }
+                    },
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 755,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21",
+                        "location": {
+                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                          "column": 21,
+                          "line": 60
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 58 |\u001b[39m     \u001b[90m// Check localStorage (key is 'truttihunt-difficulty')\u001b[39m\n \u001b[90m 59 |\u001b[39m     \u001b[36mconst\u001b[39m storage \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m localStorage\u001b[33m.\u001b[39mgetItem(\u001b[32m'truttihunt-difficulty'\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 |\u001b[39m     expect(storage)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 |\u001b[39m     expect(storage)\u001b[33m.\u001b[39mtoBe(\u001b[32m'Schuh'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                            "column": 21,
+                            "line": 60
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n\n  58 |     // Check localStorage (key is 'truttihunt-difficulty')\n  59 |     const storage = await page.evaluate(() => localStorage.getItem('truttihunt-difficulty'));\n> 60 |     expect(storage).toBeTruthy();\n     |                     ^\n  61 |     expect(storage).toBe('Schuh');\n  62 |   });\n  63 |\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:60:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-02-08T11:48:08.856Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-54272-ersist-difficulty-selection-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                        "column": 21,
+                        "line": 60
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-a9ef2c9e1b46942a97f5",
+              "file": "compatibility.spec.ts",
+              "line": 52,
+              "column": 7
+            },
+            {
+              "title": "should persist scoreboard data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1519,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:10.780Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-4098888f4305bc785ff4",
+              "file": "compatibility.spec.ts",
+              "line": 64,
+              "column": 7
+            },
+            {
+              "title": "should handle missing localStorage gracefully",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11047,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65",
+                        "location": {
+                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                          "column": 65,
+                          "line": 87
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 85 |\u001b[39m     \n \u001b[90m 86 |\u001b[39m     \u001b[90m// App should still load even without localStorage\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 87 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Start Game\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 88 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 89 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 90 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                            "column": 65,
+                            "line": 87
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n\n\n  85 |     \n  86 |     // App should still load even without localStorage\n> 87 |     await expect(page.locator('button:has-text(\"Start Game\")')).toBeVisible({ timeout: 10000 });\n     |                                                                 ^\n  88 |   });\n  89 | });\n  90 |\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:12.401Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                        "column": 65,
+                        "line": 87
+                      }
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11519,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65",
+                        "location": {
+                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                          "column": 65,
+                          "line": 87
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 85 |\u001b[39m     \n \u001b[90m 86 |\u001b[39m     \u001b[90m// App should still load even without localStorage\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 87 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Start Game\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 88 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 89 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 90 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                            "column": 65,
+                            "line": 87
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n\n\n  85 |     \n  86 |     // App should still load even without localStorage\n> 87 |     await expect(page.locator('button:has-text(\"Start Game\")')).toBeVisible({ timeout: 10000 });\n     |                                                                 ^\n  88 |   });\n  89 | });\n  90 |\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-02-08T11:48:24.499Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                        "column": 65,
+                        "line": 87
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11095,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65",
+                        "location": {
+                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                          "column": 65,
+                          "line": 87
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 85 |\u001b[39m     \n \u001b[90m 86 |\u001b[39m     \u001b[90m// App should still load even without localStorage\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 87 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Start Game\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 88 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 89 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 90 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                            "column": 65,
+                            "line": 87
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Start Game\")')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Start Game\")')\u001b[22m\n\n\n  85 |     \n  86 |     // App should still load even without localStorage\n> 87 |     await expect(page.locator('button:has-text(\"Start Game\")')).toBeVisible({ timeout: 10000 });\n     |                                                                 ^\n  88 |   });\n  89 | });\n  90 |\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts:87:65"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-02-08T11:48:37.185Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/compatibility-LocalStorage-1d89e-ing-localStorage-gracefully-chromium-retry2/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/compatibility.spec.ts",
+                        "column": 65,
+                        "line": 87
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-3fbf630c142bdb55f08c",
+              "file": "compatibility.spec.ts",
+              "line": 77,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Responsive Design",
+          "file": "compatibility.spec.ts",
+          "line": 91,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should render correctly at Desktop HD (1920x1080)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1600,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:49.468Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-d2f321c36397f6e52676",
+              "file": "compatibility.spec.ts",
+              "line": 102,
+              "column": 9
+            },
+            {
+              "title": "should render correctly at Laptop (1366x768)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1548,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:51.161Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-cea32719d164b031af93",
+              "file": "compatibility.spec.ts",
+              "line": 102,
+              "column": 9
+            },
+            {
+              "title": "should render correctly at Tablet Portrait (768x1024)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1460,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:52.721Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-c1ad1b866a88f970c72e",
+              "file": "compatibility.spec.ts",
+              "line": 102,
+              "column": 9
+            },
+            {
+              "title": "should render correctly at Tablet Landscape (1024x768)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1507,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:54.191Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-f214bd488dddeaf102a9",
+              "file": "compatibility.spec.ts",
+              "line": 102,
+              "column": 9
+            },
+            {
+              "title": "should render correctly at Mobile Portrait (375x667)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1459,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:55.709Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-e9d3714d6477d1f67ff9",
+              "file": "compatibility.spec.ts",
+              "line": 102,
+              "column": 9
+            },
+            {
+              "title": "should render correctly at Mobile Landscape (667x375)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1485,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:57.181Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-6a96e210e48ee896e263",
+              "file": "compatibility.spec.ts",
+              "line": 102,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Network Conditions",
+          "file": "compatibility.spec.ts",
+          "line": 118,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load with slow network",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 858,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:58.678Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-e1e2c5e4b439138df60c",
+              "file": "compatibility.spec.ts",
+              "line": 123,
+              "column": 7
+            },
+            {
+              "title": "should handle offline mode gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 478,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:48:59.548Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b0b409d468a60194358f-6d7776bf176bfd996ab9",
+              "file": "compatibility.spec.ts",
+              "line": 134,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "game-initialization.spec.ts",
       "file": "game-initialization.spec.ts",
       "column": 0,
@@ -298,15 +1155,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 528,
+                      "duration": 505,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:39:21.926Z",
+                      "startTime": "2026-02-08T11:49:00.044Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -332,15 +1189,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 481,
+                      "duration": 494,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:39:22.550Z",
+                      "startTime": "2026-02-08T11:49:00.560Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -366,15 +1223,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 509,
+                      "duration": 505,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:39:23.046Z",
+                      "startTime": "2026-02-08T11:49:01.068Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -400,15 +1257,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 518,
+                      "duration": 477,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:39:23.567Z",
+                      "startTime": "2026-02-08T11:49:01.586Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -431,7 +1288,7 @@
           "specs": [
             {
               "title": "should start game on Andi difficulty",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -442,171 +1299,20 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 6027,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                          "column": 69,
-                          "line": 38
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m gamePage\u001b[33m.\u001b[39mstartGame(\u001b[32m'Andi'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(gamePage\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'canvas'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 38 |\u001b[39m     \u001b[36mawait\u001b[39m expect(gamePage\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Pause\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 39 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 40 |\u001b[39m\n \u001b[90m 41 |\u001b[39m   test(\u001b[32m'should start game on Schuh difficulty'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ gamePage }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                            "column": 69,
-                            "line": 38
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n\n\n  36 |     await gamePage.startGame('Andi');\n  37 |     await expect(gamePage.page.locator('canvas')).toBeVisible();\n> 38 |     await expect(gamePage.page.locator('button:has-text(\"Pause\")')).toBeVisible();\n     |                                                                     ^\n  39 |   });\n  40 |\n  41 |   test('should start game on Schuh difficulty', async ({ gamePage }) => {\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 1058,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:39:24.098Z",
+                      "startTime": "2026-02-08T11:49:02.073Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                        "column": 69,
-                        "line": 38
-                      }
-                    },
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 6585,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                          "column": 69,
-                          "line": 38
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m gamePage\u001b[33m.\u001b[39mstartGame(\u001b[32m'Andi'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(gamePage\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'canvas'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 38 |\u001b[39m     \u001b[36mawait\u001b[39m expect(gamePage\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Pause\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 39 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 40 |\u001b[39m\n \u001b[90m 41 |\u001b[39m   test(\u001b[32m'should start game on Schuh difficulty'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ gamePage }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                            "column": 69,
-                            "line": 38
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n\n\n  36 |     await gamePage.startGame('Andi');\n  37 |     await expect(gamePage.page.locator('canvas')).toBeVisible();\n> 38 |     await expect(gamePage.page.locator('button:has-text(\"Pause\")')).toBeVisible();\n     |                                                                     ^\n  39 |   });\n  40 |\n  41 |   test('should start game on Schuh difficulty', async ({ gamePage }) => {\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-02-08T11:39:31.192Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry1/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                        "column": 69,
-                        "line": 38
-                      }
-                    },
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 6089,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                          "column": 69,
-                          "line": 38
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m gamePage\u001b[33m.\u001b[39mstartGame(\u001b[32m'Andi'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(gamePage\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'canvas'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 38 |\u001b[39m     \u001b[36mawait\u001b[39m expect(gamePage\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Pause\")'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 39 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 40 |\u001b[39m\n \u001b[90m 41 |\u001b[39m   test(\u001b[32m'should start game on Schuh difficulty'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ gamePage }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                            "column": 69,
-                            "line": 38
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button:has-text(\"Pause\")')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button:has-text(\"Pause\")')\u001b[22m\n\n\n  36 |     await gamePage.startGame('Andi');\n  37 |     await expect(gamePage.page.locator('canvas')).toBeVisible();\n> 38 |     await expect(gamePage.page.locator('button:has-text(\"Pause\")')).toBeVisible();\n     |                                                                     ^\n  39 |   });\n  40 |\n  41 |   test('should start game on Schuh difficulty', async ({ gamePage }) => {\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:38:69"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 2,
-                      "startTime": "2026-02-08T11:39:39.009Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-8145b-art-game-on-Andi-difficulty-chromium-retry2/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts",
-                        "column": 69,
-                        "line": 38
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "5119dcae2d7236150ec6-6260c6c4b5e9f3542976",
@@ -627,15 +1333,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1175,
+                      "duration": 996,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:39:46.274Z",
+                      "startTime": "2026-02-08T11:49:03.150Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -645,7 +1351,7 @@
               ],
               "id": "5119dcae2d7236150ec6-b876c499c84b6dda02bc",
               "file": "game-initialization.spec.ts",
-              "line": 41,
+              "line": 43,
               "column": 7
             },
             {
@@ -661,15 +1367,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1089,
+                      "duration": 1011,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:39:47.562Z",
+                      "startTime": "2026-02-08T11:49:04.156Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -679,197 +1385,12 @@
               ],
               "id": "5119dcae2d7236150ec6-b391f5ea2ad69f02644c",
               "file": "game-initialization.spec.ts",
-              "line": 46,
+              "line": 48,
               "column": 7
             },
             {
               "title": "should display initial score of $0",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11019,
-                      "error": {
-                        "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n\n    at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                          "column": 72,
-                          "line": 57
-                        },
-                        "snippet": "   at fixtures.ts:57\n\n\u001b[0m \u001b[90m 55 |\u001b[39m       \n \u001b[90m 56 |\u001b[39m       \u001b[36masync\u001b[39m getScore() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 57 |\u001b[39m         \u001b[36mconst\u001b[39m scoreText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Score:.*\\\\$\\\\d+/'\u001b[39m)\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 58 |\u001b[39m         \u001b[36mconst\u001b[39m match \u001b[33m=\u001b[39m scoreText\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mmatch(\u001b[35m/\\$(\\d+)/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 59 |\u001b[39m         \u001b[36mreturn\u001b[39m match \u001b[33m?\u001b[39m parseInt(match[\u001b[35m1\u001b[39m]\u001b[33m,\u001b[39m \u001b[35m10\u001b[39m) \u001b[33m:\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m       }\u001b[33m,\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                            "column": 72,
-                            "line": 57
-                          },
-                          "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n\n\n   at fixtures.ts:57\n\n  55 |       \n  56 |       async getScore() {\n> 57 |         const scoreText = await page.locator('text=/Score:.*\\\\$\\\\d+/').textContent();\n     |                                                                        ^\n  58 |         const match = scoreText?.match(/\\$(\\d+)/);\n  59 |         return match ? parseInt(match[1], 10) : 0;\n  60 |       },\n    at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-02-08T11:39:48.674Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                        "column": 72,
-                        "line": 57
-                      }
-                    },
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11574,
-                      "error": {
-                        "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n\n    at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                          "column": 72,
-                          "line": 57
-                        },
-                        "snippet": "   at fixtures.ts:57\n\n\u001b[0m \u001b[90m 55 |\u001b[39m       \n \u001b[90m 56 |\u001b[39m       \u001b[36masync\u001b[39m getScore() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 57 |\u001b[39m         \u001b[36mconst\u001b[39m scoreText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Score:.*\\\\$\\\\d+/'\u001b[39m)\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 58 |\u001b[39m         \u001b[36mconst\u001b[39m match \u001b[33m=\u001b[39m scoreText\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mmatch(\u001b[35m/\\$(\\d+)/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 59 |\u001b[39m         \u001b[36mreturn\u001b[39m match \u001b[33m?\u001b[39m parseInt(match[\u001b[35m1\u001b[39m]\u001b[33m,\u001b[39m \u001b[35m10\u001b[39m) \u001b[33m:\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m       }\u001b[33m,\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                            "column": 72,
-                            "line": 57
-                          },
-                          "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n\n\n   at fixtures.ts:57\n\n  55 |       \n  56 |       async getScore() {\n> 57 |         const scoreText = await page.locator('text=/Score:.*\\\\$\\\\d+/').textContent();\n     |                                                                        ^\n  58 |         const match = scoreText?.match(/\\$(\\d+)/);\n  59 |         return match ? parseInt(match[1], 10) : 0;\n  60 |       },\n    at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-02-08T11:40:00.749Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry1/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                        "column": 72,
-                        "line": 57
-                      }
-                    },
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11099,
-                      "error": {
-                        "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n\n    at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                          "column": 72,
-                          "line": 57
-                        },
-                        "snippet": "   at fixtures.ts:57\n\n\u001b[0m \u001b[90m 55 |\u001b[39m       \n \u001b[90m 56 |\u001b[39m       \u001b[36masync\u001b[39m getScore() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 57 |\u001b[39m         \u001b[36mconst\u001b[39m scoreText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Score:.*\\\\$\\\\d+/'\u001b[39m)\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 58 |\u001b[39m         \u001b[36mconst\u001b[39m match \u001b[33m=\u001b[39m scoreText\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mmatch(\u001b[35m/\\$(\\d+)/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 59 |\u001b[39m         \u001b[36mreturn\u001b[39m match \u001b[33m?\u001b[39m parseInt(match[\u001b[35m1\u001b[39m]\u001b[33m,\u001b[39m \u001b[35m10\u001b[39m) \u001b[33m:\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m       }\u001b[33m,\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                            "column": 72,
-                            "line": 57
-                          },
-                          "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Score:.*\\\\$\\\\d+/')\u001b[22m\n\n\n   at fixtures.ts:57\n\n  55 |       \n  56 |       async getScore() {\n> 57 |         const scoreText = await page.locator('text=/Score:.*\\\\$\\\\d+/').textContent();\n     |                                                                        ^\n  58 |         const match = scoreText?.match(/\\$(\\d+)/);\n  59 |         return match ? parseInt(match[1], 10) : 0;\n  60 |       },\n    at Object.getScore (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:57:72)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:53:34"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 2,
-                      "startTime": "2026-02-08T11:40:13.628Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-31788--display-initial-score-of-0-chromium-retry2/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                        "column": 72,
-                        "line": 57
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "5119dcae2d7236150ec6-a85337375bc9a43d96c4",
-              "file": "game-initialization.spec.ts",
-              "line": 51,
-              "column": 7
-            },
-            {
-              "title": "should display timer at 90 seconds",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -882,174 +1403,57 @@
                     {
                       "workerIndex": 6,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11092,
-                      "error": {
-                        "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n\n    at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                          "column": 68,
-                          "line": 63
-                        },
-                        "snippet": "   at fixtures.ts:63\n\n\u001b[0m \u001b[90m 61 |\u001b[39m       \n \u001b[90m 62 |\u001b[39m       \u001b[36masync\u001b[39m getTimeRemaining() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 63 |\u001b[39m         \u001b[36mconst\u001b[39m timeText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Time:.*\\\\d+s/'\u001b[39m)\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 64 |\u001b[39m         \u001b[36mconst\u001b[39m match \u001b[33m=\u001b[39m timeText\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mmatch(\u001b[35m/(\\d+)s/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 65 |\u001b[39m         \u001b[36mreturn\u001b[39m match \u001b[33m?\u001b[39m parseInt(match[\u001b[35m1\u001b[39m]\u001b[33m,\u001b[39m \u001b[35m10\u001b[39m) \u001b[33m:\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 66 |\u001b[39m       }\u001b[33m,\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                            "column": 68,
-                            "line": 63
-                          },
-                          "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n\n\n   at fixtures.ts:63\n\n  61 |       \n  62 |       async getTimeRemaining() {\n> 63 |         const timeText = await page.locator('text=/Time:.*\\\\d+s/').textContent();\n     |                                                                    ^\n  64 |         const match = timeText?.match(/(\\d+)s/);\n  65 |         return match ? parseInt(match[1], 10) : 0;\n  66 |       },\n    at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 999,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:40:25.879Z",
+                      "startTime": "2026-02-08T11:49:05.178Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                        "column": 68,
-                        "line": 63
-                      }
-                    },
-                    {
-                      "workerIndex": 7,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11601,
-                      "error": {
-                        "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n\n    at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                          "column": 68,
-                          "line": 63
-                        },
-                        "snippet": "   at fixtures.ts:63\n\n\u001b[0m \u001b[90m 61 |\u001b[39m       \n \u001b[90m 62 |\u001b[39m       \u001b[36masync\u001b[39m getTimeRemaining() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 63 |\u001b[39m         \u001b[36mconst\u001b[39m timeText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Time:.*\\\\d+s/'\u001b[39m)\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 64 |\u001b[39m         \u001b[36mconst\u001b[39m match \u001b[33m=\u001b[39m timeText\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mmatch(\u001b[35m/(\\d+)s/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 65 |\u001b[39m         \u001b[36mreturn\u001b[39m match \u001b[33m?\u001b[39m parseInt(match[\u001b[35m1\u001b[39m]\u001b[33m,\u001b[39m \u001b[35m10\u001b[39m) \u001b[33m:\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 66 |\u001b[39m       }\u001b[33m,\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                            "column": 68,
-                            "line": 63
-                          },
-                          "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n\n\n   at fixtures.ts:63\n\n  61 |       \n  62 |       async getTimeRemaining() {\n> 63 |         const timeText = await page.locator('text=/Time:.*\\\\d+s/').textContent();\n     |                                                                    ^\n  64 |         const match = timeText?.match(/(\\d+)s/);\n  65 |         return match ? parseInt(match[1], 10) : 0;\n  66 |       },\n    at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-02-08T11:40:38.131Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry1/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                        "column": 68,
-                        "line": 63
-                      }
-                    },
-                    {
-                      "workerIndex": 8,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11114,
-                      "error": {
-                        "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n\n    at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33",
-                        "location": {
-                          "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                          "column": 68,
-                          "line": 63
-                        },
-                        "snippet": "   at fixtures.ts:63\n\n\u001b[0m \u001b[90m 61 |\u001b[39m       \n \u001b[90m 62 |\u001b[39m       \u001b[36masync\u001b[39m getTimeRemaining() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 63 |\u001b[39m         \u001b[36mconst\u001b[39m timeText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Time:.*\\\\d+s/'\u001b[39m)\u001b[33m.\u001b[39mtextContent()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 64 |\u001b[39m         \u001b[36mconst\u001b[39m match \u001b[33m=\u001b[39m timeText\u001b[33m?\u001b[39m\u001b[33m.\u001b[39mmatch(\u001b[35m/(\\d+)s/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 65 |\u001b[39m         \u001b[36mreturn\u001b[39m match \u001b[33m?\u001b[39m parseInt(match[\u001b[35m1\u001b[39m]\u001b[33m,\u001b[39m \u001b[35m10\u001b[39m) \u001b[33m:\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 66 |\u001b[39m       }\u001b[33m,\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                            "column": 68,
-                            "line": 63
-                          },
-                          "message": "TimeoutError: locator.textContent: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Time:.*\\\\d+s/')\u001b[22m\n\n\n   at fixtures.ts:63\n\n  61 |       \n  62 |       async getTimeRemaining() {\n> 63 |         const timeText = await page.locator('text=/Time:.*\\\\d+s/').textContent();\n     |                                                                    ^\n  64 |         const match = timeText?.match(/(\\d+)s/);\n  65 |         return match ? parseInt(match[1], 10) : 0;\n  66 |       },\n    at Object.getTimeRemaining (/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts:63:68)\n    at /home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/game-initialization.spec.ts:59:33"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 2,
-                      "startTime": "2026-02-08T11:40:51.057Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/test-results/game-initialization-Game-S-70a4f-display-timer-at-90-seconds-chromium-retry2/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/runner/work/truttijagd/truttijagd/trutti-hunt/e2e/fixtures.ts",
-                        "column": 68,
-                        "line": 63
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
+                }
+              ],
+              "id": "5119dcae2d7236150ec6-a85337375bc9a43d96c4",
+              "file": "game-initialization.spec.ts",
+              "line": 53,
+              "column": 7
+            },
+            {
+              "title": "should display timer at 90 seconds",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1039,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-08T11:49:06.187Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
                 }
               ],
               "id": "5119dcae2d7236150ec6-13bb63126c18936a92a4",
               "file": "game-initialization.spec.ts",
-              "line": 57,
+              "line": 59,
               "column": 7
             },
             {
@@ -1065,15 +1469,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 9,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1142,
+                      "duration": 1022,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:41:03.297Z",
+                      "startTime": "2026-02-08T11:49:07.237Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1083,7 +1487,7 @@
               ],
               "id": "5119dcae2d7236150ec6-9a044bf85c70b82b737c",
               "file": "game-initialization.spec.ts",
-              "line": 64,
+              "line": 66,
               "column": 7
             }
           ]
@@ -1091,7 +1495,7 @@
         {
           "title": "Difficulty Persistence",
           "file": "game-initialization.spec.ts",
-          "line": 72,
+          "line": 74,
           "column": 6,
           "specs": [
             {
@@ -1107,15 +1511,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 9,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 662,
+                      "duration": 665,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:41:04.540Z",
+                      "startTime": "2026-02-08T11:49:08.269Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1125,7 +1529,7 @@
               ],
               "id": "5119dcae2d7236150ec6-6f24db03cc56b113fa85",
               "file": "game-initialization.spec.ts",
-              "line": 73,
+              "line": 75,
               "column": 7
             },
             {
@@ -1141,15 +1545,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 9,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 675,
+                      "duration": 662,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-02-08T11:41:05.223Z",
+                      "startTime": "2026-02-08T11:49:08.942Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1159,7 +1563,7 @@
               ],
               "id": "5119dcae2d7236150ec6-c9a94596cd2369920e53",
               "file": "game-initialization.spec.ts",
-              "line": 91,
+              "line": 93,
               "column": 7
             }
           ]
@@ -1169,11 +1573,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-02-08T11:39:15.980Z",
-    "duration": 110039.412,
-    "expected": 9,
+    "startTime": "2026-02-08T11:47:55.382Z",
+    "duration": 74352.947,
+    "expected": 25,
     "skipped": 0,
-    "unexpected": 3,
+    "unexpected": 2,
     "flaky": 0
   }
 }

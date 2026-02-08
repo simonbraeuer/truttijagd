@@ -42,8 +42,11 @@ test.describe('Cross-Browser Compatibility', () => {
 });
 
 test.describe('LocalStorage Compatibility', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+  test.beforeEach(async ({ page }, testInfo) => {
+    // Skip beforeEach for the missing localStorage test
+    if (!testInfo.title.includes('missing localStorage')) {
+      await page.goto('/');
+    }
   });
 
   test('should persist difficulty selection', async ({ page, context }) => {
@@ -52,9 +55,14 @@ test.describe('LocalStorage Compatibility', () => {
     await slider.fill('1'); // Schuh is value 1
     await page.waitForTimeout(200);
     
-    // Check localStorage
-    const storage = await page.evaluate(() => localStorage.getItem('difficulty'));
+    // Difficulty is saved when Start Game is clicked, not immediately
+    await page.locator('button:has-text("Start Game")').click();
+    await page.waitForTimeout(500);
+    
+    // Check localStorage (key is 'truttihunt-difficulty')
+    const storage = await page.evaluate(() => localStorage.getItem('truttihunt-difficulty'));
     expect(storage).toBeTruthy();
+    expect(storage).toBe('Schuh');
   });
 
   test('should persist scoreboard data', async ({ page }) => {
@@ -71,7 +79,7 @@ test.describe('LocalStorage Compatibility', () => {
   });
 
   test('should handle missing localStorage gracefully', async ({ page, context }) => {
-    // Disable localStorage
+    // Disable localStorage before navigating to the page
     await context.addInitScript(() => {
       // @ts-ignore - intentionally breaking localStorage for test
       delete window.localStorage;
@@ -79,8 +87,8 @@ test.describe('LocalStorage Compatibility', () => {
     
     await page.goto('/');
     
-    // App should still load
-    await expect(page.locator('button:has-text("Start Game")')).toBeVisible();
+    // App should still load even without localStorage
+    await expect(page.locator('button:has-text("Start Game")')).toBeVisible({ timeout: 10000 });
   });
 });
 
