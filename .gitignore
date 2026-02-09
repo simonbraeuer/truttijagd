@@ -19,4 +19,7 @@ Thumbs.db
 *.log
 npm-debug.log*
 trutti-hunt/src/app/game/assets/trutti-hunt.jpg
+<<<<<<< HEAD
 trutti-hunt/playwright-report/**
+=======
+>>>>>>> origin/main
