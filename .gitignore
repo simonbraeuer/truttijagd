@@ -11,7 +11,7 @@ trutti-hunt/dist/
 *.swo
 *~
 
-# OS
+# OSs
 .DS_Store
 Thumbs.db
 
@@ -19,3 +19,7 @@ Thumbs.db
 *.log
 npm-debug.log*
 trutti-hunt/src/app/game/assets/trutti-hunt.jpg
+
+# Test results and reports
+trutti-hunt/playwright-report/
+trutti-hunt/test-results/
