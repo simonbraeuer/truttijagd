@@ -6,7 +6,7 @@ test.describe('Performance Benchmarks', () => {
   });
 
   test('should maintain stable FPS during gameplay', async ({ gamePage, page }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     // Measure performance
     const metrics: number[] = [];
@@ -66,7 +66,7 @@ test.describe('Performance Benchmarks', () => {
   });
 
   test('should render canvas without visible lag', async ({ gamePage, page }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     // Take screenshot to ensure canvas is rendering
     await page.waitForTimeout(2000);
@@ -98,7 +98,7 @@ test.describe('Resource Management', () => {
   });
 
   test('should handle rapid difficulty changes', async ({ page }) => {
-    const difficulties = ['Andi', 'Kevin', 'Mexxx'];
+    const difficulties = ['Andi', 'Schuh', 'Mexxx'];
     
     for (const diff of difficulties) {
       await page.locator(`button:has-text("${diff}")`).click();
@@ -110,7 +110,7 @@ test.describe('Resource Management', () => {
   });
 
   test('should handle page visibility changes', async ({ gamePage, page }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     await gamePage.page.waitForTimeout(2000);
     
     // Pause when tab loses focus (simulate)
@@ -131,7 +131,7 @@ test.describe('Stress Testing', () => {
   });
 
   test('should handle continuous gameplay session', async ({ gamePage }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     // Sustained interaction
     for (let i = 0; i < 100; i++) {
@@ -159,7 +159,7 @@ test.describe('Stress Testing', () => {
   });
 
   test('should handle browser resize during gameplay', async ({ gamePage, page }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     await page.waitForTimeout(1000);
     
     // Resize viewport

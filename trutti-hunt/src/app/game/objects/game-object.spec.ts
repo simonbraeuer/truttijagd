@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { GameObject, GameObjectClickResult } from './game-object';
-import type { DifficultyLevel } from './components/start-screen/start-screen';
+import type { DifficultyLevel } from '../components/start-screen/start-screen';
 
 // Concrete test implementation of abstract GameObject
 class TestGameObject extends GameObject {

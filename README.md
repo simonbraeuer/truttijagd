@@ -95,49 +95,6 @@ cd trutti-hunt
 npm run build:gh-pages
 ```
 
-## Testing
-
-### Unit Tests
-Comprehensive unit tests using Vitest:
-```bash
-cd trutti-hunt
-npm test
-```
-
-**Coverage**: 91 tests across 7 test suites covering:
-- GameObject base class and inheritance
-- Turkey and SpecialTurkey classes
-- BikiniGirl mechanics
-- Game component logic and state management
-- Scoreboard functionality
-- Start screen and settings
-- Object spawning direction logic
-
-See [TESTING.md](trutti-hunt/TESTING.md) for details.
-
-### End-to-End Tests
-Professional-grade E2E tests using Playwright:
-```bash
-cd trutti-hunt
-npm run test:e2e              # Run all E2E tests
-npm run test:e2e:ui           # Interactive UI mode
-npm run test:e2e:headed       # Watch tests run in browser
-npm run test:e2e:chromium     # Chrome only
-npm run test:e2e:mobile       # Mobile devices only
-```
-
-**Coverage**: 80+ E2E tests covering:
-- Game initialization and UI rendering
-- Gameplay mechanics and scoring
-- Pause/resume and game state management
-- Performance benchmarks (FPS, load times)
-- Accessibility (keyboard navigation, ARIA, mobile touch)
-- Cross-browser compatibility (Chrome, Firefox, Safari)
-- Responsive design (6 viewport sizes)
-- Network conditions and offline handling
-
-See [E2E-TESTING.md](trutti-hunt/E2E-TESTING.md) for comprehensive documentation.
-
 ## Deployment
 
 The game is configured for GitHub Pages deployment using the gh-pages package. The build output is in `dist/trutti-hunt/browser/` and is deployed to the `gh-pages` branch.

@@ -1,3 +1,11 @@
+:host {
+  display: flex;
+  justify-content: center;
+  min-width: 90%;
+  max-width: 90%;
+  width: 90%;
+}
+
 .start-screen {
   background: rgba(255, 255, 255, 0.95);
   padding: clamp(10px, 3vw, 20px);
@@ -27,7 +35,7 @@
 .start-screen h2 {
   font-size: clamp(1.2em, 4vw, 1.8em);
   margin-bottom: clamp(10px, 2vw, 15px);
-  color: #764ba2;
+  color: #000000;
 }
 
 .start-screen p {
@@ -39,9 +47,9 @@
   width: 100%;
   margin: clamp(15px, 3vw, 20px) 0;
   padding: clamp(12px, 2.5vw, 16px);
-  background: rgba(118, 75, 162, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   border-radius: clamp(8px, 1.5vw, 12px);
-  border: 2px solid rgba(118, 75, 162, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .difficulty-label {
@@ -49,7 +57,7 @@
   font-size: clamp(0.95em, 2.5vw, 1.1em);
   font-weight: bold;
   margin-bottom: clamp(10px, 2vw, 12px);
-  color: #764ba2;
+  color: #000000;
 }
 
 .slider-container {
@@ -62,7 +70,7 @@
 .difficulty-marker {
   font-size: clamp(0.8em, 2vw, 0.95em);
   font-weight: 600;
-  color: #667eea;
+  color: #000000;
   min-width: clamp(40px, 10vw, 50px);
   text-align: center;
 }
@@ -84,7 +92,7 @@
   height: clamp(18px, 4.5vw, 24px);
   border-radius: 50%;
   background: white;
-  border: 3px solid #764ba2;
+  border: 3px solid #000000;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
@@ -99,7 +107,7 @@
   height: clamp(18px, 4.5vw, 24px);
   border-radius: 50%;
   background: white;
-  border: 3px solid #764ba2;
+  border: 3px solid #000000;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
@@ -119,7 +127,7 @@
 .current-difficulty {
   font-size: clamp(1.1em, 3vw, 1.3em);
   font-weight: bold;
-  color: #667eea;
+  color: #000000;
 }
 
 .difficulty-description {
@@ -140,7 +148,7 @@
   font-size: clamp(0.8em, 2vw, 0.95em);
   margin: clamp(5px, 1vw, 8px) 0;
   padding: clamp(6px, 1.5vw, 8px);
-  background: rgba(118, 75, 162, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: clamp(5px, 1vw, 8px);
 }
 
@@ -155,14 +163,14 @@
   font-size: clamp(0.85em, 2.5vw, 1em);
   font-weight: bold;
   margin-bottom: clamp(5px, 1vw, 8px);
-  color: #764ba2;
+  color: #000000;
 }
 
 .audio-input {
   width: 100%;
   padding: clamp(8px, 2vw, 12px);
   font-size: clamp(0.85em, 2.5vw, 1em);
-  border: 2px solid #764ba2;
+  border: 2px solid #000000;
   border-radius: clamp(5px, 1vw, 8px);
   box-sizing: border-box;
   transition: border-color 0.3s;
@@ -170,8 +178,8 @@
 
 .audio-input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+  border-color: #000000;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .audio-input::placeholder {
@@ -187,7 +195,7 @@
 }
 
 .start-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #000000 0%, #000000 100%);
   color: white;
   border: none;
   padding: clamp(10px, 2vw, 12px) clamp(20px, 5vw, 30px);
@@ -212,98 +220,126 @@
   transform: translateY(0);
 }
 
+/* Card Grid Container */
 .accordions-container {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(8px, 1.5vw, 12px);
+  gap: clamp(12px, 2vw, 16px);
+  margin: clamp(15px, 3vw, 20px) 0;
 }
 
-@media (min-width: 800px) {
+/* Medium screens: 2 columns */
+@media (min-width: 600px) {
   .accordions-container {
     grid-template-columns: 1fr 1fr;
-    gap: clamp(12px, 2vw, 16px);
-  }
-  
-  .accordion:first-child {
-    grid-column: 1 / -1;
   }
 }
 
-@media (min-width: 768px) and (min-height: 700px) {
-  .accordion {
-    /* Open by default on larger screens */
-  }
-  
-  .accordion[open] summary ~ * {
-    display: block;
-  }
-}
-
+/* Card styling */
 .accordion {
   width: 100%;
-  margin: clamp(8px, 1.5vw, 12px) 0;
-  border: 1px solid rgba(118, 75, 162, 0.2);
-  border-radius: clamp(5px, 1vw, 8px);
-  background: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: clamp(8px, 1.5vw, 12px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
+.accordion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card header */
 .accordion-header {
   cursor: pointer;
-  padding: clamp(8px, 2vw, 12px);
+  padding: clamp(12px, 2.5vw, 16px);
+  padding-left: clamp(38px, 7vw, 48px);
   font-weight: bold;
-  font-size: clamp(0.9em, 2.5vw, 1.05em);
-  color: #764ba2;
-  background: rgba(118, 75, 162, 0.05);
-  border-radius: clamp(5px, 1vw, 8px);
+  font-size: clamp(0.95em, 2.5vw, 1.1em);
+  color: #000000;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
   user-select: none;
   list-style: none;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
 }
 
 .accordion-header::-webkit-details-marker {
   display: none;
 }
 
+/* Collapse/Expand indicator */
 .accordion-header::before {
-  content: '▶';
-  display: inline-block;
-  margin-right: 8px;
-  transition: transform 0.2s;
+  content: '▸';
+  position: absolute;
+  left: clamp(14px, 2.5vw, 20px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(0.9em, 2.4vw, 1em);
+  color: rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
 }
 
 .accordion[open] .accordion-header::before {
-  transform: rotate(90deg);
+  transform: translateY(-50%) rotate(90deg);
 }
 
-.accordion[open] .accordion-header {
-  border-bottom: 1px solid rgba(118, 75, 162, 0.1);
-}
-
+/* Card content */
 .accordion .instructions,
 .accordion .audio-config,
-.accordion .pause-hint {
-  margin-top: clamp(8px, 1.5vw, 12px);
-  padding: 0 clamp(8px, 2vw, 12px) clamp(8px, 2vw, 12px);
+.accordion .pause-hint,
+.accordion .scoreboard-preview {
+  padding: clamp(12px, 2.5vw, 16px);
+  margin: 0;
+  animation: slideDown 0.3s ease-out;
 }
 
-@media (orientation: landscape) and (max-height: 600px) {
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Large screens: Auto-expand all cards */
+@media (min-width: 900px) and (min-height: 700px) {
   .accordion {
-    margin: clamp(5px, 1vw, 8px) 0;
+    border-color: rgba(0, 0, 0, 0.15);
   }
   
-  .accordion[open] summary ~ * {
-    animation: slideDown 0.2s ease-out;
+  .accordion-header {
+    cursor: default;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
   }
   
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .accordion-header:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  }
+  
+  /* Hide indicator on large screens */
+  .accordion-header::before {
+    display: none;
+  }
+  
+  /* Always show content */
+  .accordion summary ~ * {
+    display: block !important;
+  }
+  
+  .accordion:hover {
+    transform: none;
   }
 }
 
@@ -311,19 +347,18 @@
 .resume-hint {
   margin: clamp(10px, 2vw, 15px) 0 clamp(5px, 1.5vw, 10px);
   font-size: clamp(0.75em, 2vw, 0.9em);
-  color: #764ba2;
+  color: #000000;
   font-style: italic;
 }
 
 .pause-hint strong,
 .resume-hint strong {
-  color: #667eea;
+  color: #000000;
   font-weight: bold;
 }
 
 .scoreboard-preview {
-  margin: clamp(10px, 2vw, 15px) 0;
-  padding: 0 clamp(8px, 2vw, 12px) clamp(8px, 2vw, 12px);
+  margin: 0;
 }
 
 .score-entry {
@@ -332,14 +367,14 @@
   align-items: center;
   padding: clamp(6px, 1.5vw, 10px);
   margin: clamp(4px, 1vw, 6px) 0;
-  background: rgba(118, 75, 162, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: clamp(4px, 1vw, 6px);
   font-size: clamp(0.85em, 2vw, 0.95em);
 }
 
 .score-entry .rank {
   font-weight: bold;
-  color: #667eea;
+  color: #000000;
   min-width: clamp(25px, 6vw, 35px);
 }
 
@@ -352,7 +387,7 @@
 
 .score-entry .score {
   font-weight: bold;
-  color: #764ba2;
+  color: #000000;
 }
 
 .no-scores {

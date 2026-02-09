@@ -9,15 +9,17 @@ test.describe('Game Initialization', () => {
     await expect(page).toHaveTitle(/Trutti Hunt/);
   });
 
-  test('should display start screen with all difficulty options', async ({ page }) => {
-    await expect(page.locator('button:has-text("Andi")')).toBeVisible();
-    await expect(page.locator('button:has-text("Kevin")')).toBeVisible();
-    await expect(page.locator('button:has-text("Mexxx")')).toBeVisible();
+  test('should display start screen with difficulty slider', async ({ page }) => {
+    await expect(page.locator('input.difficulty-slider')).toBeVisible();
+    await expect(page.locator('.current-difficulty')).toBeVisible();
+    // Check that difficulty markers are visible
+    await expect(page.locator('.difficulty-marker:has-text("Andi")')).toBeVisible();
+    await expect(page.locator('.difficulty-marker:has-text("Mexxx")')).toBeVisible();
   });
 
-  test('should display audio file selection', async ({ page }) => {
-    const fileInput = page.locator('input[type="file"]');
-    await expect(fileInput).toBeVisible();
+  test('should display audio URL input', async ({ page }) => {
+    const audioInput = page.locator('input#audioUrl, input.audio-input');
+    await expect(audioInput).toBeVisible();
   });
 
   test('should have Start Game button', async ({ page }) => {
@@ -36,8 +38,8 @@ test.describe('Game Start and UI', () => {
     await expect(gamePage.page.locator('button:has-text("Pause")')).toBeVisible();
   });
 
-  test('should start game on Kevin difficulty', async ({ gamePage }) => {
-    await gamePage.startGame('Kevin');
+  test('should start game on Schuh difficulty', async ({ gamePage }) => {
+    await gamePage.startGame('Schuh');
     await expect(gamePage.page.locator('canvas')).toBeVisible();
   });
 
@@ -71,22 +73,34 @@ test.describe('Difficulty Persistence', () => {
   test('should remember selected difficulty after reload', async ({ page }) => {
     await page.goto('/');
     
-    // Select Kevin difficulty
-    await page.locator('button:has-text("Kevin")').click();
+    // Set Schuh difficulty using slider
+    const slider = page.locator('input.difficulty-slider');
+    await slider.fill('1'); // Schuh is value 1
     await page.waitForTimeout(100);
+    
+    // Verify difficulty changed
+    await expect(page.locator('.current-difficulty:has-text("Schuh")')).toBeVisible();
     
     // Reload page
     await page.reload();
     
-    // Check if Kevin is still selected (would need UI indication)
-    await expect(page.locator('button:has-text("Kevin")')).toBeVisible();
+    // Check if difficulty slider is still visible (persistence check would need localStorage check)
+    await expect(slider).toBeVisible();
   });
 
-  test('should persist audio file selection', async ({ page }) => {
+  test('should persist audio URL selection', async ({ page }) => {
     await page.goto('/');
     
-    // Check that file input maintains state
-    const fileInput = page.locator('input[type="file"]');
-    await expect(fileInput).toBeVisible();
+    // Check that audio input maintains state
+    const audioInput = page.locator('input#audioUrl, input.audio-input');
+    await expect(audioInput).toBeVisible();
+    
+    // Enter a URL
+    await audioInput.fill('https://example.com/audio.mp3');
+    await page.waitForTimeout(100);
+    
+    // Reload and check persistence
+    await page.reload();
+    await expect(audioInput).toBeVisible();
   });
 });

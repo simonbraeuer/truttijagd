@@ -7,7 +7,7 @@ import { test, expect, Page } from '@playwright/test';
 
 export interface GamePage {
   page: Page;
-  startGame: (difficulty?: 'Andi' | 'Kevin' | 'Mexxx') => Promise<void>;
+  startGame: (difficulty?: 'Andi' | 'Schuh' | 'Mexxx') => Promise<void>;
   pauseGame: () => Promise<void>;
   resumeGame: () => Promise<void>;
   getScore: () => Promise<number>;
@@ -25,14 +25,17 @@ export const gameTest = test.extend<{ gamePage: GamePage }>({
       page,
       
       async startGame(difficulty = 'Andi') {
-        // Select difficulty if not already selected
-        const difficultyBtn = page.locator(`button:has-text("${difficulty}")`);
-        if (await difficultyBtn.isVisible()) {
-          await difficultyBtn.click();
+        // Set difficulty using the slider
+        const slider = page.locator('input.difficulty-slider');
+        if (await slider.isVisible()) {
+          let sliderValue = 0;
+          if (difficulty === 'Schuh') sliderValue = 1;
+          if (difficulty === 'Mexxx') sliderValue = 2;
+          await slider.fill(sliderValue.toString());
         }
         
         // Click start button
-        const startBtn = page.locator('button:has-text("Start Game")');
+        const startBtn = page.locator('button.start-button, button:has-text("Start Game")');
         await startBtn.click();
         
         // Wait for canvas to be visible
@@ -88,10 +91,11 @@ export const gameTest = test.extend<{ gamePage: GamePage }>({
       },
       
       async selectAudioFile(fileName: string) {
-        // This would need actual file upload implementation
-        // For now, just check if the input exists
-        const fileInput = page.locator('input[type="file"]');
-        await fileInput.waitFor({ state: 'visible' });
+        // The audio input is now a text field for URL, not a file upload
+        const audioInput = page.locator('input#audioUrl, input.audio-input');
+        if (await audioInput.isVisible()) {
+          await audioInput.fill(fileName);
+        }
       }
     };
     

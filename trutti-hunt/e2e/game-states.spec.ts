@@ -25,7 +25,7 @@ test.describe('Pause and Resume', () => {
   });
 
   test('should resume the game after pause', async ({ gamePage }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     await gamePage.pauseGame();
     await expect(gamePage.page.locator('button:has-text("Resume")')).toBeVisible();
@@ -67,7 +67,7 @@ test.describe('Pause and Resume', () => {
   });
 
   test('should not allow clicking objects while paused', async ({ gamePage }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     await gamePage.page.waitForTimeout(1000);
     const scoreBefore = await gamePage.getScore();
@@ -116,7 +116,7 @@ test.describe('Game Over', () => {
   });
 
   test('should display final score at game over', async ({ gamePage, page }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     // Play a bit to get some score
     for (let i = 0; i < 10; i++) {
@@ -143,7 +143,7 @@ test.describe('Game Over', () => {
   });
 
   test('should allow restarting after game over', async ({ gamePage, page }) => {
-    await gamePage.startGame('Kevin');
+    await gamePage.startGame('Schuh');
     
     // Wait for game over
     await expect(page.locator('text=/Game Over|Final Score/i')).toBeVisible({ timeout: 100000 });

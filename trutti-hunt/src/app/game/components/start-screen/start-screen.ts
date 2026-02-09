@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit, HostListener } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, HostListener, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import type { ScoreEntry } from '../scoreboard/scoreboard';
@@ -16,12 +16,14 @@ export interface GameSettings {
   templateUrl: './start-screen.html',
   styleUrl: './start-screen.css'
 })
-export class StartScreenComponent implements OnInit {
+export class StartScreenComponent implements OnInit, AfterViewInit {
   @Output() startGame = new EventEmitter<GameSettings>();
   @Output() difficultyChange = new EventEmitter<DifficultyLevel>();
+  @ViewChildren('accordion0, accordion1, accordion2, accordion3', { read: ElementRef }) accordions!: QueryList<ElementRef<HTMLDetailsElement>>;
   
   audioUrl: string = '';
   isLargeScreen: boolean = false;
+  isMediumScreen: boolean = false;
   difficulty: DifficultyLevel = 'Andi';
   difficultyValue: number = 0; // 0 = Andi, 1 = Schuh, 2 = Mexxx
   scoreboard: ScoreEntry[] = [];
@@ -46,16 +48,84 @@ export class StartScreenComponent implements OnInit {
     // Check screen size
     this.checkScreenSize();
   }
+  
+  ngAfterViewInit() {
+    // Auto-expand all accordions on large screens
+    this.autoExpandAccordions();
+  }
 
   @HostListener('window:resize')
   onResize() {
     this.checkScreenSize();
+    this.autoExpandAccordions();
   }
 
   checkScreenSize() {
-    // Only open accordions if there's sufficient space
-    // Require more height (800px) to ensure accordions fit comfortably when open
-    this.isLargeScreen = window.innerWidth >= 768 && window.innerHeight >= 800;
+    this.isLargeScreen = window.innerWidth >= 900 && window.innerHeight >= 700;
+    this.isMediumScreen = window.innerWidth >= 600;
+  }
+  
+  autoExpandAccordions() {
+    if (this.isLargeScreen && this.accordions) {
+      setTimeout(() => {
+        this.accordions.forEach(accordion => {
+          if (accordion?.nativeElement) {
+            accordion.nativeElement.open = true;
+          }
+        });
+      }, 0);
+    }
+  }
+  
+  getRowForAccordion(index: number): number {
+    // Calculate row based on current grid layout
+    // 2 columns (>= 600px): [0,1] = row 0, [2,3] = row 1
+    // 1 column (< 600px): each accordion is its own row
+    const columnsPerRow = window.innerWidth >= 600 ? 2 : 1;
+    return Math.floor(index / columnsPerRow);
+  }
+  
+  syncRowAccordions(row: number, isOpen: boolean) {
+    // Sync all accordions in the specified row to the given state
+    const accordionElements = this.accordions.toArray();
+    accordionElements.forEach((accordion, i) => {
+      if (accordion?.nativeElement && this.getRowForAccordion(i) === row) {
+        accordion.nativeElement.open = isOpen;
+      }
+    });
+  }
+  
+  onAccordionToggle(index: number) {
+    if (!this.accordions) return;
+    
+    const accordionElements = this.accordions.toArray();
+    const clickedAccordion = accordionElements[index]?.nativeElement;
+    
+    if (!clickedAccordion) return;
+    
+    const clickedRow = this.getRowForAccordion(index);
+    const isOpening = clickedAccordion.open;
+    
+    // On large screens, keep all accordions open
+    if (this.isLargeScreen) {
+      this.syncRowAccordions(clickedRow, true);
+      return;
+    }
+    
+    // Sync all accordions in the same row to match the clicked state
+    this.syncRowAccordions(clickedRow, isOpening);
+    
+    // If opening this row, close all other rows
+    if (isOpening) {
+      accordionElements.forEach((accordion, i) => {
+        if (accordion?.nativeElement) {
+          const accordionRow = this.getRowForAccordion(i);
+          if (accordionRow !== clickedRow) {
+            accordion.nativeElement.open = false;
+          }
+        }
+      });
+    }
   }
 
   getDifficultyValue(difficulty: DifficultyLevel): number {
