@@ -40,7 +40,7 @@ export class GameComponent implements OnInit, OnDestroy {
   playerName: string = '';
   showScoreboard: boolean = false;
   qualifiesForHighscore: boolean = false;
-  private scoreSaved: boolean = false;
+  scoreSaved: boolean = false;
   scoreboard: ScoreEntry[] = [];
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';

@@ -11,11 +11,15 @@ import { FormsModule } from '@angular/forms';
 export class GameOverComponent {
   @Input() money: number = 0;
   @Input() caughtSpecialTurkeys: number = 0;
+  @Input() scoreSaved: boolean = false;
   @Output() saveScore = new EventEmitter<string>();
   
   playerName: string = '';
 
   onSaveScore() {
+    if (this.scoreSaved) {
+      return;
+    }
     if (!this.playerName.trim()) {
       alert('Please enter your name!');
       return;

@@ -254,6 +254,7 @@ describe('GameComponent Core Logic', () => {
       expect(saved[0].stats.timeRemaining).toBe(42);
       expect(saved[0].stats.specialTruttisCaught).toBe(1);
       expect(saved[0].stats.totalClicks).toBe(12);
+      expect(component.scoreSaved).toBe(true);
     });
 
     it('should not save duplicate scores for the same run', async () => {

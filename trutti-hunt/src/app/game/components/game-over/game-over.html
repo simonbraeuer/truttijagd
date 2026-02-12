@@ -4,16 +4,21 @@
     <p class="final-score">Your Score: ${{ money }}</p>
     <p class="truttis-caught">Truttis Caught: {{ caughtSpecialTurkeys }} / 9</p>
     <div class="name-input-section">
-      <label for="playerName">Enter your name for the scoreboard:</label>
-      <input 
-        id="playerName"
-        type="text" 
-        [(ngModel)]="playerName" 
-        placeholder="Your name"
-        (keyup.enter)="onSaveScore()"
-        class="name-input"
-        maxlength="20">
-      <button class="save-score-button" (click)="onSaveScore()">Save Score</button>
+      <ng-container *ngIf="!scoreSaved; else scoreSavedMessage">
+        <label for="playerName">Enter your name for the scoreboard:</label>
+        <input 
+          id="playerName"
+          type="text" 
+          [(ngModel)]="playerName" 
+          placeholder="Your name"
+          (keyup.enter)="onSaveScore()"
+          class="name-input"
+          maxlength="20">
+        <button class="save-score-button" (click)="onSaveScore()">Save Score</button>
+      </ng-container>
+      <ng-template #scoreSavedMessage>
+        <p class="score-saved-message">Score saved! Check the high scores.</p>
+      </ng-template>
     </div>
   </div>
 </div>
