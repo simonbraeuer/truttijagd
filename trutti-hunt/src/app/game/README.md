@@ -36,6 +36,7 @@ Following Angular best practices:
 
 ### StartScreenComponent
 - Game instructions display
+- High score preview with detailed stats
 - Audio configuration
 - Control explanations
 - Accordion-based layout for better UX

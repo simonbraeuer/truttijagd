@@ -61,8 +61,9 @@ export class GameComponent implements OnInit, OnDestroy {
   constructor(private cdr: ChangeDetectorRef, private scoreboardService: ScoreboardService) {}
 
   ngOnInit() {
+    const storage = this.getStorage();
     // Load saved difficulty from localStorage for display
-    const savedDifficulty = localStorage.getItem('truttihunt-difficulty') as DifficultyLevel;
+    const savedDifficulty = storage?.getItem('truttihunt-difficulty') as DifficultyLevel;
     if (savedDifficulty) {
       this.difficulty = savedDifficulty;
     }
@@ -492,5 +493,12 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameObjects = [];
     this.totalClicks = 0;
     this.truttisCaught = 0;
+  }
+
+  private getStorage(): Storage | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
+    return localStorage;
   }
 }

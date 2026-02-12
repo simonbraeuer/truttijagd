@@ -32,14 +32,15 @@ export class StartScreenComponent implements OnInit, AfterViewInit {
   constructor(private scoreboardService: ScoreboardService) {}
 
   ngOnInit() {
+    const storage = this.getStorage();
     // Load saved audio URL from localStorage
-    const savedAudioUrl = localStorage.getItem('truttihunt-audio-url');
+    const savedAudioUrl = storage?.getItem('truttihunt-audio-url');
     if (savedAudioUrl) {
       this.audioUrl = savedAudioUrl;
     }
     
     // Load saved difficulty from localStorage
-    const savedDifficulty = localStorage.getItem('truttihunt-difficulty') as DifficultyLevel;
+    const savedDifficulty = storage?.getItem('truttihunt-difficulty') as DifficultyLevel;
     if (savedDifficulty) {
       this.difficulty = savedDifficulty;
       this.difficultyValue = this.getDifficultyValue(savedDifficulty);
@@ -170,16 +171,26 @@ export class StartScreenComponent implements OnInit, AfterViewInit {
     this.scoreboard = await this.scoreboardService.getScoreboard();
   }
 
+  private getStorage(): Storage | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
+    return localStorage;
+  }
+
   onStartGame() {
+    const storage = this.getStorage();
     // Save audio URL to localStorage
-    if (this.audioUrl.trim()) {
-      localStorage.setItem('truttihunt-audio-url', this.audioUrl.trim());
-    } else {
-      localStorage.removeItem('truttihunt-audio-url');
+    if (storage) {
+      if (this.audioUrl.trim()) {
+        storage.setItem('truttihunt-audio-url', this.audioUrl.trim());
+      } else {
+        storage.removeItem('truttihunt-audio-url');
+      }
     }
     
     // Save difficulty to localStorage
-    localStorage.setItem('truttihunt-difficulty', this.difficulty);
+    storage?.setItem('truttihunt-difficulty', this.difficulty);
     
     this.startGame.emit({
       audioUrl: this.audioUrl,

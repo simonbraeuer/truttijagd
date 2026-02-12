@@ -26,7 +26,7 @@ export class ScoreboardService {
       const migrated = this.readLegacyScoreboard();
       if (migrated.length > 0) {
         await this.writeToDb(db, migrated);
-        localStorage.removeItem(this.legacyStorageKey);
+        this.clearLegacyScoreboard();
       }
       return migrated;
     }
@@ -99,11 +99,20 @@ export class ScoreboardService {
   }
 
   private saveToLocalStorage(entries: ScoreEntry[]): void {
-    localStorage.setItem(this.legacyStorageKey, JSON.stringify(entries));
+    const storage = this.getLegacyStorage();
+    if (!storage) {
+      return;
+    }
+    storage.setItem(this.legacyStorageKey, JSON.stringify(entries));
   }
 
   private readLegacyScoreboard(): ScoreEntry[] {
-    const saved = localStorage.getItem(this.legacyStorageKey);
+    const storage = this.getLegacyStorage();
+    if (!storage) {
+      return [];
+    }
+
+    const saved = storage.getItem(this.legacyStorageKey);
     if (!saved) {
       return [];
     }
@@ -114,6 +123,21 @@ export class ScoreboardService {
     } catch {
       return [];
     }
+  }
+
+  private clearLegacyScoreboard(): void {
+    const storage = this.getLegacyStorage();
+    if (!storage) {
+      return;
+    }
+    storage.removeItem(this.legacyStorageKey);
+  }
+
+  private getLegacyStorage(): Storage | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
+    return localStorage;
   }
 
   private normalizeScoreboard(entries: unknown[]): ScoreEntry[] {

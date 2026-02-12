@@ -25,6 +25,59 @@ test.describe('Game Initialization', () => {
   test('should have Start Game button', async ({ page }) => {
     await expect(page.locator('button:has-text("Start Game")')).toBeVisible();
   });
+
+  test('should display high score stats on the start screen', async ({ page }) => {
+    const sampleEntry = {
+      name: 'Test Player',
+      score: 420,
+      date: new Date().toISOString(),
+      difficulty: 'Schuh',
+      stats: {
+        timeRemaining: 12,
+        truttisCaught: 5,
+        specialTruttisCaught: 2,
+        totalClicks: 18
+      }
+    };
+
+    await page.evaluate(async (entry) => {
+      await new Promise<void>((resolve, reject) => {
+        const request = indexedDB.open('truttihunt-stats', 1);
+        request.onupgradeneeded = () => {
+          const db = request.result;
+          if (!db.objectStoreNames.contains('scoreboard')) {
+            db.createObjectStore('scoreboard', { keyPath: 'id' });
+          }
+        };
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction('scoreboard', 'readwrite');
+          const store = transaction.objectStore('scoreboard');
+          store.put({ id: 'highscores', entries: [entry] });
+          transaction.oncomplete = () => resolve();
+          transaction.onerror = () => reject(transaction.error);
+        };
+        request.onerror = () => reject(request.error);
+      });
+    }, sampleEntry);
+
+    await page.reload();
+
+    const highScoreCard = page.locator('details.accordion').filter({ hasText: 'High Scores' });
+    const isOpen = await highScoreCard.evaluate((element) => element.open);
+    if (!isOpen) {
+      await page.locator('summary.accordion-header:has-text("High Scores")').click();
+    }
+
+    await page.waitForSelector('.score-entry', { timeout: 10000 });
+    const scoreEntry = page.locator('.score-entry').first();
+    await expect(scoreEntry).toContainText('Test Player');
+    await expect(scoreEntry).toContainText('$420');
+    await expect(scoreEntry).toContainText('12s left');
+    await expect(scoreEntry).toContainText('5 Truttis');
+    await expect(scoreEntry).toContainText('2 special');
+    await expect(scoreEntry).toContainText('18 clicks');
+  });
 });
 
 test.describe('Game Start and UI', () => {
