@@ -41,6 +41,7 @@ export class GameComponent implements OnInit, OnDestroy {
   showScoreboard: boolean = false;
   qualifiesForHighscore: boolean = false;
   private scoreSaved: boolean = false;
+  savingScore: boolean = false;
   scoreboard: ScoreEntry[] = [];
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';
@@ -181,6 +182,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.showScoreboard = false;
     this.qualifiesForHighscore = false;
     this.scoreSaved = false;
+    this.savingScore = false;
     this.timeRemaining = 90;
     this.lastTimerUpdate = Date.now();
     this.gameStartTime = Date.now();
@@ -461,6 +463,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
 
     this.scoreSaved = true;
+    this.savingScore = true;
     const score = {
       name: playerName,
       score: this.money,
@@ -482,8 +485,15 @@ export class GameComponent implements OnInit, OnDestroy {
       this.scoreboard = this.scoreboard.slice(0, 5);
     }
 
-    await this.scoreboardService.saveScoreboard(this.scoreboard);
-    this.resetGame();
+    try {
+      await this.scoreboardService.saveScoreboard(this.scoreboard);
+      this.resetGame();
+    } catch (error) {
+      console.warn('Score could not be saved:', error);
+      this.scoreSaved = false;
+    } finally {
+      this.savingScore = false;
+    }
   }
 
   async loadScoreboard() {
@@ -501,6 +511,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.totalClicks = 0;
     this.truttisCaught = 0;
     this.scoreSaved = false;
+    this.savingScore = false;
   }
 
   private getStorage(): Storage | null {
