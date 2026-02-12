@@ -14,12 +14,17 @@ export class GameOverComponent {
   @Output() saveScore = new EventEmitter<string>();
   
   playerName: string = '';
+  isSaving: boolean = false;
 
   onSaveScore() {
+    if (this.isSaving) {
+      return;
+    }
     if (!this.playerName.trim()) {
       alert('Please enter your name!');
       return;
     }
+    this.isSaving = true;
     this.saveScore.emit(this.playerName.trim());
   }
 }
