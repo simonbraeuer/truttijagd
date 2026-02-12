@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { GameComponent } from './game';
 import { ChangeDetectorRef } from '@angular/core';
 import { ScoreboardService } from './services/scoreboard.service';
+import { Turkey, SpecialTurkey, BikiniGirl } from './game-objects';
 
 describe('GameComponent Core Logic', () => {
   let component: GameComponent;
@@ -201,6 +202,27 @@ describe('GameComponent Core Logic', () => {
       component.caughtSpecialTurkeys.add(1);
       
       expect(component.caughtSpecialTurkeys.size).toBe(1);
+    });
+  });
+
+  describe('stat tracking', () => {
+    it('should increment truttis caught only for turkey types', () => {
+      component.truttisCaught = 0;
+
+      const turkey = new Turkey(0, 0, 0, 0, 10, 10);
+      component['gameObjects'] = [turkey];
+      component.handleObjectClick(turkey, 0);
+      expect(component.truttisCaught).toBe(1);
+
+      const specialTurkey = new SpecialTurkey(0, 0, 0, 0, 10, 10, 1);
+      component['gameObjects'] = [specialTurkey];
+      component.handleObjectClick(specialTurkey, 0);
+      expect(component.truttisCaught).toBe(2);
+
+      const bikiniGirl = new BikiniGirl(0, 0, 0, 0, 10, 10);
+      component['gameObjects'] = [bikiniGirl];
+      component.handleObjectClick(bikiniGirl, 0);
+      expect(component.truttisCaught).toBe(2);
     });
   });
 

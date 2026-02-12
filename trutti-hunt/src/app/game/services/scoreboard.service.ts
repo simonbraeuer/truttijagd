@@ -131,16 +131,21 @@ export class ScoreboardService {
   }
 
   private normalizeScoreboard(entries: unknown[]): ScoreEntry[] {
-    return entries.map((entry) => this.normalizeEntry(entry as Partial<ScoreEntry>));
+    return entries.map((entry) => this.normalizeEntry(entry));
   }
 
-  private normalizeEntry(entry: Partial<ScoreEntry>): ScoreEntry {
+  private normalizeEntry(entry: unknown): ScoreEntry {
+    const normalizedEntry =
+      typeof entry === 'object' && entry !== null ? (entry as Partial<ScoreEntry>) : {};
     return {
-      name: entry.name ?? 'Unknown',
-      score: typeof entry.score === 'number' ? entry.score : Number(entry.score ?? 0),
-      date: entry.date ?? new Date().toISOString(),
-      difficulty: (entry.difficulty ?? 'Andi') as DifficultyLevel,
-      stats: this.normalizeStats(entry.stats)
+      name: normalizedEntry.name ?? 'Unknown',
+      score:
+        typeof normalizedEntry.score === 'number'
+          ? normalizedEntry.score
+          : Number(normalizedEntry.score ?? 0),
+      date: normalizedEntry.date ?? new Date().toISOString(),
+      difficulty: (normalizedEntry.difficulty ?? 'Andi') as DifficultyLevel,
+      stats: this.normalizeStats(normalizedEntry.stats)
     };
   }
 
