@@ -9,7 +9,7 @@ import {
 } from './components';
 import type { GameSettings, DifficultyLevel } from './components/start-screen/start-screen';
 import type { ScoreEntry } from './components/scoreboard/scoreboard';
-import { GameObject, SpecialTurkey } from './game-objects';
+import { GameObject, SpecialTurkey, GAME_OBJECT_TYPES } from './game-objects';
 import { SpawnManager } from './spawn-manager';
 import { TurkeySpawner, SpecialTurkeySpawner, BikiniGirlSpawner, SpawnContext } from './objects/spawners';
 import { ScoreboardService } from './services/scoreboard.service';
@@ -51,7 +51,10 @@ export class GameComponent implements OnInit, OnDestroy {
   
   // Special turkeys IDs (1-9)
   private readonly SPECIAL_TURKEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  private readonly TURKEY_TYPES = new Set(['turkey', 'special-turkey']);
+  private readonly TURKEY_TYPES = new Set<string>([
+    GAME_OBJECT_TYPES.TURKEY,
+    GAME_OBJECT_TYPES.SPECIAL_TURKEY
+  ]);
   caughtSpecialTurkeys: Set<number> = new Set();
   private spawnedSpecialTurkeys: Set<number> = new Set();
 

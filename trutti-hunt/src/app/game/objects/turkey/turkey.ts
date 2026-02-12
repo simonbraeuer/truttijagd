@@ -1,5 +1,5 @@
 import type { DifficultyLevel } from '../../components/start-screen/start-screen';
-import { GameObject, GameObjectClickResult } from '../game-object';
+import { GameObject, GameObjectClickResult, GAME_OBJECT_TYPES } from '../game-object';
 
 export class Turkey extends GameObject {
   protected static readonly TAIL_COLORS = ['#8B4513', '#A0522D', '#D2691E'];
@@ -83,7 +83,7 @@ export class Turkey extends GameObject {
   }
 
   override getType(): string {
-    return 'turkey';
+    return GAME_OBJECT_TYPES.TURKEY;
   }
 }
 
@@ -172,6 +172,6 @@ export class SpecialTurkey extends Turkey {
   }
 
   override getType(): string {
-    return 'special-turkey';
+    return GAME_OBJECT_TYPES.SPECIAL_TURKEY;
   }
 }

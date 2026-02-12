@@ -1,4 +1,4 @@
-import { GameObject, GameObjectClickResult } from '../game-object';
+import { GameObject, GameObjectClickResult, GAME_OBJECT_TYPES } from '../game-object';
 import type { DifficultyLevel } from '../../components/start-screen/start-screen';
 
 export class BikiniGirl extends GameObject {
@@ -94,7 +94,7 @@ export class BikiniGirl extends GameObject {
   }
 
   override getType(): string {
-    return 'bikini-girl';
+    return GAME_OBJECT_TYPES.BIKINI_GIRL;
   }
 }
 
@@ -254,6 +254,6 @@ export class DelicateBikiniGirl extends BikiniGirl {
   }
 
   override getType(): string {
-    return 'delicate-bikini-girl';
+    return GAME_OBJECT_TYPES.DELICATE_BIKINI_GIRL;
   }
 }
