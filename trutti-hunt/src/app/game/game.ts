@@ -485,9 +485,9 @@ export class GameComponent implements OnInit, OnDestroy {
     try {
       await this.scoreboardService.saveScoreboard(this.scoreboard);
       this.resetGame();
-      this.savingScore = false;
     } catch (error) {
       console.warn('Score could not be saved:', error);
+    } finally {
       this.savingScore = false;
     }
   }
