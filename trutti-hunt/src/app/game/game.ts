@@ -40,7 +40,6 @@ export class GameComponent implements OnInit, OnDestroy {
   playerName: string = '';
   showScoreboard: boolean = false;
   qualifiesForHighscore: boolean = false;
-  private scoreSaved: boolean = false;
   savingScore: boolean = false;
   scoreboard: ScoreEntry[] = [];
   private audioUrl: string = '';
@@ -181,7 +180,6 @@ export class GameComponent implements OnInit, OnDestroy {
     this.playerName = '';
     this.showScoreboard = false;
     this.qualifiesForHighscore = false;
-    this.scoreSaved = false;
     this.savingScore = false;
     this.timeRemaining = 90;
     this.lastTimerUpdate = Date.now();
@@ -458,11 +456,10 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   async saveScore(playerName: string) {
-    if (this.scoreSaved) {
+    if (this.savingScore) {
       return;
     }
 
-    this.scoreSaved = true;
     this.savingScore = true;
     const score = {
       name: playerName,
@@ -490,8 +487,6 @@ export class GameComponent implements OnInit, OnDestroy {
       this.resetGame();
     } catch (error) {
       console.warn('Score could not be saved:', error);
-      this.scoreSaved = false;
-    } finally {
       this.savingScore = false;
     }
   }
@@ -510,7 +505,6 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameObjects = [];
     this.totalClicks = 0;
     this.truttisCaught = 0;
-    this.scoreSaved = false;
     this.savingScore = false;
   }
 
