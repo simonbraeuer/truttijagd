@@ -18,12 +18,12 @@ export class ScoreboardService {
   async getScoreboard(): Promise<ScoreEntry[]> {
     const db = await this.openDb();
     if (!db) {
-      return this.loadFromLocalStorage();
+      return this.readLegacyScoreboard();
     }
 
     const entries = await this.readFromDb(db);
     if (entries.length === 0) {
-      const migrated = this.migrateLegacyScoreboard();
+      const migrated = this.readLegacyScoreboard();
       if (migrated.length > 0) {
         await this.writeToDb(db, migrated);
         localStorage.removeItem(this.legacyStorageKey);
@@ -96,14 +96,6 @@ export class ScoreboardService {
       transaction.onerror = () => reject(transaction.error);
       transaction.onabort = () => reject(transaction.error);
     });
-  }
-
-  private migrateLegacyScoreboard(): ScoreEntry[] {
-    return this.readLegacyScoreboard();
-  }
-
-  private loadFromLocalStorage(): ScoreEntry[] {
-    return this.readLegacyScoreboard();
   }
 
   private saveToLocalStorage(entries: ScoreEntry[]): void {
