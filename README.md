@@ -15,7 +15,7 @@ Trutti Hunt is a browser-based game inspired by the classic Moorhuhnjagd (Crazy 
 - 🎵 Bring your own background music (configurable audio URL)
 - 👙 Bonus opportunities (and penalties!) with bikini girls
 - ⏸️ Pause anytime to review the rules (Press **P** or **Pause**)
-- 🏆 Compete on the high score leaderboard (top 5, difficulty-tracked)
+- 🏆 Compete on the high score leaderboard with detailed stats (top 5, difficulty-tracked) and review them on the start screen
 - ⏱️ 90-second timer - beat the clock!
 - 📱 Mobile-friendly with touch support and landscape optimization
 - 🚪 Exit early with **Escape** key
@@ -41,7 +41,8 @@ Trutti Hunt is a browser-based game inspired by the classic Moorhuhnjagd (Crazy 
 - **Mouse Click / Touch**: Take photograph (mousedown/touchstart for quick response)
 - **P / Pause Key**: Pause game and view rules
 - **Escape Key**: End game early
-- All scores and settings are automatically saved to your browser's local storage
+- High scores (with time left, Truttis caught, and clicks) are saved in IndexedDB
+- Audio settings and difficulty are saved in your browser's local storage
 
 ## Play Online
 
@@ -118,8 +119,8 @@ Automated deployment via GitHub Actions pushes to the main branch trigger a buil
   - Inversion of Control pattern for click handling
   - SOLID principles throughout
 - **Manual Change Detection** for Set mutations and timer updates
+- **IndexedDB** for persisting high scores with detailed stats
 - **LocalStorage** for persisting:
-  - High scores (top 5 with difficulty tracking)
   - Selected difficulty level
   - Audio URL configuration
 - **Responsive Design**:

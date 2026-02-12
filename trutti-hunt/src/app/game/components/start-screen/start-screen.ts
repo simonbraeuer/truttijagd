@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, OnInit, HostListener, ViewChildren, Qu
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import type { ScoreEntry } from '../scoreboard/scoreboard';
+import { ScoreboardService } from '../../services/scoreboard.service';
 
 export type DifficultyLevel = 'Andi' | 'Schuh' | 'Mexxx';
 
@@ -28,22 +29,25 @@ export class StartScreenComponent implements OnInit, AfterViewInit {
   difficultyValue: number = 0; // 0 = Andi, 1 = Schuh, 2 = Mexxx
   scoreboard: ScoreEntry[] = [];
 
+  constructor(private scoreboardService: ScoreboardService) {}
+
   ngOnInit() {
+    const storage = this.getStorage();
     // Load saved audio URL from localStorage
-    const savedAudioUrl = localStorage.getItem('truttihunt-audio-url');
+    const savedAudioUrl = storage?.getItem('truttihunt-audio-url');
     if (savedAudioUrl) {
       this.audioUrl = savedAudioUrl;
     }
     
     // Load saved difficulty from localStorage
-    const savedDifficulty = localStorage.getItem('truttihunt-difficulty') as DifficultyLevel;
+    const savedDifficulty = storage?.getItem('truttihunt-difficulty') as DifficultyLevel;
     if (savedDifficulty) {
       this.difficulty = savedDifficulty;
       this.difficultyValue = this.getDifficultyValue(savedDifficulty);
     }
     
-    // Load scoreboard from localStorage
-    this.loadScoreboard();
+    // Load scoreboard from IndexedDB
+    void this.loadScoreboard();
     
     // Check screen size
     this.checkScreenSize();
@@ -163,34 +167,30 @@ export class StartScreenComponent implements OnInit, AfterViewInit {
     }
   }
 
-  loadScoreboard() {
-    const savedScoreboard = localStorage.getItem('truttihunt-scoreboard');
-    if (savedScoreboard) {
-      try {
-        const loaded = JSON.parse(savedScoreboard);
-        // Migrate old entries without difficulty field
-        this.scoreboard = loaded.map((entry: any) => ({
-          ...entry,
-          difficulty: entry.difficulty || 'Andi'
-        }));
-      } catch (e) {
-        this.scoreboard = [];
-      }
-    } else {
-      this.scoreboard = [];
+  async loadScoreboard() {
+    this.scoreboard = await this.scoreboardService.getScoreboard();
+  }
+
+  private getStorage(): Storage | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
     }
+    return localStorage;
   }
 
   onStartGame() {
+    const storage = this.getStorage();
     // Save audio URL to localStorage
-    if (this.audioUrl.trim()) {
-      localStorage.setItem('truttihunt-audio-url', this.audioUrl.trim());
-    } else {
-      localStorage.removeItem('truttihunt-audio-url');
+    if (storage) {
+      if (this.audioUrl.trim()) {
+        storage.setItem('truttihunt-audio-url', this.audioUrl.trim());
+      } else {
+        storage.removeItem('truttihunt-audio-url');
+      }
     }
     
     // Save difficulty to localStorage
-    localStorage.setItem('truttihunt-difficulty', this.difficulty);
+    storage?.setItem('truttihunt-difficulty', this.difficulty);
     
     this.startGame.emit({
       audioUrl: this.audioUrl,

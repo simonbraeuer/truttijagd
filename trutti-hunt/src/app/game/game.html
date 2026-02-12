@@ -34,6 +34,7 @@
       *ngIf="gameOver && !showScoreboard && qualifiesForHighscore"
       [money]="money"
       [caughtSpecialTurkeys]="caughtSpecialTurkeys.size"
+      [isSaving]="savingScore"
       (saveScore)="saveScore($event)">
     </app-game-over>
 

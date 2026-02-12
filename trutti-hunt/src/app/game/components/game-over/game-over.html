@@ -12,8 +12,9 @@
         placeholder="Your name"
         (keyup.enter)="onSaveScore()"
         class="name-input"
-        maxlength="20">
-      <button class="save-score-button" (click)="onSaveScore()">Save Score</button>
+        maxlength="20"
+        [disabled]="isSaving">
+      <button class="save-score-button" (click)="onSaveScore()" [disabled]="isSaving">Save Score</button>
     </div>
   </div>
 </div>

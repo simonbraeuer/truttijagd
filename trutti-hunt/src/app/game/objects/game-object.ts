@@ -9,6 +9,13 @@ export interface GameObjectClickResult {
   endGameDelay?: number;
 }
 
+export const GAME_OBJECT_TYPES = {
+  TURKEY: 'turkey',
+  SPECIAL_TURKEY: 'special-turkey',
+  BIKINI_GIRL: 'bikini-girl',
+  DELICATE_BIKINI_GIRL: 'delicate-bikini-girl'
+} as const;
+
 export abstract class GameObject {
   x: number;
   y: number;

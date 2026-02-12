@@ -52,6 +52,12 @@
   color: #000000;
 }
 
+.scoreboard-hint {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
 @media (max-width: 768px) {
   .scoreboard-screen {
     padding: 20px;
@@ -63,6 +69,10 @@
     font-size: 1.8em;
     margin-bottom: 15px;
   }
+  
+  .scoreboard-hint {
+    font-size: 0.9em;
+  }
 }
 
 .scoreboard-list {
@@ -73,14 +83,29 @@
 
 .score-entry {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   padding: 15px 20px;
   margin: 10px 0;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-size: 1.2em;
   transition: background 0.2s;
+}
+
+.score-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #555;
 }
 
 .score-entry:hover {
@@ -93,20 +118,20 @@
   font-weight: bold;
 }
 
-.score-entry .rank {
+.score-main .rank {
   font-weight: bold;
   color: #000000;
   min-width: 30px;
 }
 
-.score-entry .name {
+.score-main .name {
   flex: 1;
   text-align: left;
   margin: 0 15px;
   color: #333;
 }
 
-.score-entry .score {
+.score-main .score {
   font-weight: bold;
   color: #000000;
   min-width: 80px;

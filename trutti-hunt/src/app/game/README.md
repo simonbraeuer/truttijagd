@@ -9,12 +9,13 @@ game/
 ├── game.ts              # Main game component with core game logic
 ├── game.html            # Main game template
 ├── game.css             # Main game styles
-└── components/          # Sub-components used within the game
-    ├── index.ts         # Barrel export file for components
-    ├── start-screen/    # Initial screen before game starts
-    ├── game-over/       # Game over screen with score submission
-    ├── pause-overlay/   # Overlay shown when game is paused
-    └── scoreboard/      # High scores display
+├── components/          # Sub-components used within the game
+│   ├── index.ts         # Barrel export file for components
+│   ├── start-screen/    # Initial screen before game starts
+│   ├── game-over/       # Game over screen with score submission
+│   ├── pause-overlay/   # Overlay shown when game is paused
+│   └── scoreboard/      # High scores display (with stats)
+└── services/            # IndexedDB-backed data services
 ```
 
 ## Component Organization
@@ -31,10 +32,11 @@ Following Angular best practices:
 - Game state management (score, lives, game objects)
 - Input handling (mouse clicks, keyboard)
 - Audio management
-- Local storage for scoreboard
+- IndexedDB-backed scoreboard service with detailed stats
 
 ### StartScreenComponent
 - Game instructions display
+- High score preview with detailed stats
 - Audio configuration
 - Control explanations
 - Accordion-based layout for better UX

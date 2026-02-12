@@ -41,14 +41,23 @@
         <summary class="accordion-header">🏆 High Scores</summary>
         <div class="scoreboard-preview">
           <div *ngFor="let entry of scoreboard; let i = index" class="score-entry">
-            <span class="rank">{{ i + 1 }}.</span>
-            <span class="name">{{ entry.name }}</span>
-            <span class="difficulty">{{ getDifficultyIcon(entry.difficulty) }}</span>
-            <span class="score">${{ entry.score }}</span>
+            <div class="score-main">
+              <span class="rank">{{ i + 1 }}.</span>
+              <span class="name">{{ entry.name }}</span>
+              <span class="difficulty">{{ getDifficultyIcon(entry.difficulty) }}</span>
+              <span class="score">${{ entry.score }}</span>
+            </div>
+            <div class="score-details">
+              <span>⏱️ {{ entry.stats.timeRemaining }}s left</span>
+              <span>🦃 {{ entry.stats.truttisCaught }} Truttis</span>
+              <span>⭐ {{ entry.stats.specialTruttisCaught }} special</span>
+              <span>🖱️ {{ entry.stats.totalClicks }} clicks</span>
+            </div>
           </div>
           <div *ngIf="scoreboard.length === 0" class="no-scores">
             No scores yet. Be the first!
           </div>
+          <p class="scoreboard-hint">Details include time left, Truttis caught, special Truttis, and total clicks.</p>
         </div>
       </details>
       

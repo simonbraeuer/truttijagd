@@ -2,10 +2,19 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { GameComponent } from './game';
 import { ChangeDetectorRef } from '@angular/core';
+import { ScoreboardService } from './services/scoreboard.service';
+import { Turkey, SpecialTurkey, BikiniGirl } from './game-objects';
 
 describe('GameComponent Core Logic', () => {
   let component: GameComponent;
   let mockCdr: { detectChanges: ReturnType<typeof vi.fn> };
+  let scoreboardService: ScoreboardService;
+  const baseStats = {
+    timeRemaining: 0,
+    truttisCaught: 0,
+    specialTruttisCaught: 0,
+    totalClicks: 0
+  };
 
   beforeEach(() => {
     mockCdr = { detectChanges: vi.fn() };
@@ -19,6 +28,7 @@ describe('GameComponent Core Logic', () => {
 
     const fixture = TestBed.createComponent(GameComponent);
     component = fixture.componentInstance;
+    scoreboardService = TestBed.inject(ScoreboardService);
   });
 
   describe('initialization', () => {
@@ -195,6 +205,27 @@ describe('GameComponent Core Logic', () => {
     });
   });
 
+  describe('stat tracking', () => {
+    it('should increment truttis caught only for turkey types', () => {
+      component.truttisCaught = 0;
+
+      const turkey = new Turkey(0, 0, 0, 0, 10, 10);
+      component['gameObjects'] = [turkey];
+      component.handleObjectClick(turkey, 0);
+      expect(component.truttisCaught).toBe(1);
+
+      const specialTurkey = new SpecialTurkey(0, 0, 0, 0, 10, 10, 1);
+      component['gameObjects'] = [specialTurkey];
+      component.handleObjectClick(specialTurkey, 0);
+      expect(component.truttisCaught).toBe(2);
+
+      const bikiniGirl = new BikiniGirl(0, 0, 0, 0, 10, 10);
+      component['gameObjects'] = [bikiniGirl];
+      component.handleObjectClick(bikiniGirl, 0);
+      expect(component.truttisCaught).toBe(2);
+    });
+  });
+
   describe('scoreboard management', () => {
     beforeEach(() => {
       localStorage.clear();
@@ -204,79 +235,105 @@ describe('GameComponent Core Logic', () => {
       localStorage.clear();
     });
 
-    it('should save score to localStorage', () => {
+    it('should save score to storage service', async () => {
       component.money = 500;
       component.difficulty = 'Schuh';
+      component.gameStarted = true;
+      component.gameOver = true;
+      component.timeRemaining = 42;
+      component.totalClicks = 12;
+      component.truttisCaught = 4;
+      component.caughtSpecialTurkeys.add(2);
       component['scoreboard'] = [];
       
-      component.saveScore('Test Player');
+      await component.saveScore('Test Player');
       
-      const saved = localStorage.getItem('truttihunt-scoreboard');
-      expect(saved).toBeTruthy();
-      
-      if (saved) {
-        const scoreboard = JSON.parse(saved);
-        expect(scoreboard.length).toBe(1);
-        expect(scoreboard[0].name).toBe('Test Player');
-        expect(scoreboard[0].score).toBe(500);
-        expect(scoreboard[0].difficulty).toBe('Schuh');
-      }
+      const saved = await scoreboardService.getScoreboard();
+      expect(saved.length).toBe(1);
+      expect(saved[0].name).toBe('Test Player');
+      expect(saved[0].score).toBe(500);
+      expect(saved[0].difficulty).toBe('Schuh');
+      expect(saved[0].stats.timeRemaining).toBe(42);
+      expect(saved[0].stats.specialTruttisCaught).toBe(1);
+      expect(saved[0].stats.totalClicks).toBe(12);
+      expect(component.gameStarted).toBe(false);
+      expect(component.gameOver).toBe(false);
+      expect(component.savingScore).toBe(false);
     });
 
-    it('should sort scoreboard by score descending', () => {
+    it('should not save duplicate scores for the same run', async () => {
+      component.money = 250;
+      component.difficulty = 'Andi';
+      component['scoreboard'] = [];
+      const saveSpy = vi.spyOn(scoreboardService, 'saveScoreboard');
+
+      const firstSave = component.saveScore('First Save');
+      expect(component.savingScore).toBe(true);
+      const secondSave = component.saveScore('Second Save');
+      await Promise.all([firstSave, secondSave]);
+
+      const saved = await scoreboardService.getScoreboard();
+      expect(saved.length).toBe(1);
+      expect(saved[0].name).toBe('First Save');
+      expect(saveSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should sort scoreboard by score descending', async () => {
       component.money = 300;
       component.difficulty = 'Andi';
       component['scoreboard'] = [
-        { name: 'Player 1', score: 100, date: new Date().toISOString(), difficulty: 'Andi' },
-        { name: 'Player 2', score: 500, date: new Date().toISOString(), difficulty: 'Schuh' }
+        { name: 'Player 1', score: 100, date: new Date().toISOString(), difficulty: 'Andi', stats: baseStats },
+        { name: 'Player 2', score: 500, date: new Date().toISOString(), difficulty: 'Schuh', stats: baseStats }
       ];
       
-      component.saveScore('Player 3');
+      await component.saveScore('Player 3');
       
       expect(component['scoreboard'][0].score).toBe(500);
       expect(component['scoreboard'][1].score).toBe(300);
       expect(component['scoreboard'][2].score).toBe(100);
     });
 
-    it('should keep only top 5 scores', () => {
+    it('should keep only top 5 scores', async () => {
       component['scoreboard'] = Array.from({ length: 5 }, (_, i) => ({
         name: `Player ${i}`,
         score: i * 100,
         date: new Date().toISOString(),
-        difficulty: 'Andi' as const
+        difficulty: 'Andi' as const,
+        stats: baseStats
       }));
       
       component.money = 1000;
       component.difficulty = 'Mexxx';
-      component.saveScore('Top Player');
+      await component.saveScore('Top Player');
       
       expect(component['scoreboard'].length).toBe(5);
       expect(component['scoreboard'][0].score).toBe(1000);
     });
 
-    it('should load scoreboard from localStorage', () => {
+    it('should load scoreboard from localStorage', async () => {
       const mockScoreboard = [
-        { name: 'Player 1', score: 500, date: new Date().toISOString(), difficulty: 'Schuh' },
-        { name: 'Player 2', score: 300, date: new Date().toISOString(), difficulty: 'Andi' }
+        { name: 'Player 1', score: 500, date: new Date().toISOString(), difficulty: 'Schuh', stats: baseStats },
+        { name: 'Player 2', score: 300, date: new Date().toISOString(), difficulty: 'Andi', stats: baseStats }
       ];
       localStorage.setItem('truttihunt-scoreboard', JSON.stringify(mockScoreboard));
       
-      component.loadScoreboard();
+      await component.loadScoreboard();
       
       expect(component['scoreboard'].length).toBe(2);
       expect(component['scoreboard'][0].name).toBe('Player 1');
       expect(component['scoreboard'][1].name).toBe('Player 2');
     });
 
-    it('should migrate old scoreboard entries without difficulty', () => {
+    it('should migrate old scoreboard entries without difficulty', async () => {
       const oldScoreboard = [
         { name: 'Old Player', score: 200, date: new Date().toISOString() }
       ];
       localStorage.setItem('truttihunt-scoreboard', JSON.stringify(oldScoreboard));
       
-      component.loadScoreboard();
+      await component.loadScoreboard();
       
       expect(component['scoreboard'][0].difficulty).toBe('Andi');
+      expect(component['scoreboard'][0].stats.truttisCaught).toBe(0);
     });
   });
 
@@ -285,42 +342,43 @@ describe('GameComponent Core Logic', () => {
       component['scoreboard'] = [];
     });
 
-    it('should qualify with less than 5 scores', () => {
-      component['scoreboard'] = [
-        { name: 'Player 1', score: 100, date: new Date().toISOString(), difficulty: 'Andi' }
-      ];
+    it('should qualify with less than 5 scores', async () => {
+      await scoreboardService.saveScoreboard([
+        { name: 'Player 1', score: 100, date: new Date().toISOString(), difficulty: 'Andi', stats: baseStats }
+      ]);
       component.money = 50;
       
-      component.endGame();
+      await component.endGame();
       
       expect(component.qualifiesForHighscore).toBe(true);
     });
 
-    it('should qualify with score higher than lowest in top 5', () => {
-      component['scoreboard'] = Array.from({ length: 5 }, (_, i) => ({
+    it('should qualify with score higher than lowest in top 5', async () => {
+      await scoreboardService.saveScoreboard(Array.from({ length: 5 }, (_, i) => ({
         name: `Player ${i}`,
         score: (i + 1) * 100,
         date: new Date().toISOString(),
-        difficulty: 'Andi' as const
-      }));
+        difficulty: 'Andi' as const,
+        stats: baseStats
+      })));
       component.money = 600;
       
-      component.endGame();
+      await component.endGame();
       
       expect(component.qualifiesForHighscore).toBe(true);
     });
 
-    it('should not qualify with score lower than lowest in top 5', () => {
-      component['scoreboard'] = Array.from({ length: 5 }, (_, i) => ({
+    it('should not qualify with score lower than lowest in top 5', async () => {
+      await scoreboardService.saveScoreboard(Array.from({ length: 5 }, (_, i) => ({
         name: `Player ${i}`,
         score: (i + 2) * 100,
         date: new Date().toISOString(),
-        difficulty: 'Andi' as const
-      }));
+        difficulty: 'Andi' as const,
+        stats: baseStats
+      })));
       component.money = 50;
-      component['loadScoreboard'] = vi.fn(); // Mock to prevent loading from localStorage
       
-      component.endGame();
+      await component.endGame();
       
       expect(component.showScoreboard).toBe(true); // Should show scoreboard when not qualifying
     });
@@ -335,6 +393,8 @@ describe('GameComponent Core Logic', () => {
       component.showScoreboard = true;
       component.qualifiesForHighscore = true;
       component.completionMessage = 'Test message';
+      component.totalClicks = 5;
+      component.truttisCaught = 2;
       
       component.resetGame();
       
@@ -343,6 +403,8 @@ describe('GameComponent Core Logic', () => {
       expect(component.showScoreboard).toBe(false);
       expect(component.qualifiesForHighscore).toBe(false);
       expect(component.completionMessage).toBe('');
+      expect(component.totalClicks).toBe(0);
+      expect(component.truttisCaught).toBe(0);
     });
   });
 

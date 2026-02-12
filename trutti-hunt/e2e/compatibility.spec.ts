@@ -66,16 +66,63 @@ test.describe('LocalStorage Compatibility', () => {
   });
 
   test('should persist scoreboard data', async ({ page }) => {
-    // Start and complete a game
-    await page.locator('button:has-text("Start Game")').click();
-    await page.waitForTimeout(1000);
-    
-    // Check that localStorage is accessible
-    const hasLocalStorage = await page.evaluate(() => {
-      return typeof localStorage !== 'undefined';
+    const sampleEntry = {
+      name: 'IndexedDB Player',
+      score: 250,
+      date: new Date().toISOString(),
+      difficulty: 'Andi',
+      stats: {
+        timeRemaining: 8,
+        truttisCaught: 3,
+        specialTruttisCaught: 1,
+        totalClicks: 9
+      }
+    };
+
+    await page.evaluate(async (entry) => {
+      await new Promise<void>((resolve, reject) => {
+        const request = indexedDB.open('truttihunt-stats', 1);
+        request.onupgradeneeded = () => {
+          const db = request.result;
+          if (!db.objectStoreNames.contains('scoreboard')) {
+            db.createObjectStore('scoreboard', { keyPath: 'id' });
+          }
+        };
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction('scoreboard', 'readwrite');
+          const store = transaction.objectStore('scoreboard');
+          store.put({ id: 'highscores', entries: [entry] });
+          transaction.oncomplete = () => resolve();
+          transaction.onerror = () => reject(transaction.error);
+        };
+        request.onerror = () => reject(request.error);
+      });
+    }, sampleEntry);
+
+    const stored = await page.evaluate(async () => {
+      return new Promise<any>((resolve, reject) => {
+        const request = indexedDB.open('truttihunt-stats', 1);
+        request.onupgradeneeded = () => {
+          const db = request.result;
+          if (!db.objectStoreNames.contains('scoreboard')) {
+            db.createObjectStore('scoreboard', { keyPath: 'id' });
+          }
+        };
+        request.onsuccess = () => {
+          const db = request.result;
+          const transaction = db.transaction('scoreboard', 'readonly');
+          const store = transaction.objectStore('scoreboard');
+          const getRequest = store.get('highscores');
+          getRequest.onsuccess = () => resolve(getRequest.result);
+          getRequest.onerror = () => reject(getRequest.error);
+        };
+        request.onerror = () => reject(request.error);
+      });
     });
-    
-    expect(hasLocalStorage).toBe(true);
+
+    expect(stored.entries).toHaveLength(1);
+    expect(stored.entries[0].stats.totalClicks).toBe(9);
   });
 
   test('should handle missing localStorage gracefully', async ({ page, context }) => {

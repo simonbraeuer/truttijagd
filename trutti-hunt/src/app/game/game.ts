@@ -9,9 +9,10 @@ import {
 } from './components';
 import type { GameSettings, DifficultyLevel } from './components/start-screen/start-screen';
 import type { ScoreEntry } from './components/scoreboard/scoreboard';
-import { GameObject, SpecialTurkey } from './game-objects';
+import { GameObject, SpecialTurkey, GAME_OBJECT_TYPES } from './game-objects';
 import { SpawnManager } from './spawn-manager';
 import { TurkeySpawner, SpecialTurkeySpawner, BikiniGirlSpawner, SpawnContext } from './objects/spawners';
+import { ScoreboardService } from './services/scoreboard.service';
 
 @Component({
   selector: 'app-game',
@@ -30,6 +31,8 @@ export class GameComponent implements OnInit, OnDestroy {
   private gameStartTime: number = 0;
   
   money: number = 0;
+  totalClicks: number = 0;
+  truttisCaught: number = 0;
   gameStarted: boolean = false;
   gameOver: boolean = false;
   paused: boolean = false;
@@ -37,6 +40,7 @@ export class GameComponent implements OnInit, OnDestroy {
   playerName: string = '';
   showScoreboard: boolean = false;
   qualifiesForHighscore: boolean = false;
+  savingScore: boolean = false;
   scoreboard: ScoreEntry[] = [];
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';
@@ -48,14 +52,19 @@ export class GameComponent implements OnInit, OnDestroy {
   
   // Special turkeys IDs (1-9)
   private readonly SPECIAL_TURKEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private readonly TURKEY_TYPES = new Set<string>([
+    GAME_OBJECT_TYPES.TURKEY,
+    GAME_OBJECT_TYPES.SPECIAL_TURKEY
+  ]);
   caughtSpecialTurkeys: Set<number> = new Set();
   private spawnedSpecialTurkeys: Set<number> = new Set();
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private scoreboardService: ScoreboardService) {}
 
   ngOnInit() {
+    const storage = this.getStorage();
     // Load saved difficulty from localStorage for display
-    const savedDifficulty = localStorage.getItem('truttihunt-difficulty') as DifficultyLevel;
+    const savedDifficulty = storage?.getItem('truttihunt-difficulty') as DifficultyLevel;
     if (savedDifficulty) {
       this.difficulty = savedDifficulty;
     }
@@ -171,9 +180,12 @@ export class GameComponent implements OnInit, OnDestroy {
     this.playerName = '';
     this.showScoreboard = false;
     this.qualifiesForHighscore = false;
+    this.savingScore = false;
     this.timeRemaining = 90;
     this.lastTimerUpdate = Date.now();
     this.gameStartTime = Date.now();
+    this.totalClicks = 0;
+    this.truttisCaught = 0;
     
     // Initialize SpawnManager with spawners (IoC pattern)
     this.spawnManager = new SpawnManager();
@@ -312,6 +324,7 @@ export class GameComponent implements OnInit, OnDestroy {
     if (!this.gameStarted || this.gameOver || this.paused) return;
     
     event.preventDefault();
+    this.totalClicks++;
     
     const canvas = this.canvasRef.nativeElement;
     const rect = canvas.getBoundingClientRect();
@@ -346,6 +359,11 @@ export class GameComponent implements OnInit, OnDestroy {
     const result = obj.onClick(this.caughtSpecialTurkeys);
     
     this.money += result.moneyChange;
+
+    const objectType = obj.getType();
+    if (this.TURKEY_TYPES.has(objectType)) {
+      this.truttisCaught++;
+    }
     
     if (result.shouldRemove) {
       this.gameObjects.splice(index, 1);
@@ -416,10 +434,10 @@ export class GameComponent implements OnInit, OnDestroy {
     oscillator.stop(audioContext.currentTime + 0.1);
   }
 
-  endGame() {
+  async endGame() {
     this.gameOver = true;
     this.stopGame();
-    this.loadScoreboard();
+    await this.loadScoreboard();
     
     // Check if score qualifies for highscore list
     if (this.scoreboard.length < 5) {
@@ -437,12 +455,23 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveScore(playerName: string) {
+  async saveScore(playerName: string) {
+    if (this.savingScore) {
+      return;
+    }
+
+    this.savingScore = true;
     const score = {
       name: playerName,
       score: this.money,
       date: new Date().toISOString(),
-      difficulty: this.difficulty
+      difficulty: this.difficulty,
+      stats: {
+        timeRemaining: this.timeRemaining,
+        truttisCaught: this.truttisCaught,
+        specialTruttisCaught: this.caughtSpecialTurkeys.size,
+        totalClicks: this.totalClicks
+      }
     };
 
     this.scoreboard.push(score);
@@ -453,26 +482,19 @@ export class GameComponent implements OnInit, OnDestroy {
       this.scoreboard = this.scoreboard.slice(0, 5);
     }
 
-    localStorage.setItem('truttihunt-scoreboard', JSON.stringify(this.scoreboard));
-    this.showScoreboard = true;
+    try {
+      await this.scoreboardService.saveScoreboard(this.scoreboard);
+      this.resetGame();
+    } catch (error) {
+      console.warn('Score could not be saved:', error);
+    } finally {
+      this.savingScore = false;
+      this.cdr.detectChanges();
+    }
   }
 
-  loadScoreboard() {
-    const savedScoreboard = localStorage.getItem('truttihunt-scoreboard');
-    if (savedScoreboard) {
-      try {
-        const loaded = JSON.parse(savedScoreboard);
-        // Migrate old entries without difficulty field
-        this.scoreboard = loaded.map((entry: any) => ({
-          ...entry,
-          difficulty: entry.difficulty || 'Andi'
-        }));
-      } catch (e) {
-        this.scoreboard = [];
-      }
-    } else {
-      this.scoreboard = [];
-    }
+  async loadScoreboard() {
+    this.scoreboard = await this.scoreboardService.getScoreboard();
   }
 
   resetGame() {
@@ -483,5 +505,14 @@ export class GameComponent implements OnInit, OnDestroy {
     this.qualifiesForHighscore = false;
     this.completionMessage = '';
     this.gameObjects = [];
+    this.totalClicks = 0;
+    this.truttisCaught = 0;
+  }
+
+  private getStorage(): Storage | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
+    return localStorage;
   }
 }
