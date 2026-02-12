@@ -427,25 +427,25 @@ export class GameComponent implements OnInit, OnDestroy {
     oscillator.stop(audioContext.currentTime + 0.1);
   }
 
-  endGame() {
+  async endGame() {
     this.gameOver = true;
     this.stopGame();
-    return this.loadScoreboard().then(() => {
-      // Check if score qualifies for highscore list
-      if (this.scoreboard.length < 5) {
-        // Less than 5 scores, always qualifies
-        this.qualifiesForHighscore = true;
-      } else {
-        // Check if current score beats the lowest score in list
-        const lowestScore = this.scoreboard[this.scoreboard.length - 1].score;
-        this.qualifiesForHighscore = this.money > lowestScore;
-      }
-      
-      // If doesn't qualify, show scoreboard directly
-      if (!this.qualifiesForHighscore) {
-        this.showScoreboard = true;
-      }
-    });
+    await this.loadScoreboard();
+    
+    // Check if score qualifies for highscore list
+    if (this.scoreboard.length < 5) {
+      // Less than 5 scores, always qualifies
+      this.qualifiesForHighscore = true;
+    } else {
+      // Check if current score beats the lowest score in list
+      const lowestScore = this.scoreboard[this.scoreboard.length - 1].score;
+      this.qualifiesForHighscore = this.money > lowestScore;
+    }
+    
+    // If doesn't qualify, show scoreboard directly
+    if (!this.qualifiesForHighscore) {
+      this.showScoreboard = true;
+    }
   }
 
   async saveScore(playerName: string) {

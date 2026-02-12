@@ -361,7 +361,7 @@
   margin: 0;
 }
 
-.scoreboard-note {
+.scoreboard-hint {
   margin: clamp(6px, 1.5vw, 10px) 0 0;
   font-size: clamp(0.75em, 1.8vw, 0.85em);
   color: #555;
