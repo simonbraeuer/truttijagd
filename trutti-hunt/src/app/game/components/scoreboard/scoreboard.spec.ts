@@ -2,19 +2,28 @@ import { describe, it, expect } from 'vitest';
 import type { ScoreEntry } from './scoreboard';
 
 describe('ScoreboardComponent', () => {
+  const baseStats = {
+    timeRemaining: 0,
+    truttisCaught: 0,
+    specialTruttisCaught: 0,
+    totalClicks: 0
+  };
+
   describe('ScoreEntry interface', () => {
     it('should have required properties', () => {
       const entry: ScoreEntry = {
         name: 'Test Player',
         score: 500,
         date: '2026-02-02T12:00:00.000Z',
-        difficulty: 'Schuh'
+        difficulty: 'Schuh',
+        stats: baseStats
       };
 
       expect(entry.name).toBe('Test Player');
       expect(entry.score).toBe(500);
       expect(entry.date).toBeDefined();
       expect(entry.difficulty).toBe('Schuh');
+      expect(entry.stats.totalClicks).toBe(0);
     });
 
     it('should support all difficulty levels', () => {
@@ -22,21 +31,24 @@ describe('ScoreboardComponent', () => {
         name: 'Easy Player',
         score: 100,
         date: new Date().toISOString(),
-        difficulty: 'Andi'
+        difficulty: 'Andi',
+        stats: baseStats
       };
 
       const mediumEntry: ScoreEntry = {
         name: 'Medium Player',
         score: 200,
         date: new Date().toISOString(),
-        difficulty: 'Schuh'
+        difficulty: 'Schuh',
+        stats: baseStats
       };
 
       const hardEntry: ScoreEntry = {
         name: 'Hard Player',
         score: 300,
         date: new Date().toISOString(),
-        difficulty: 'Mexxx'
+        difficulty: 'Mexxx',
+        stats: baseStats
       };
 
       expect(easyEntry.difficulty).toBe('Andi');
@@ -48,9 +60,9 @@ describe('ScoreboardComponent', () => {
   describe('Scoreboard sorting', () => {
     it('should sort by score descending', () => {
       const entries: ScoreEntry[] = [
-        { name: 'Player 1', score: 100, date: new Date().toISOString(), difficulty: 'Andi' },
-        { name: 'Player 2', score: 500, date: new Date().toISOString(), difficulty: 'Schuh' },
-        { name: 'Player 3', score: 300, date: new Date().toISOString(), difficulty: 'Mexxx' }
+        { name: 'Player 1', score: 100, date: new Date().toISOString(), difficulty: 'Andi', stats: baseStats },
+        { name: 'Player 2', score: 500, date: new Date().toISOString(), difficulty: 'Schuh', stats: baseStats },
+        { name: 'Player 3', score: 300, date: new Date().toISOString(), difficulty: 'Mexxx', stats: baseStats }
       ];
 
       const sorted = entries.sort((a, b) => b.score - a.score);
@@ -65,7 +77,8 @@ describe('ScoreboardComponent', () => {
         name: `Player ${i}`,
         score: i * 100,
         date: new Date().toISOString(),
-        difficulty: 'Andi' as const
+        difficulty: 'Andi' as const,
+        stats: baseStats
       }));
 
       const sorted = entries.sort((a, b) => b.score - a.score);

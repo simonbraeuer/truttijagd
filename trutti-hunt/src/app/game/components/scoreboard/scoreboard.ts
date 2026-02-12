@@ -7,6 +7,14 @@ export interface ScoreEntry {
   score: number;
   date: string;
   difficulty: DifficultyLevel;
+  stats: ScoreStats;
+}
+
+export interface ScoreStats {
+  timeRemaining: number;
+  truttisCaught: number;
+  specialTruttisCaught: number;
+  totalClicks: number;
 }
 
 @Component({
