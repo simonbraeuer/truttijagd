@@ -26,5 +26,8 @@ export class GameOverComponent {
     }
     this.isSaving = true;
     this.saveScore.emit(this.playerName.trim());
+    Promise.resolve().then(() => {
+      this.isSaving = false;
+    });
   }
 }
