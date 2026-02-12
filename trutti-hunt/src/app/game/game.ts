@@ -489,6 +489,7 @@ export class GameComponent implements OnInit, OnDestroy {
       console.warn('Score could not be saved:', error);
     } finally {
       this.savingScore = false;
+      this.cdr.detectChanges();
     }
   }
 
