@@ -267,8 +267,8 @@ describe('GameComponent Core Logic', () => {
       component['scoreboard'] = [];
 
       const firstSave = component.saveScore('First Save');
-      await component.saveScore('Second Save');
-      await firstSave;
+      const secondSave = component.saveScore('Second Save');
+      await Promise.all([firstSave, secondSave]);
 
       const saved = await scoreboardService.getScoreboard();
       expect(saved.length).toBe(1);
