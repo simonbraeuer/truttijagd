@@ -99,35 +99,29 @@ export class ScoreboardService {
   }
 
   private migrateLegacyScoreboard(): ScoreEntry[] {
-    const saved = localStorage.getItem(this.legacyStorageKey);
-    if (!saved) {
-      return [];
-    }
-
-    try {
-      const parsed = JSON.parse(saved);
-      return this.normalizeScoreboard(Array.isArray(parsed) ? parsed : []);
-    } catch {
-      return [];
-    }
+    return this.readLegacyScoreboard();
   }
 
   private loadFromLocalStorage(): ScoreEntry[] {
-    const saved = localStorage.getItem(this.legacyStorageKey);
-    if (!saved) {
-      return [];
-    }
-
-    try {
-      const parsed = JSON.parse(saved);
-      return this.normalizeScoreboard(Array.isArray(parsed) ? parsed : []);
-    } catch {
-      return [];
-    }
+    return this.readLegacyScoreboard();
   }
 
   private saveToLocalStorage(entries: ScoreEntry[]): void {
     localStorage.setItem(this.legacyStorageKey, JSON.stringify(entries));
+  }
+
+  private readLegacyScoreboard(): ScoreEntry[] {
+    const saved = localStorage.getItem(this.legacyStorageKey);
+    if (!saved) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(saved);
+      return this.normalizeScoreboard(Array.isArray(parsed) ? parsed : []);
+    } catch {
+      return [];
+    }
   }
 
   private normalizeScoreboard(entries: unknown[]): ScoreEntry[] {

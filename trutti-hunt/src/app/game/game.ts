@@ -51,6 +51,7 @@ export class GameComponent implements OnInit, OnDestroy {
   
   // Special turkeys IDs (1-9)
   private readonly SPECIAL_TURKEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private readonly TURKEY_TYPES = new Set(['turkey', 'special-turkey']);
   caughtSpecialTurkeys: Set<number> = new Set();
   private spawnedSpecialTurkeys: Set<number> = new Set();
 
@@ -354,7 +355,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.money += result.moneyChange;
 
     const objectType = obj.getType();
-    if (objectType === 'turkey' || objectType === 'special-turkey') {
+    if (this.TURKEY_TYPES.has(objectType)) {
       this.truttisCaught++;
     }
     
