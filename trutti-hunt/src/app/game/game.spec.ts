@@ -256,6 +256,19 @@ describe('GameComponent Core Logic', () => {
       expect(saved[0].stats.totalClicks).toBe(12);
     });
 
+    it('should not save duplicate scores for the same run', async () => {
+      component.money = 250;
+      component.difficulty = 'Andi';
+      component['scoreboard'] = [];
+
+      await component.saveScore('First Save');
+      await component.saveScore('Second Save');
+
+      const saved = await scoreboardService.getScoreboard();
+      expect(saved.length).toBe(1);
+      expect(saved[0].name).toBe('First Save');
+    });
+
     it('should sort scoreboard by score descending', async () => {
       component.money = 300;
       component.difficulty = 'Andi';

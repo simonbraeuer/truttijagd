@@ -40,6 +40,7 @@ export class GameComponent implements OnInit, OnDestroy {
   playerName: string = '';
   showScoreboard: boolean = false;
   qualifiesForHighscore: boolean = false;
+  private scoreSaved: boolean = false;
   scoreboard: ScoreEntry[] = [];
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';
@@ -179,6 +180,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.playerName = '';
     this.showScoreboard = false;
     this.qualifiesForHighscore = false;
+    this.scoreSaved = false;
     this.timeRemaining = 90;
     this.lastTimerUpdate = Date.now();
     this.gameStartTime = Date.now();
@@ -454,6 +456,11 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   async saveScore(playerName: string) {
+    if (this.scoreSaved) {
+      return;
+    }
+
+    this.scoreSaved = true;
     const score = {
       name: playerName,
       score: this.money,
@@ -493,6 +500,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameObjects = [];
     this.totalClicks = 0;
     this.truttisCaught = 0;
+    this.scoreSaved = false;
   }
 
   private getStorage(): Storage | null {
