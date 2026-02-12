@@ -46,7 +46,7 @@ export class ScoreboardService {
   }
 
   private async openDb(): Promise<IDBDatabase | null> {
-    if (typeof indexedDB === 'undefined') {
+    if (typeof indexedDB === 'undefined' || indexedDB === null) {
       return null;
     }
 
