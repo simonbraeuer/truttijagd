@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './game-over.html',
   styleUrl: './game-over.css'
 })
-export class GameOverComponent implements OnDestroy {
+export class GameOverComponent {
   @Input() money: number = 0;
   @Input() caughtSpecialTurkeys: number = 0;
   @Output() saveScore = new EventEmitter<string>();
@@ -28,7 +28,4 @@ export class GameOverComponent implements OnDestroy {
     this.saveScore.emit(this.playerName.trim());
   }
 
-  ngOnDestroy() {
-    this.isSaving = false;
-  }
 }
