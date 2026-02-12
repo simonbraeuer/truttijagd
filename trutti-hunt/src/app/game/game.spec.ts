@@ -265,6 +265,7 @@ describe('GameComponent Core Logic', () => {
       component.money = 250;
       component.difficulty = 'Andi';
       component['scoreboard'] = [];
+      const saveSpy = vi.spyOn(scoreboardService, 'saveScoreboard');
 
       const firstSave = component.saveScore('First Save');
       expect(component.savingScore).toBe(true);
@@ -274,6 +275,7 @@ describe('GameComponent Core Logic', () => {
       const saved = await scoreboardService.getScoreboard();
       expect(saved.length).toBe(1);
       expect(saved[0].name).toBe('First Save');
+      expect(saveSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should sort scoreboard by score descending', async () => {
