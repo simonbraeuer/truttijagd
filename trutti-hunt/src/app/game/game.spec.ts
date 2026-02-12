@@ -238,6 +238,8 @@ describe('GameComponent Core Logic', () => {
     it('should save score to storage service', async () => {
       component.money = 500;
       component.difficulty = 'Schuh';
+      component.gameStarted = true;
+      component.gameOver = true;
       component.timeRemaining = 42;
       component.totalClicks = 12;
       component.truttisCaught = 4;
@@ -254,7 +256,8 @@ describe('GameComponent Core Logic', () => {
       expect(saved[0].stats.timeRemaining).toBe(42);
       expect(saved[0].stats.specialTruttisCaught).toBe(1);
       expect(saved[0].stats.totalClicks).toBe(12);
-      expect(component.scoreSaved).toBe(true);
+      expect(component.gameStarted).toBe(false);
+      expect(component.gameOver).toBe(false);
     });
 
     it('should not save duplicate scores for the same run', async () => {
@@ -262,8 +265,9 @@ describe('GameComponent Core Logic', () => {
       component.difficulty = 'Andi';
       component['scoreboard'] = [];
 
-      await component.saveScore('First Save');
+      const firstSave = component.saveScore('First Save');
       await component.saveScore('Second Save');
+      await firstSave;
 
       const saved = await scoreboardService.getScoreboard();
       expect(saved.length).toBe(1);

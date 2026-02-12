@@ -40,7 +40,7 @@ export class GameComponent implements OnInit, OnDestroy {
   playerName: string = '';
   showScoreboard: boolean = false;
   qualifiesForHighscore: boolean = false;
-  scoreSaved: boolean = false;
+  private scoreSaved: boolean = false;
   scoreboard: ScoreEntry[] = [];
   private audioUrl: string = '';
   difficulty: DifficultyLevel = 'Andi';
@@ -483,7 +483,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
 
     await this.scoreboardService.saveScoreboard(this.scoreboard);
-    this.showScoreboard = true;
+    this.resetGame();
   }
 
   async loadScoreboard() {

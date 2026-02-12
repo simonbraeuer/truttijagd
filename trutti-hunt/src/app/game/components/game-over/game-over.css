@@ -144,10 +144,3 @@
 .save-score-button:active {
   transform: translateY(0);
 }
-
-.score-saved-message {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #000000;
-  margin: 20px 0 0;
-}
